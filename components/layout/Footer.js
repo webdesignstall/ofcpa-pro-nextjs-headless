@@ -9,7 +9,7 @@ export default function Footer() {
     <div>
 
 
-      <div class="grid grid-cols-3 gap-4 bg-sky-700">
+      <div className="grid grid-cols-3 gap-4 bg-sky-700">
         <div></div>
         <div className='flex justify-center items-center  text-white py-16 px-12'>
           <ul>
