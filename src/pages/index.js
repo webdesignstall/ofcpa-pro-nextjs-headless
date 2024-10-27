@@ -7,6 +7,7 @@ import RatingSection from '../../components/section/RatingSection'
 import PackageSection from '../../components/section/PackageSection'
 import ServiceSection from '../../components/section/ServiceSection'
 import Head from 'next/head'
+import ScheduleSection from '../../components/section/ScheduleSection'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <RatingSection />
           <PackageSection />
           <ServiceSection />
+          <ScheduleSection />
         </div>
         <Footer />
       </div>
