@@ -11,24 +11,35 @@ export default function Footer() {
 
       <div className="grid grid-cols-3 gap-4 bg-sky-700">
         <div></div>
-        <div className='flex justify-center items-center  text-white py-16 px-12'>
-          <ul>
-            <li className='grid grid-cols-2 gap-1'>
-              <div><Mail /></div>
-              <div>
-                <span className='block'>Main</span>
-                <span className='block'>abc@mail.com</span>
+        <div className='flex justify-around items-center'>
+          <ul className='text-white h-96 pt-44 space-y-4'>
+            <li className='flex space-x-6'>
+              <div className='rounded-full p-3 hover:border-yellow-500 border border-sky-700 duration-200'>
+                <Mail size={20} />
+              </div>
+              <div className='flex flex-col'>
+                <span className='text-md font-medium'>Email</span>
+                <span className='text-md font-medium'>abc@gmail.com</span>
+              </div>
+            </li>
+            <li className='flex space-x-6'>
+              <div className='rounded-full p-3 hover:border-yellow-500 border border-sky-700 duration-200'>
+                <Phone size={20} />
+              </div>
+              <div className='flex flex-col'>
+                <span className='text-md font-medium'>Phone</span>
+                <span className='text-md font-medium'>+8525412556</span>
               </div>
             </li>
           </ul>
-          {/* <div>
+          <div className='pt-24'>
             <Image
-              width={200}
-              height={200}
-              src='/logo/bg_footer_logo.jpg'
-              alt='Footer logo'
+            width={200}
+            height={200}
+            src='/footer_section_logo.webp'
+            alt='footer logo'
             />
-          </div> */}
+          </div>
         </div>
         <div></div>
       </div>

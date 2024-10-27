@@ -6,8 +6,8 @@ export default function WorkingSection() {
   return (
     <div className='pt-12'>
       <div>
-        <h1 className='text-center text-4xl font-semibold text-neutral-700 pb-12'>WORKING WITH US</h1>
-        <div className='max-w-7xl m-auto'>
+        <h1 className='text-center text-4xl font-bold text-[#2A5B84] pb-12'>WORKING WITH US</h1>
+        <div className='max-w-6xl m-auto'>
           <div className='grid grid-cols-2 gap-8 pb-12'>
             <div className='flex space-x-6'>
               <div>
