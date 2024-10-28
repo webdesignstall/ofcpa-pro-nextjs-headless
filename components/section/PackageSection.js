@@ -47,7 +47,7 @@ export default function PackageSection() {
     ];
 
     return (
-        <div ref={sectionRef} className='py-12 bg-white'>
+        <div id="packages" ref={sectionRef} className='py-12 bg-white'>
             <div className='text-center pb-8'>
                 <h1 className='scroll-m-20 text-yellow-500 text-3xl font-semibold tracking-tight'>
                     - Packages -

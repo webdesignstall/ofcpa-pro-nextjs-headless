@@ -16,8 +16,7 @@ export default function Home() {
         <title>OF Accountant - Accounting and Taxes for OnlyFans Creators</title>
       </Head>
       <div>
-        <Header />
-        <div className='px-10'>
+        <div className='lg:px-6 px-1'>
           <FirstSection />
           <WorkingSection />
           <RatingSection />
@@ -25,7 +24,6 @@ export default function Home() {
           <ServiceSection />
           <ScheduleSection />
         </div>
-        <Footer />
       </div>
     </div>
   )
