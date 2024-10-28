@@ -9,7 +9,7 @@ export default function WorkingSection() {
   const isInView = useInView(sectionRef, { once: true, margin: '-50px' }); // Adjusts when to start animation
 
   return (
-    <div className='pt-12' ref={sectionRef}>
+    <div id="what-we-do" className='pt-12' ref={sectionRef}>
       <div>
         {/* Animated Header */}
         <motion.h1
@@ -25,7 +25,7 @@ export default function WorkingSection() {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12'>
             {/* Content Section */}
             {[...Array(6)].map((_, index) => (
-              <div key={index} className='flex space-x-6'>
+              <div key={index} className='flex flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center space-x-6 px-6'>
                 <div>
                   <Image
                     width={100}
