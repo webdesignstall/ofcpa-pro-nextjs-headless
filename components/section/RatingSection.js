@@ -36,28 +36,18 @@ export default function SimpleSlider() {
             role: "Content Creator",
             rating: 5,
             feedback: "MATT!!! THANK YOU. When you reached out for a testimonial I realized that I haven't even thought about my finances in months because I know you're paying attention.",
-            bgColor: "bg-white",
-            textColor: "text-gray-700",
         },
         {
             name: "Chris B.",
             role: "Content Creator",
             rating: 5,
-<<<<<<< HEAD
-            feedback: "It’s funny because at first I was debating even getting an accountant. Wasn’t sure I’d be able to afford it but it’s so worth it. I'd mess it up so bad on my own. I'd rather have you from the start than to implement you down the road.",
-            bgColor: "bg-white",
-            textColor: "text-gray-700",
-=======
             feedback: "It’s funny because at first I was debating even getting an accountant. Wasn’t sure I’d be able to afford it but it’s so worth it. I'd mess it up so bad on my own.",
->>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
         },
         {
             name: "Jessica A.",
             role: "Content Creator",
             rating: 5,
             feedback: "Matt, you and your team are more than accountants; you're like my financial best friend. I love that I never have to wait for you to answer my questions and you're SO patient.",
-            bgColor: "bg-white",
-            textColor: "text-gray-700",
         },
         {
             name: "Alex D.",
@@ -74,26 +64,6 @@ export default function SimpleSlider() {
     ];
 
     return (
-<<<<<<< HEAD
-        <div className="py-10 px-4 bg-gray-100 max-w-6xl mx-auto">
-            <h1 className="text-center pb-8 text-3xl font-bold text-blue-900">
-                Don't Just Take Our Word For It
-            </h1>
-            <Slider {...settings}>
-                {testimonials.map((testimonial, index) => (
-                    <div key={index} className="p-4">
-                        <div className={`${testimonial.bgColor} rounded-lg p-6 shadow-lg text-center`}>
-                            <h2 className="font-bold text-xl text-blue-900">{testimonial.name}</h2>
-                            <p className="text-sm text-gray-500 mb-2">{testimonial.role}</p>
-                            <div className="flex justify-center mb-4">
-                                {Array.from({ length: testimonial.rating }).map((_, idx) => (
-                                    <Star key={idx} className="text-yellow-500 w-5 h-5" />
-                                ))}
-                            </div>
-                            <p className={`text-sm ${testimonial.textColor}`}>
-                                {testimonial.feedback}
-                            </p>
-=======
         <div className="py-10 px-4 max-w-6xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -120,20 +90,10 @@ export default function SimpleSlider() {
                                 </div>
                                 <p className="text-md tracking-wide leading-8">{testimonial.feedback}</p>
                             </div>
->>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
                         </div>
                     </div>
                 ))}
             </Slider>
-<<<<<<< HEAD
-            <p className="text-center text-sm text-gray-500 mt-4">
-                *Names have been changed to maintain client confidentiality.
-            </p>
-            <div className="text-center mt-8">
-                <button className="bg-blue-900 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
-                    BOOK A CALL
-                </button>
-=======
             <div className='flex justify-center items-center py-10'>
                 <motion.button
                     className='rounded-full px-16 py-4 text-xl font-semibold bg-cyan-800 hover:bg-yellow-500 text-white mt-4'
@@ -145,7 +105,6 @@ export default function SimpleSlider() {
                 >
                     Book a Call
                 </motion.button>
->>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
             </div>
         </div>
     );

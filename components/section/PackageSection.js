@@ -48,11 +48,6 @@ export default function PackageSection() {
     ];
 
     return (
-<<<<<<< HEAD
-        <div id="packages" ref={sectionRef} className='py-12 bg-white'>
-            <div className='text-center pb-8'>
-                <h1 className='scroll-m-20 text-yellow-500 text-3xl font-semibold tracking-tight'>
-=======
         <div id="packages" ref={sectionRef} className="py-12 bg-white">
             {/* Animated Heading */}
             <motion.div
@@ -62,7 +57,6 @@ export default function PackageSection() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
                 <h1 className="scroll-m-20 text-yellow-500 text-5xl font-bold pb-10 tracking-tight">
->>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
                     - Packages -
                 </h1>
             </motion.div>

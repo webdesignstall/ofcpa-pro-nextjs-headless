@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-export default function blog() {
-  return (
-    <div>blog</div>
-  )
-}
-=======
 import { useState } from 'react';
 
 const BlogPage = () => {
@@ -112,4 +103,3 @@ const BlogPage = () => {
 };
 
 export default BlogPage;
->>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
