@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function SimpleSlider() {
     const settings = {
@@ -42,9 +43,13 @@ export default function SimpleSlider() {
             name: "Chris B.",
             role: "Content Creator",
             rating: 5,
+<<<<<<< HEAD
             feedback: "It’s funny because at first I was debating even getting an accountant. Wasn’t sure I’d be able to afford it but it’s so worth it. I'd mess it up so bad on my own. I'd rather have you from the start than to implement you down the road.",
             bgColor: "bg-white",
             textColor: "text-gray-700",
+=======
+            feedback: "It’s funny because at first I was debating even getting an accountant. Wasn’t sure I’d be able to afford it but it’s so worth it. I'd mess it up so bad on my own.",
+>>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
         },
         {
             name: "Jessica A.",
@@ -54,9 +59,22 @@ export default function SimpleSlider() {
             bgColor: "bg-white",
             textColor: "text-gray-700",
         },
+        {
+            name: "Alex D.",
+            role: "Influencer",
+            rating: 5,
+            feedback: "Hiring Matt was the best financial decision I've made. I now understand my earnings and expenses, and I feel more confident about my financial future.",
+        },
+        {
+            name: "Jamie R.",
+            role: "Content Creator",
+            rating: 5,
+            feedback: "Working with Matt has taken so much stress off my shoulders. I can focus on creating, knowing that my finances are being handled professionally.",
+        },
     ];
 
     return (
+<<<<<<< HEAD
         <div className="py-10 px-4 bg-gray-100 max-w-6xl mx-auto">
             <h1 className="text-center pb-8 text-3xl font-bold text-blue-900">
                 Don't Just Take Our Word For It
@@ -75,10 +93,39 @@ export default function SimpleSlider() {
                             <p className={`text-sm ${testimonial.textColor}`}>
                                 {testimonial.feedback}
                             </p>
+=======
+        <div className="py-10 px-4 max-w-6xl mx-auto">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="pb-12"
+            >
+                <h1 className="text-center pb-10 text-5xl font-bold text-blue-900">
+                    Don't Just Take Our Word For It
+                </h1>
+            </motion.div>
+            <Slider {...settings}>
+                {testimonials.map((testimonial, index) => (
+                    <div key={index} className="p-2">
+                        <div className="bg-yellow-500 text-white border-2 border-white rounded-xl p-6 shadow-lg w-full h-96 flex flex-col justify-between text-left   hover:bg-cyan-800 duration-200">
+                            <div>
+                                <h2 className="font-semibold text-lg tracking-wide py-4">{testimonial.name}</h2>
+                                <p className="text-sm mb-4 tracking-wider py-2">{testimonial.role}</p>
+                                <div className="flex mb-4">
+                                    {Array.from({ length: testimonial.rating }).map((_, idx) => (
+                                        <Star key={idx} className="text-white w-5 h-5" />
+                                    ))}
+                                </div>
+                                <p className="text-md tracking-wide leading-8">{testimonial.feedback}</p>
+                            </div>
+>>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
                         </div>
                     </div>
                 ))}
             </Slider>
+<<<<<<< HEAD
             <p className="text-center text-sm text-gray-500 mt-4">
                 *Names have been changed to maintain client confidentiality.
             </p>
@@ -86,6 +133,19 @@ export default function SimpleSlider() {
                 <button className="bg-blue-900 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
                     BOOK A CALL
                 </button>
+=======
+            <div className='flex justify-center items-center py-10'>
+                <motion.button
+                    className='rounded-full px-16 py-4 text-xl font-semibold bg-cyan-800 hover:bg-yellow-500 text-white mt-4'
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Book a Call
+                </motion.button>
+>>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { ShieldCheck, SquareCheckBig } from 'lucide-react';
 
 export default function PackageSection() {
     // Ref to track when the section comes into view
@@ -47,34 +48,56 @@ export default function PackageSection() {
     ];
 
     return (
+<<<<<<< HEAD
         <div id="packages" ref={sectionRef} className='py-12 bg-white'>
             <div className='text-center pb-8'>
                 <h1 className='scroll-m-20 text-yellow-500 text-3xl font-semibold tracking-tight'>
+=======
+        <div id="packages" ref={sectionRef} className="py-12 bg-white">
+            {/* Animated Heading */}
+            <motion.div
+                className="text-center pb-8"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+                <h1 className="scroll-m-20 text-yellow-500 text-5xl font-bold pb-10 tracking-tight">
+>>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
                     - Packages -
                 </h1>
-            </div>
+            </motion.div>
 
-            <div className='max-w-7xl mx-auto px-4'>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {/* Package Cards */}
+            <div className="max-w-6xl mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {packages.map((pkg, index) => (
                         <motion.div
                             key={index}
-                            className='bg-cyan-800 text-white p-8 rounded-2xl shadow-lg'
+                            className="bg-sky-800 text-white p-8 rounded-2xl shadow-lg"
                             initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
                             whileHover={{ scale: 1.05 }}
                         >
-                            <h1 className='text-2xl font-semibold py-4 text-center text-yellow-500'>
-                                {pkg.title}
-                            </h1>
-                            <p className='text-2xl font-semibold text-center py-3'>{pkg.price}</p>
-                            <p className='font-semibold text-center pb-4'>
+                            <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                            >
+                                <h1 className="text-2xl font-bold py-4 text-center text-yellow-400">
+                                    {pkg.title}
+                                </h1>
+                            </motion.div>
+                            <p className="text-3xl font-bold text-center py-3 pb-8">{pkg.price}</p>
+                            <p className="font-semibold text-center pb-4">
                                 {pkg.description}
                             </p>
-                            <ul className='list-disc list-inside space-y-2'>
+                            <ul className="space-y-2">
                                 {pkg.features.map((feature, idx) => (
-                                    <li key={idx}>{feature}</li>
+                                    <li key={idx} className="flex items-start space-x-2">
+                                        <ShieldCheck className="mt-1 text-white" />
+                                        <span className='font-semibold mr-6'>{feature}</span>
+                                    </li>
                                 ))}
                             </ul>
                         </motion.div>

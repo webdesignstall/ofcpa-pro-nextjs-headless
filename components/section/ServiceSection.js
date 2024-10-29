@@ -1,43 +1,53 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function ServiceSection() {
     return (
         <div className="px-4 py-16">
-            <div className="pb-12">
-                <h1 className="text-center text-2xl sm:text-3xl text-yellow-500 font-semibold">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="pb-12"
+            >
+                <h1 className="text-center text-5xl text-yellow-500 font-bold">
                     - Tax and Corporate Services -
                 </h1>
-            </div>
-            <div className="max-w-3xl mx-auto bg-cyan-900 text-white p-6 sm:p-10 rounded-xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 text-base sm:text-lg font-semibold">
-                    <p>1040 with Sch C</p>
-                    <p className="text-right">$1,500+</p>
-                    
-                    <p>1040 + 1120S</p>
-                    <p className="text-right">$2,500+</p>
-                    
-                    <p>1065 + K-1s</p>
-                    <p className="text-right">$2,500+</p>
-                    
-                    <p>Bookkeeping Catch Up</p>
-                    <p className="text-right">$2,500+/yr</p>
-                    
-                    <p>1099 Filings</p>
-                    <p className="text-right">$250 base + $20 per 1099</p>
-                    
-                    <p>LLC Formation and Filings</p>
-                    <p className="text-right">$495/yr</p>
-                    
-                    <p>S Corp Election and Filings</p>
-                    <p className="text-right">$249/yr</p>
-                    
-                    <p>Payroll Setup</p>
-                    <p className="text-right">$495</p>
-                    
-                    <p>Quarterly Estimates</p>
-                    <p className="text-right">$100/qtr</p>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="max-w-3xl mx-auto bg-sky-900 text-white p-6 sm:p-10 rounded-xl"
+            >
+                <div className="grid grid-cols-1 gap-y-6 font-semibold text-lg p-4">
+                    {[
+                        { service: '1040 with Sch C', price: '$1,500+' },
+                        { service: '1040 + 1120S', price: '$2,500+' },
+                        { service: '1065 + K-1s', price: '$2,500+' },
+                        { service: 'Bookkeeping Catch Up', price: '$2,500+/yr' },
+                        { service: '1099 Filings', price: '$250 base + $20 per 1099' },
+                        { service: 'LLC Formation and Filings', price: '$495/yr' },
+                        { service: 'S Corp Election and Filings', price: '$249/yr' },
+                        { service: 'Payroll Setup', price: '$495' },
+                        { service: 'Quarterly Estimates', price: '$100/qtr' }
+                    ].map((item, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 1 * 0.1 }}
+                            viewport={{ once: true }}
+                            className="grid grid-cols-2 gap-x-40"
+                        >
+                            <p>{item.service}</p>
+                            <p className="">{item.price}</p>
+                        </motion.div>
+                    ))}
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }

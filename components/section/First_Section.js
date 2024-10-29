@@ -12,10 +12,17 @@ export default function FirstSection() {
 
             <div className='bg-gray-100 min-h-screen flex flex-col lg:flex-row items-center px-6 py-20 lg:p-20'>
                 {/* Text and Call-to-Action Section */}
+<<<<<<< HEAD
                 <div className='flex-1 flex justify-start items-center mb-10 lg:mb-0'>
                     <div className='max-w-lg text-center lg:text-left'>
                         <motion.h1
                             className='text-3xl lg:text-5xl font-bold text-[#2a5b84] pb-4 uppercase leading-snug'
+=======
+                <div className='flex-1 flex justify-start items-center mb-10 lg:mb-0 lg:pr-[20rem]'>
+                    <div className='max-w-lg text-center lg:text-left'>
+                        <motion.h1
+                            className='text-3xl lg:text-4xl  font-bold text-[#2a5b84] pb-4 uppercase leading-snug'
+>>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
                             initial={{ opacity: 0, y: 200 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: .3 }}
@@ -35,10 +42,14 @@ export default function FirstSection() {
                         {/* Animated Button */}
                         <div className='flex justify-center lg:justify-start'>
                             <motion.button
+<<<<<<< HEAD
                                 className='rounded-full px-8 py-3 bg-yellow-500 text-white font-semibold mt-4'
+=======
+                                className='rounded-full px-12 py-3 bg-yellow-500 text-white font-normal mt-4'
+>>>>>>> 118da2a1a8c78bce6cca202219a4d0764d92912f
                                 initial={{ opacity: 0, y: 100 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, ease: 'easeOut' }}
+                                transition={{ duration: 0.5, ease: 'easeOut' ,delay: 0.5 }}
                                 whileHover={{ scale: 1.15 }}
                                 whileTap={{ scale: 0.95 }}
                             >

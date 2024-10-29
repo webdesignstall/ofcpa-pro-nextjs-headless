@@ -13,10 +13,10 @@ export default function WorkingSection() {
       <div>
         {/* Animated Header */}
         <motion.h1
-          className='text-center text-4xl font-bold text-[#2A5B84] pb-12'
-          initial={{ opacity: 0, y: 50 }}
+          className='text-center text-4xl font-bold text-[#2A5B84] pb-16'
+          initial={{ opacity: 0, y: 100 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
         >
           WORKING WITH US
         </motion.h1>
@@ -35,18 +35,27 @@ export default function WorkingSection() {
                   />
                 </div>
                 <div>
-                  <h1 className='text-2xl font-semibold p-2'>
+                  <h1 className='text-xl font-semibold p-2'>
                     Air-tight confidentiality with secure tech and strict agreements
                   </h1>
-                  <p>
+                  <p className='leading-8'>
                     We utilize encrypted technologies and bind all team members to comprehensive NDAs to ensure your sensitive information is always protected.
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <div className='m-auto text-center pb-12'>
-            <Button text='Book a Call' />
+          <div className='flex justify-center items-center py-10'>
+            <motion.button
+              className='rounded-full px-16 py-4 text-xl font-semibold bg-cyan-800 hover:bg-yellow-500 text-white mt-4'
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book a Call
+            </motion.button>
           </div>
         </div>
       </div>
