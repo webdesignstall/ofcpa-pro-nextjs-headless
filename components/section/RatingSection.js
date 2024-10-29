@@ -65,9 +65,17 @@ export default function SimpleSlider() {
 
     return (
         <div className="py-10 px-4 max-w-6xl mx-auto">
-            <h1 className="text-center pb-10 text-5xl font-bold text-blue-900">
-                Don't Just Take Our Word For It
-            </h1>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="pb-12"
+            >
+                <h1 className="text-center pb-10 text-5xl font-bold text-blue-900">
+                    Don't Just Take Our Word For It
+                </h1>
+            </motion.div>
             <Slider {...settings}>
                 {testimonials.map((testimonial, index) => (
                     <div key={index} className="p-2">

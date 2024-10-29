@@ -70,12 +70,18 @@ export default function PackageSection() {
                             className="bg-sky-800 text-white p-8 rounded-2xl shadow-lg"
                             initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: 0.5 + index * 0.2, ease: "easeOut" }}
+                            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
                             whileHover={{ scale: 1.05 }}
                         >
-                            <h1 className="text-2xl font-bold py-4 text-center text-yellow-400">
-                                {pkg.title}
-                            </h1>
+                            <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                            >
+                                <h1 className="text-2xl font-bold py-4 text-center text-yellow-400">
+                                    {pkg.title}
+                                </h1>
+                            </motion.div>
                             <p className="text-3xl font-bold text-center py-3 pb-8">{pkg.price}</p>
                             <p className="font-semibold text-center pb-4">
                                 {pkg.description}

@@ -38,7 +38,7 @@ export default function FirstSection() {
                                 className='rounded-full px-12 py-3 bg-yellow-500 text-white font-normal mt-4'
                                 initial={{ opacity: 0, y: 100 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, ease: 'easeOut' }}
+                                transition={{ duration: 0.5, ease: 'easeOut' ,delay: 0.5 }}
                                 whileHover={{ scale: 1.15 }}
                                 whileTap={{ scale: 0.95 }}
                             >

@@ -46,52 +46,57 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      {/* <h1 className="text-3xl font-bold mb-4">OnlyFans Creator Tax Tips & Guides</h1> */}
+    <div>
+      <div className='w-full bg-gray-50 px-6'>
+        <div className="max-w-screen-xl mx-auto p-4">
+          {/* <h1 className="text-3xl font-bold mb-4">OnlyFans Creator Tax Tips & Guides</h1> */}
 
-      <div className="space-y-6">
-        {paginatedBlogs.map((blog) => (
-          <div key={blog.id} className="p-4 border border-gray-50">
-            <h2 className="text-3xl font-semibold py-2 hover:text-blue-600 cursor-pointer duration-200">{blog.title}</h2>
-            <p className="text-sm text-gray-500">
-              By <span className="font-medium">{blog.author}</span> on {blog.date}
-            </p>
-            <p className="text-gray-700 mt-2">{blog.description}</p>
-            <button className="mt-3 text-blue-500 hover:text-blue-700 font-medium">
-              Read More
+          <div className="space-y-6">
+            {paginatedBlogs.map((blog) => (
+              <div key={blog.id} className="p-12 border border-gray-50 my-14 bg-white">
+                <p>Accounting and tex</p>
+                <h2 className="text-4xl font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog.title}</h2>
+                <p className="text-sm text-gray-500 py-3">
+                  By <span className="font-medium">{blog.author}</span> on {blog.date}
+                </p>
+                <p className="text-gray-700 mt-2 pb-8">{blog.description}</p>
+                <div className='border-t border-gray-200 py-3'>
+                  <button className="mt-3 text-blue-500 hover:text-blue-700 font-normal text-lg">
+                    Read More <span></span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-between items-center mt-8">
+            <button
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded ${currentPage === 1
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+                }`}
+            >
+              Previous
+            </button>
+
+            <span className="text-gray-700">
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded ${currentPage === totalPages
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+                }`}
+            >
+              Next
             </button>
           </div>
-        ))}
-      </div>
-
-      <div className="flex justify-between items-center mt-8">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
-            currentPage === 1
-              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-blue-500 text-white hover:bg-blue-600'
-          }`}
-        >
-          Previous
-        </button>
-
-        <span className="text-gray-700">
-          Page {currentPage} of {totalPages}
-        </span>
-
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded ${
-            currentPage === totalPages
-              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-blue-500 text-white hover:bg-blue-600'
-          }`}
-        >
-          Next
-        </button>
+        </div>
       </div>
     </div>
   );
