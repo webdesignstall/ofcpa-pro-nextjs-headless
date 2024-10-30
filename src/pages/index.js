@@ -1,6 +1,3 @@
-import React from 'react'
-import Header from '../../components/layout/Header'
-import Footer from '../../components/layout/Footer'
 import FirstSection from '../../components/section/First_Section'
 import WorkingSection from '../../components/section/workingSection'
 import RatingSection from '../../components/section/RatingSection'
@@ -10,7 +7,21 @@ import Head from 'next/head'
 import ScheduleSection from '../../components/section/ScheduleSection'
 import LiveChat from '../../components/chat'
 
-export default function Home() {
+import {getHeroSection, getPackages, getReviews, getTaxCorporateServices, getWorkingWithUs} from "../../lib/api";
+
+export async function getStaticProps() {
+  const heroSection = await getHeroSection();
+  const workingWithUs = await getWorkingWithUs();
+  const reviews = await getReviews();
+  const taxCorporateServices = await getTaxCorporateServices();
+  const packages = await getPackages();
+
+  return {
+    props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews },
+  };
+}
+
+export default function Home({ heroSection, workingWithUs, reviews,  packages, taxCorporateServices}) {
   return (
     <div>
       <Head>
@@ -21,14 +32,16 @@ export default function Home() {
           <LiveChat />
         </div>
         <div className='lg:px-6 px-1'>
-          <FirstSection />
-          <WorkingSection />
-          <RatingSection />
-          <PackageSection />
-          <ServiceSection />
+          <FirstSection heroSection={heroSection} />
+          <WorkingSection workingWithUs={workingWithUs} />
+          <RatingSection reviews={reviews} />
+          <PackageSection packages={packages} />
+          <ServiceSection services={taxCorporateServices} />
           <ScheduleSection />
         </div>
       </div>
     </div>
   )
 }
+
+

@@ -3,8 +3,9 @@ import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Button from '../ui/Button';
+import {urlFor} from "../../lib/api";
 
-export default function WorkingSection() {
+export default function WorkingSection({workingWithUs}) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-50px' }); // Adjusts when to start animation
 
@@ -18,29 +19,36 @@ export default function WorkingSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
         >
-          WORKING WITH US
+          {workingWithUs?.sectionTitle}
         </motion.h1>
+        {workingWithUs?.sectionSubtitle && <p>{workingWithUs?.sectionSubtitle}</p>}
+
+
 
         <div className='max-w-6xl m-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12'>
             {/* Content Section */}
-            {[...Array(6)].map((_, index) => (
+            {workingWithUs?.items?.map((item, index) => (
               <div key={index} className='flex flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 px-6'>
                 <div>
-                  <Image
-                    className='w-12 md:w-24 lg:w-36'
-                    width={300}
-                    height={300}
-                    src='/technology.webp'
-                    alt='technology'
-                  />
+                  {
+                    item?.image && <Image
+                          className='w-12 md:w-24 lg:w-36'
+                          width={300}
+                          height={300}
+                          src={urlFor(item?.image).url()}
+                          alt='technology'
+                      />
+                  }
+
+
                 </div>
                 <div>
                   <h1 className='text-xl font-semibold p-2'>
-                    Air-tight confidentiality with secure tech and strict agreements
+                    {item?.title}
                   </h1>
                   <p className='leading-8'>
-                    We utilize encrypted technologies and bind all team members to comprehensive NDAs to ensure your sensitive information is always protected.
+                    {item?.description}
                   </p>
                 </div>
               </div>

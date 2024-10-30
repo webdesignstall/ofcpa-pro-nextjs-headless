@@ -4,8 +4,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { Rating } from '@smastrom/react-rating'
 
-export default function SimpleSlider() {
+import '@smastrom/react-rating/style.css'
+
+export default function SimpleSlider({reviews}) {
     const settings = {
         dots: true,
         infinite: true,
@@ -77,18 +80,20 @@ export default function SimpleSlider() {
                 </h1>
             </motion.div>
             <Slider {...settings}>
-                {testimonials.map((testimonial, index) => (
+                {reviews?.map((review, index) => (
                     <div key={index} className="p-2">
                         <div className="bg-yellow-500 text-white border-2 border-white rounded-xl p-6 shadow-lg w-full h-96 flex flex-col justify-between text-left   hover:bg-cyan-800 duration-200">
                             <div>
-                                <h2 className="font-semibold text-lg tracking-wide py-4">{testimonial.name}</h2>
-                                <p className="text-sm mb-4 tracking-wider py-2">{testimonial.role}</p>
-                                <div className="flex mb-4">
-                                    {Array.from({ length: testimonial.rating }).map((_, idx) => (
+                                <h2 className="font-semibold text-lg tracking-wide py-4">{review?.reviewerName}</h2>
+                                <p className="text-sm mb-4 tracking-wider py-2">{review?.reviewerTitle}</p>
+                                {/*<div className="flex mb-4">
+                                    {Array.from({ length: review?.rating }).map((_, idx) => (
                                         <Star key={idx} className="text-white w-5 h-5" />
                                     ))}
-                                </div>
-                                <p className="text-md tracking-wide leading-8">{testimonial.feedback}</p>
+
+                                </div>*/}
+                                <Rating style={{ maxWidth: 100 }} value={review?.rating} readOnly={true} halfFillMode />
+                                <p className="text-md tracking-wide leading-8">{review?.reviewText}</p>
                             </div>
                         </div>
                     </div>

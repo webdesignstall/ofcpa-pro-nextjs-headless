@@ -1,16 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import {urlFor} from "../../lib/api";
 
-export default function FirstSection() {
+
+
+export default  function FirstSection({heroSection}) {
+
     return (
         <section id="home" className='pt-10 px-4'>
             <div className='lg:text-left'>
                 <h2 className='text-sm text-gray-600'>Home &gt; The OnlyFans Accountant</h2>
-                <h1 className='text-4xl lg:text-4xl  font-bold pt-4 pb-14 lg:pb-12 leading-snug'>The OnlyFans Accountant</h1>
+                <h1 className='text-4xl lg:text-4xl  font-bold pt-4 pb-14 lg:pb-12 leading-snug'>{heroSection?.sectionTitle}</h1>
+                {heroSection?.sectionSubtitle &&
+                    <p className='font-bold pt-4 pb-14 lg:pb-12 leading-snug'>{heroSection?.sectionSubtitle}</p>}
             </div>
 
-            <div className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-12 lg:py-16 py-12 p-4'>
+            <div
+                className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-12 lg:py-16 py-12 p-4'>
                 {/* Text and Call-to-Action Section */}
                 <div className='flex-1 flex justify-start items-center mb-10 lg:mb-0'>
                     <div className='sm:max-w-lg lg:max-w-md text-center lg:text-left lg:pr-12'>
@@ -20,7 +27,7 @@ export default function FirstSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: .3 }}
                         >
-                            Financial Solutions and Taxes for Content Creators
+                            {heroSection?.title}
                         </motion.h1>
 
                         <motion.p
@@ -29,7 +36,7 @@ export default function FirstSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5 }}
                         >
-                            We free content creators from the burden of managing the financial side of the business, creating a safe space for them to flourish creatively.
+                            {heroSection?.description}
                         </motion.p>
 
                         {/* Animated Button */}
@@ -54,12 +61,20 @@ export default function FirstSection() {
                         className=' bg-cover w-full h-auto max-w-full lg:max-w-full '
                         width={1200}
                         height={1400}
-                        src='/shutterstock.jpg'
+                        src={urlFor(heroSection?.image).url()}
                         alt='Book a call'
                         priority
                     />
+                   {/* <img
+                        className=' bg-cover w-full h-auto max-w-full lg:max-w-full '
+                        width={1200}
+                        height={1400}
+                        src={urlFor(heroSection?.image).url()}
+                        alt='Book a call'
+                    />*/}
                 </div>
             </div>
         </section>
     );
 }
+
