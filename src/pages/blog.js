@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PaginationFooter from '../../components/blog/Pagination';
 
 const BlogPage = () => {
   const postsPerPage = 10;
@@ -69,32 +70,8 @@ const BlogPage = () => {
             ))}
           </div>
 
-          <div className="flex justify-between items-center mt-8">
-            <button
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 rounded ${currentPage === 1
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
-                }`}
-            >
-              Previous
-            </button>
-
-            <span className="text-gray-700">
-              Page {currentPage} of {totalPages}
-            </span>
-
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded ${currentPage === totalPages
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
-                }`}
-            >
-              Next
-            </button>
+          <div>
+            <PaginationFooter />
           </div>
         </div>
       </div>

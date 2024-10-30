@@ -72,7 +72,7 @@ export default function SimpleSlider() {
                 viewport={{ once: true }}
                 className="pb-12"
             >
-                <h1 className="text-center pb-2 text-5xl font-bold text-blue-900">
+                <h1 className="text-center pb-2 text-5xl font-bold text-sky-900">
                     Don't Just Take Our Word For It
                 </h1>
             </motion.div>

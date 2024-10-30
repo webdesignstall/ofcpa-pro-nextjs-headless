@@ -10,7 +10,7 @@ export default function FirstSection() {
                 <h1 className='text-4xl lg:text-4xl  font-bold pt-4 pb-14 lg:pb-12 leading-snug'>The OnlyFans Accountant</h1>
             </div>
 
-            <div className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-12 lg:py-16 py-12 p-4'>
+            <div className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-16 lg:py-16 py-12 p-4'>
                 {/* Text and Call-to-Action Section */}
                 <div className='flex-1 flex justify-start items-center mb-10 lg:mb-0'>
                     <div className='sm:max-w-lg lg:max-w-md text-center lg:text-left lg:pr-12'>

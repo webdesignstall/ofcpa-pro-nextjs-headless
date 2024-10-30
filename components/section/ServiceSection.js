@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function ServiceSection() {
     return (
@@ -58,6 +59,15 @@ export default function ServiceSection() {
                 >
                     Book a Call
                 </motion.button>
+            </div>
+            <div className='py-8 flex justify-center items-center border-b-2 max-w-4xl m-auto border-gray-900'>
+                <Image
+                width={150}
+                height={150}
+                src='/OF_Profile.jpg'
+                alt="Logo"
+                
+                />
             </div>
         </div>
     );

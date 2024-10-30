@@ -25,7 +25,7 @@ export default function ScheduleSection() {
     return (
         <div className="py-8 px-4 max-w-4xl mx-auto bg-white shadow-md rounded-lg">
             <div className="text-center mb-6">
-                <h2 className="text-2xl font-semibold">Pick a Date and Time</h2>
+                {/* <h2 className="text-2xl font-semibold">Pick a Date and Time</h2> */}
             </div>
             
             <div className="flex flex-col lg:flex-row gap-6">
