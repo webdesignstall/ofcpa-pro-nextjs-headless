@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function ServiceSection() {
+export default function ServiceSection({services}) {
+
     return (
         <div className="px-4 py-16">
             <motion.div
@@ -12,7 +13,7 @@ export default function ServiceSection() {
                 className="pb-12"
             >
                 <h1 className="text-center text-5xl text-yellow-500 font-bold">
-                    - Tax and Corporate Services -
+                    - {services?.serviceTitle ? services?.serviceTitle : "Tax and Corporate Services"} -
                 </h1>
             </motion.div>
             <motion.div
@@ -23,17 +24,8 @@ export default function ServiceSection() {
                 className="max-w-3xl mx-auto bg-sky-900 text-white p-6 sm:p-10 rounded-xl"
             >
                 <div className="grid grid-cols-1 gap-y-6 font-semibold text-lg p-4">
-                    {[
-                        { service: '1040 with Sch C', price: '$1,500+' },
-                        { service: '1040 + 1120S', price: '$2,500+' },
-                        { service: '1065 + K-1s', price: '$2,500+' },
-                        { service: 'Bookkeeping Catch Up', price: '$2,500+/yr' },
-                        { service: '1099 Filings', price: '$250 base + $20 per 1099' },
-                        { service: 'LLC Formation and Filings', price: '$495/yr' },
-                        { service: 'S Corp Election and Filings', price: '$249/yr' },
-                        { service: 'Payroll Setup', price: '$495' },
-                        { service: 'Quarterly Estimates', price: '$100/qtr' }
-                    ].map((item, index) => (
+                    {
+                       services?.serviceItems?.map((service, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
@@ -42,8 +34,8 @@ export default function ServiceSection() {
                             viewport={{ once: true }}
                             className="grid grid-cols-2 gap-x-40"
                         >
-                            <p>{item.service}</p>
-                            <p className="">{item.price}</p>
+                            <p>{service?.itemTitle}</p>
+                            <p className="">{service?.price}</p>
                         </motion.div>
                     ))}
                 </div>

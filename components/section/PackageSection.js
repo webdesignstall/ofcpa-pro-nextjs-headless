@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ShieldCheck, SquareCheckBig } from 'lucide-react';
 
-export default function PackageSection() {
+export default function PackageSection({packages}) {
     // Ref to track when the section comes into view
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true });
 
-    // Package details for each card
+   /* // Package details for each card
     const packages = [
         {
             title: "Creator Essentials",
@@ -45,7 +45,7 @@ export default function PackageSection() {
                 "Collaboration with your legal team",
             ],
         },
-    ];
+    ];*/
 
     return (
         <div id="packages" ref={sectionRef} className="py-12 bg-white">
@@ -64,7 +64,7 @@ export default function PackageSection() {
             {/* Package Cards */}
             <div className="max-w-6xl mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {packages.map((pkg, index) => (
+                    {packages?.map((pkg, index) => (
                         <motion.div
                             key={index}
                             className="bg-sky-800 text-white p-8 rounded-2xl shadow-lg"
@@ -78,7 +78,7 @@ export default function PackageSection() {
                                 transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                             >
                                 <h1 className="text-2xl font-bold py-4 text-center text-yellow-400">
-                                    {pkg.title}
+                                    {pkg?.planName}
                                 </h1>
                             </motion.div>
                             <motion.div
@@ -86,13 +86,13 @@ export default function PackageSection() {
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                             >
-                                <p className="text-3xl font-bold text-center py-3 pb-8">{pkg.price}</p>
+                                <p className="text-3xl font-bold text-center py-3 pb-8">${pkg?.price}</p>
                             </motion.div>
                             <p className="font-semibold text-center pb-4">
-                                {pkg.description}
+                                {pkg?.description}
                             </p>
                             <ul className="space-y-2">
-                                {pkg.features.map((feature, idx) => (
+                                {pkg?.features?.map((feature, idx) => (
                                     <li key={idx} className="flex items-start space-x-2">
                                         <ShieldCheck className="mt-1 text-white" />
                                         <span className='font-semibold mr-6'>{feature}</span>
