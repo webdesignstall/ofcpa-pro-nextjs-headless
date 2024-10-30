@@ -48,6 +48,17 @@ export default function ServiceSection() {
                     ))}
                 </div>
             </motion.div>
+            <div className='flex justify-center items-center py-10'>
+                <motion.button
+                    className='rounded-full px-16 py-4 text-xl font-semibold bg-cyan-800 hover:bg-yellow-500 text-white mt-4'
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+                    whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Book a Call
+                </motion.button>
+            </div>
         </div>
     );
 }

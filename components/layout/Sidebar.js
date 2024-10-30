@@ -53,8 +53,8 @@ const Sidebar = () => {
             <div
               key={section}
               onClick={() => handleSectionClick(section)}
-              className={`text-xl px-6 py-3 transition-colors cursor-pointer ${
-                selectedSection === section ? 'bg-gray-200 text-blue-600 font-semibold' : 'hover:bg-gray-100'
+              className={`text-md px-6 py-1 transition-colors cursor-pointer ${
+                selectedSection === section ? 'text-blue-600 font-medium' : 'hover:bg-gray-100'
               }`}
             >
               {section}

@@ -25,11 +25,12 @@ export default function WorkingSection() {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12'>
             {/* Content Section */}
             {[...Array(6)].map((_, index) => (
-              <div key={index} className='flex flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center space-x-6 px-6'>
+              <div key={index} className='flex flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 px-6'>
                 <div>
                   <Image
-                    width={100}
-                    height={100}
+                    className='w-12 md:w-24 lg:w-36'
+                    width={300}
+                    height={300}
                     src='/technology.webp'
                     alt='technology'
                   />
@@ -49,9 +50,8 @@ export default function WorkingSection() {
             <motion.button
               className='rounded-full px-16 py-4 text-xl font-semibold bg-cyan-800 hover:bg-yellow-500 text-white mt-4'
               initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              whileHover={{ scale: 1.15 }}
+              animate={{ opacity: 1, y: 0 , transition: { delay: 0.2 , duration: 0.5 }}}
+              whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }} 
               whileTap={{ scale: 0.95 }}
             >
               Book a Call

@@ -8,6 +8,7 @@ import PackageSection from '../../components/section/PackageSection'
 import ServiceSection from '../../components/section/ServiceSection'
 import Head from 'next/head'
 import ScheduleSection from '../../components/section/ScheduleSection'
+import LiveChat from '../../components/chat'
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
         <title>OF Accountant - Accounting and Taxes for OnlyFans Creators</title>
       </Head>
       <div>
+        <div>
+          <LiveChat />
+        </div>
         <div className='lg:px-6 px-1'>
           <FirstSection />
           <WorkingSection />
