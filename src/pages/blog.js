@@ -1,14 +1,27 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import {useRef, useState} from 'react';
 import PaginationFooter from '../../components/blog/Pagination';
 import { MoveRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import {getBlog} from "../../lib/api";
 
-const BlogPage = () => {
-  const postsPerPage = 10;
+
+export async function getStaticProps() {
+  const blogs = await getBlog();
+
+  console.log(blogs)
+
+  return {
+    props: { blogs },
+  };
+}
+
+const BlogPage = ({blogs}) => {
+
+ /* const postsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const blogs = [
+  /!*const blogs = [
     {
       id: 1,
       title: "Income Tracker for OnlyFans Creators: Tax Tips & Compliance Guide",
@@ -33,7 +46,7 @@ const BlogPage = () => {
       description:
         "If you’re an OnlyFans creator, managing your finances can get tricky, especially when it comes to taxes. Understanding how to file taxes correctly will not only help you avoid penalties [...]",
     }
-  ];
+  ];*!/
 
   const totalPages = Math.ceil(blogs.length / postsPerPage);
   const paginatedBlogs = blogs.slice(
@@ -47,25 +60,27 @@ const BlogPage = () => {
 
   const handlePreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
+  };*/
 
   return (
     <div>
       <div className='w-full bg-gray-50 px-6'>
         <div className="max-w-screen-xl mx-auto p-4">
           <div className="space-y-6">
-            {paginatedBlogs.map((blog) => (
-              <div key={blog.id} className="p-12 border border-gray-50 my-14 bg-white">
-                <p>Accounting and tax</p>
-                <Link href='/link'>
-                  <h2 className="text-4xl font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog.title}</h2>
+            {blogs?.map((blog, index) => (
+              <div key={index} className="p-12 border border-gray-50 my-14 bg-white">
+                <Link href={'/category/'+blog?.category?.slug}>
+                  <p>{blog?.category?.name}</p>
+                </Link>
+                <Link href={blog?.slug}>
+                  <h2 className="text-4xl font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog?.title}</h2>
                 </Link>
                 <p className="text-sm text-gray-500 py-3">
-                  By <span className="font-medium">{blog.author}</span> on {blog.date}
+                  By <span className="font-medium">{blog?.author?.name}</span> on {blog?.date}
                 </p>
-                <p className="text-gray-700 mt-2 pb-8">{blog.description}</p>
+                <p className="text-gray-700 mt-2 pb-8">{blog?.description}</p>
                 <div className='border-t border-gray-200 py-3'>
-                  <Link href='/link'>
+                  <Link href={blog?.slug}>
                   <motion.button
                     className="mt-3 text-blue-500 hover:text-blue-700 font-normal text-lg flex items-center gap-2"
                     whileHover="hover"
@@ -87,9 +102,9 @@ const BlogPage = () => {
             ))}
           </div>
 
-          <div>
+          {/*<div>
             <PaginationFooter />
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>
