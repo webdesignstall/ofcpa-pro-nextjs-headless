@@ -1,4 +1,8 @@
+import Link from 'next/link';
 import { useState } from 'react';
+import PaginationFooter from '../../components/blog/Pagination';
+import { MoveRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const BlogPage = () => {
   const postsPerPage = 10;
@@ -49,52 +53,42 @@ const BlogPage = () => {
     <div>
       <div className='w-full bg-gray-50 px-6'>
         <div className="max-w-screen-xl mx-auto p-4">
-          {/* <h1 className="text-3xl font-bold mb-4">OnlyFans Creator Tax Tips & Guides</h1> */}
-
           <div className="space-y-6">
             {paginatedBlogs.map((blog) => (
               <div key={blog.id} className="p-12 border border-gray-50 my-14 bg-white">
-                <p>Accounting and tex</p>
-                <h2 className="text-4xl font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog.title}</h2>
+                <p>Accounting and tax</p>
+                <Link href='/link'>
+                  <h2 className="text-4xl font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog.title}</h2>
+                </Link>
                 <p className="text-sm text-gray-500 py-3">
                   By <span className="font-medium">{blog.author}</span> on {blog.date}
                 </p>
                 <p className="text-gray-700 mt-2 pb-8">{blog.description}</p>
                 <div className='border-t border-gray-200 py-3'>
-                  <button className="mt-3 text-blue-500 hover:text-blue-700 font-normal text-lg">
-                    Read More <span></span>
-                  </button>
+                  <Link href='/link'>
+                  <motion.button
+                    className="mt-3 text-blue-500 hover:text-blue-700 font-normal text-lg flex items-center gap-2"
+                    whileHover="hover"
+                  >
+                    Read More
+                    <motion.span
+                      variants={{
+                        hover: { x: 10 },
+                        initial: { x: 0 }
+                      }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      <MoveRight />
+                    </motion.span>
+                  </motion.button>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-between items-center mt-8">
-            <button
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 rounded ${currentPage === 1
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
-                }`}
-            >
-              Previous
-            </button>
-
-            <span className="text-gray-700">
-              Page {currentPage} of {totalPages}
-            </span>
-
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded ${currentPage === totalPages
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
-                }`}
-            >
-              Next
-            </button>
+          <div>
+            <PaginationFooter />
           </div>
         </div>
       </div>
