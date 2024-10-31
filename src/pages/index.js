@@ -28,9 +28,9 @@ export default function Home({ heroSection, workingWithUs, reviews,  packages, t
         <title>OF Accountant - Accounting and Taxes for OnlyFans Creators</title>
       </Head>
       <div>
-        <div>
+        {/* <div>
           <LiveChat />
-        </div>
+        </div> */}
         <div className='lg:px-6 px-1'>
           <FirstSection heroSection={heroSection} />
           <WorkingSection workingWithUs={workingWithUs} />
