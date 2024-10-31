@@ -12,14 +12,15 @@ function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 
-  const handleSectionClick = (section) => {
-    setActiveSection(section);
-    const sectionId = section.toLowerCase().replace(/\s+/g, '-');
-    const sectionElement = document.getElementById(sectionId);
-    if (sectionElement) {
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  useEffect(() => {
+    const pathToLabel = {
+      '/': 'Home',
+      '/#what-we-do': 'What We Do',
+      '/blog': 'Blog and Articles',
+      '/#packages': 'Packages',
+    };
+    setActiveSection(pathToLabel[router.asPath] || '');
+  }, [router.asPath]);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
@@ -29,69 +30,54 @@ function Header() {
   };
 
   const closeSearch = () => {
-    setSearchQuery('');  // Clear the search input
+    setSearchQuery('');
     setIsSearchOpen(false);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['Home', 'What We Do', 'Testimonials', 'Packages'];
-      sections.forEach((section) => {
-        const sectionId = section.toLowerCase().replace(/\s+/g, '-');
-        const sectionElement = document.getElementById(sectionId);
-        if (sectionElement) {
-          const { top, bottom } = sectionElement.getBoundingClientRect();
-          if (top <= 100 && bottom >= 100) {
-            setActiveSection(section);
-          }
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="w-full">
-      <div className="flex xl:justify-around lg:justify-between justify-between items-center px-6 py-4">
-        <div>
-          <Link href="/">
-            <Image
-              width={300}
-              height={300}
-              className="bg-cover w-36 lg:w-full"
-              src="/OFCPA-Banner.webp"
-              alt="Main logo"
-              priority
-            />
-          </Link>
-        </div>
+      <div className="flex xl:justify-around lg:justify-between items-center px-6 py-4">
+        <Link href="/">
+          <Image
+            width={300}
+            height={300}
+            className="bg-cover w-36 lg:w-full"
+            src="/OFCPA-Banner.webp"
+            alt="Main logo"
+            priority
+          />
+        </Link>
         <div className="lg:hidden">
           <Sidebar />
         </div>
         <div className="hidden lg:flex">
           <div className="flex">
-            {['Home', 'What We Do', 'Testimonials', 'Packages'].map((section) => (
+            {[
+              { label: 'Home', href: '/' },
+              { label: 'What We Do', href: '/#what-we-do' },
+              { label: 'Testimonials', href: 'https://go.ofcpa.pro/vsl-step-2-page', external: true },
+              { label: 'Packages', href: '/#packages' },
+              { label: 'Blog and Articles', href: '/blog' },
+            ].map(({ label, href, external }) => (
               <div
-                key={section}
-                onClick={() => handleSectionClick(section)}
-                className={`text-lg font-normal p-3 cursor-pointer duration-200 ${activeSection === section ? 'text-yellow-500 font-semibold' : 'text-[#005978] hover:text-yellow-500'
-                  }`}
+                key={label}
+                className={`text-lg font-normal p-3 cursor-pointer duration-200 
+                  ${activeSection === label ? 'text-yellow-500' : 'text-[#005978] hover:text-yellow-500'}`}
               >
-                <Link href={`/#${section.toLowerCase().replace(/\s+/g, '-')}`}>{section}</Link>
+                {external ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer">
+                    {label}
+                  </a>
+                ) : (
+                  <Link href={href}>{label}</Link>
+                )}
               </div>
             ))}
-            <div className="text-lg font-normal text-[#005978] p-3 hover:text-yellow-500 duration-200 cursor-pointer">
-              <Link href="/blog">Blog and Articles</Link>
-            </div>
             <div
               className="text-lg font-normal text-[#005978] p-3 hover:text-yellow-500 duration-200 cursor-pointer"
               onClick={() => setIsSearchOpen(true)}
             >
-              <button>
-                <Search size={25} />
-              </button>
+              <Search size={25} />
             </div>
           </div>
         </div>
@@ -120,7 +106,6 @@ function Header() {
               exit={{ y: 50, opacity: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-
               {/* Search Input */}
               <input
                 type="text"
