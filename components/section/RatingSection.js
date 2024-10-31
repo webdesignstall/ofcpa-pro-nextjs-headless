@@ -2,11 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { Rating } from '@smastrom/react-rating'
-
 import '@smastrom/react-rating/style.css'
+import Link from "next/link";
 
 export default function SimpleSlider({reviews}) {
     const settings = {
@@ -108,7 +107,7 @@ export default function SimpleSlider({reviews}) {
                     whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    Book a Call
+                    <Link href='#booking'> Book a Call </Link>
                 </motion.button>
             </div>
         </div>

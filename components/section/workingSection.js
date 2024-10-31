@@ -2,8 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Button from '../ui/Button';
 import {urlFor} from "../../lib/api";
+import Link from 'next/link';
 
 export default function WorkingSection({workingWithUs}) {
   const sectionRef = useRef(null);
@@ -62,7 +62,7 @@ export default function WorkingSection({workingWithUs}) {
               whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }} 
               whileTap={{ scale: 0.95 }}
             >
-              Book a Call
+              <Link href='#booking'> Book a Call </Link>
             </motion.button>
           </div>
         </div>
