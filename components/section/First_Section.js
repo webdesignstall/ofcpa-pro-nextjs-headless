@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {urlFor} from "../../lib/api";
-
+import Link from 'next/link';
 
 
 export default  function FirstSection({heroSection}) {
@@ -48,7 +48,7 @@ export default  function FirstSection({heroSection}) {
                                 whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}  // Ensures no delay on hover
 
                             >
-                                Book a Call
+                                <Link href='#booking'>  Book a Call </Link>
                             </motion.button>
                         </div>
 
