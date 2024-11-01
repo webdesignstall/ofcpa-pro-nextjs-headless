@@ -307,6 +307,58 @@ li::marker{
 
 /*# sourceMappingURL=fahimC.css.map */
 
+/* Container styles for pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* Styles for individual page numbers */
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a {
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #0070f3;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Active page number */
+.pagination .selected a {
+  color: white;
+  background-color: #0070f3;
+}
+
+/* Hover effect */
+.pagination li a:hover {
+  background-color: #eaeaea;
+}
+
+/* Disable previous and next button */
+.pagination .disabled a {
+  color: #ccc;
+  cursor: not-allowed;
+  display: none;
+}
+
+/* Previous and next button styles */
+.pagination .previous a,
+.pagination .next a {
+  font-weight: bold;
+}
+
+.pagination .break a {
+  cursor: default;
+}
+
+
 
 @layer base {
   :root {
