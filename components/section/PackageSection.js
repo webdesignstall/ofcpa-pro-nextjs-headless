@@ -7,45 +7,6 @@ export default function PackageSection({ packages }) {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true });
 
-    /* // Package details for each card
-     const packages = [
-         {
-             title: "Creator Essentials",
-             price: "$350/mo",
-             description: "For creators generating up to $75k annually who need a hand with their books and taxes",
-             features: [
-                 "Annual personal tax filing",
-                 "Unlimited communication on your preferred platform",
-             ],
-         },
-         {
-             title: "Platinum Producer",
-             price: "$650/mo",
-             description: "For creators making over $75k annually who are ready to take their business operations to the next level with added sophistication and financial expertise.",
-             features: [
-                 "Monthly Bookkeeping",
-                 "Payroll set-up and management",
-                 "Corporate registration and compliance",
-                 "Quarterly estimated tax payments",
-                 "Annual personal and business tax returns",
-                 "Filing for 1099s on this plan",
-                 "Unlimited communication on your preferred platform",
-             ],
-         },
-         {
-             title: "Engagement Expert",
-             price: "$950/mo",
-             description: "For creators generating over $500k annually, we offer the most comprehensive and sophisticated financial assistance.",
-             features: [
-                 "Advanced Tax Strategies",
-                 "Retirement Planning",
-                 "Investment Planning",
-                 "Cash Flow Management",
-                 "Everything included in Platinum Producer",
-                 "Collaboration with your legal team",
-             ],
-         },
-     ];*/
 
     return (
         <div id="packages" ref={sectionRef} className="py-8 bg-white">

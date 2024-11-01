@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import {urlFor} from "../../lib/api";
+import { urlFor } from "../../lib/api";
 import Link from 'next/link';
 
 
@@ -41,15 +41,17 @@ export default function FirstSection({ heroSection }) {
 
                         {/* Animated Button */}
                         <div className='flex justify-center lg:justify-start'>
-                            <motion.button
-                                className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'
-                                initial={{ opacity: 0, y: 100 }}
-                                animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5 } }}
-                                whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}  // Ensures no delay on hover
+                            <Link href='#booking'>
+                                <motion.button
+                                    className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'
+                                    initial={{ opacity: 0, y: 100 }}
+                                    animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5 } }}
+                                    whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}  // Ensures no delay on hover
 
-                            >
-                                BOOK A CALL
-                            </motion.button>
+                                >
+                                    BOOK A CALL
+                                </motion.button>
+                            </Link>
                         </div>
 
                     </div>
