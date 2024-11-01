@@ -1,15 +1,25 @@
 import React from 'react'
+import BlogBody from "@/components/BlogContent";
+import Link from "next/link";
+import moment from "moment";
 
-export default function Blog() {
+export default function Blog({blog}) {
+
+
     return (
-        <div>
-            <div>
-                <p className='py-3'>Accounting and Tax</p>
-                <h1 className='text-2xl md:text-3xl lg:text-4xl font-bold leading-10 py-6'>OnlyFans Tax Time: Vital Tips for Creators to Stay Compliant</h1>
-                <p>By _ofcpa_ October 28, 2024 Write a Comment</p>
-                <div className='py-4 text-lg leading-8'>
-                    <p>As an OnlyFans creator, managing your income taxes may feel intimidating, especially as you enter the self-employed world of tax obligations, deductions, and quarterly payments. Here’s a comprehensive guide to help you understand your tax responsibilities, avoid penalties, prepare tax returns, and maximize savings. Whether it’s tax preparation or knowing the due dates, having the right information helps to simplify the process and keep your tax time stress-free.</p>
-                </div>
+        <div style={{overflow:"hidden"}}>
+
+
+            <Link style={{marginTop: '20px', display: 'block'}} className='text-blue-500 mt-4' href={`/category/${blog?.category?.slug}`}>
+                <p>{blog?.category?.name}</p>
+            </Link>
+
+            <h1 className='text-4xl font-bold leading-10 py-4'>{ blog?.title }</h1>
+
+            <p>By <Link className='text-blue-500' href={`/author/${blog?.author}`}>_{blog?.author}_</Link>  {moment(blog?.date).format('LL')} <Link href='#comment'>Write a Comment</Link> </p>
+
+            <div className="prose max-w-none prose-xl prose-tr::border-none prose-strong:text-2xl prose-a:text-blue-600 overflow-hidden">
+                <BlogBody content={blog?.content}/>
             </div>
         </div>
     )

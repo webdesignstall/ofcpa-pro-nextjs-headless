@@ -8,6 +8,7 @@ import {
     BreadcrumbSeparator,
 } from "../../src/components/ui/breadcrumb"
 
+import Link from "next/link"
 
 export default function BreadcrumbHeader() {
     return (
@@ -18,7 +19,7 @@ export default function BreadcrumbHeader() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/docs/components">Blog and Articles</BreadcrumbLink>
+                    <BreadcrumbLink > <Link href='/blog'> Blog and Articles </Link></BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
