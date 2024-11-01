@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { NextSeo } from "next-seo";
+import {urlFor} from "../lib/api";
 
 const getOpenGraph = (args) => {
     const { description, image, title, _type, siteName, url } = args;
@@ -31,7 +32,8 @@ const getMetaObjects = (tags, allowIndexing) => {
 };
 
 const resolveImage = (image) => {
-    return image?.asset?.url || "";
+   return  urlFor(image).url()
+    // return image?.asset?.url || "";
 };
 
 const getMetaAttribute = (attrs) => {
