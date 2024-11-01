@@ -2,8 +2,9 @@ import React from 'react'
 import RelatedPosts from '../../components/blog/RelatedPost'
 import BreadcrumbHeader from '../../components/blog/Breadcrumb'
 import Blog from '../../components/blog'
-import {getBlog, getBlogBySlug} from "../../lib/api";
+import {getBlog, getBlogBySlug, getRelatedPosts} from "../../lib/api";
 import {revalidateIntervalDay} from "@/lib/utils";
+import BlogCard from "@/components/BlogCard";
 
 
 //  Set the revalidate time in days
@@ -14,9 +15,10 @@ const REVALIDATE_INTERVAL = REVALIDATE_DAYS * 24 * 60 * 60;
 
 export async function getStaticProps({params}) {
     const blog = await getBlogBySlug(params?.slug);
+    const relatedPosts = await getRelatedPosts(blog?._id, blog?.category?._id)
 
     return {
-        props: { blog },
+        props: { blog, relatedPosts },
         revalidate: revalidateIntervalDay(1),
     };
 }
@@ -30,7 +32,8 @@ export async function getStaticPaths() {
     }
 }
 
-export default function BlogDetails({blog}) {
+export default function BlogDetails({blog, relatedPosts}) {
+
     return (
         <div>
             <div className='bg-gray-50 py-16 '>
@@ -41,9 +44,11 @@ export default function BlogDetails({blog}) {
                     <div>
                         <Blog blog={blog} />
                     </div>
-                    <div>
-                        <RelatedPosts />
-                    </div>
+
+
+                   <RelatedPosts blogs={relatedPosts} />
+
+
                 </div>
             </div>
         </div>
