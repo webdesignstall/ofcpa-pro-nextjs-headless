@@ -3,6 +3,7 @@ import RelatedPosts from '../../components/blog/RelatedPost'
 import BreadcrumbHeader from '../../components/blog/Breadcrumb'
 import Blog from '../../components/blog'
 import {getBlog, getBlogBySlug} from "../../lib/api";
+import {revalidateIntervalDay} from "@/lib/utils";
 
 
 //  Set the revalidate time in days
@@ -16,7 +17,7 @@ export async function getStaticProps({params}) {
 
     return {
         props: { blog },
-        revalidate: REVALIDATE_INTERVAL,
+        revalidate: revalidateIntervalDay(1),
     };
 }
 
