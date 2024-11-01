@@ -3,7 +3,10 @@ import { useRef, useState } from 'react';
 import PaginationFooter from '../../components/blog/Pagination';
 import { MoveRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { getBlog } from "../../lib/api";
+import {getBlog, urlFor} from "../../lib/api";
+import moment from "moment";
+import BlockContent from '@sanity/block-content-to-react';
+import Image from "next/image";
 
 
 export async function getStaticProps() {
@@ -13,6 +16,24 @@ export async function getStaticProps() {
     props: { blogs },
   };
 }
+
+// @ts-ignore
+function stripHtmlTags(str) {
+  if (!str) return "";
+  return str.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
+const serializers = {
+  types: {
+    block: (props) => {
+      // Render the first 20 words of the first paragraph as a preview
+      const text = props.children[0]; // Access the first text child
+      const previewText = text.split(" ").slice(0, 30).join(" ") + " [...]"; // First 20 words with ellipsis
+
+      return <p className="text-lg">{previewText}</p>;
+    },
+  },
+};
 
 const BlogPage = ({ blogs }) => {
 
@@ -31,8 +52,18 @@ const BlogPage = ({ blogs }) => {
                     <h2 className="text-2xl md:text-4xl lg:text-4xl xl:text-5xl text-gray-900 font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog?.title}</h2>
                   </Link>
                   <p className="text-sm text-gray-500 py-3">
-                    By <span className="font-medium">{blog?.author?.name}</span> on {blog?.date}
+                    By <Link href={`/author/${blog?.author}`}><span
+                      className="font-medium text-blue-500">{blog?.author}</span></Link> on {moment(blog?.date).format('LL')} <Link
+                      className='hover:text-blue-500 ml-2'
+                      href={`/${blog?.slug}/#comment`}>Write Comment</Link>
                   </p>
+
+                  <BlockContent
+                      renderContainerOnSingleChild={false}
+                      serializers={serializers}
+                      blocks={blog?.content?.slice(0, 1)}
+                  />
+
                   <p className="text-gray-700 mt-2 pb-8">{blog?.description}</p>
                   <div className='border-t border-gray-200 py-3'>
                     <Link href={blog?.slug}>
