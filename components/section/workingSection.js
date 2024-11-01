@@ -54,16 +54,18 @@ export default function WorkingSection({ workingWithUs }) {
               </div>
             ))}
           </div>
-          <div className='flex justify-center items-center py-6'>
-            <motion.button
-              className='rounded-full px-8 py-3 text-md font-normal tracking-widest bg-cyan-800 hover:bg-yellow-500 text-white mt-4 lg:py-4 lg:px-12 lg:text-xl'
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 , transition: { delay: 0.2 , duration: 0.5 }}}
-              whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }} 
-              whileTap={{ scale: 0.95 }}
-            >
-              BOOK A CALL
-            </motion.button>
+          <div className='flex justify-center items-center pt-6'>
+            <Link href='#booking'>
+              <motion.button
+                className='rounded-full px-8 py-3 text-md font-normal tracking-widest bg-cyan-800 hover:bg-yellow-500 text-white mt-4 lg:py-4 lg:px-12 lg:text-xl'
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+                whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}
+                whileTap={{ scale: 0.95 }}
+              >
+                BOOK A CALL
+              </motion.button>
+            </Link>
           </div>
         </div>
       </div>
