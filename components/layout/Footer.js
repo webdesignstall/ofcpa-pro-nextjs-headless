@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
+
+  const [footer, setFooter] = useState()
+
+  useEffect(() => {
+    (async ()=> {
+      const response = await fetch('/api/footer');
+      const result = await response.json();
+      setFooter(result?.footer)
+    })()
+  }, []);
+
   return (
     <div>
       {/* Main Footer Section */}
@@ -24,7 +35,7 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm md:text-md font-medium">Email</span>
-                    <span className="text-sm md:text-md font-medium">info@ofcpa.pro</span>
+                    <span className="text-sm md:text-md font-medium">{footer?.contactInfo?.email}</span>
                   </div>
                 </a>
               </li>
@@ -37,7 +48,7 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm md:text-md font-medium">Phone</span>
-                    <span className="text-sm md:text-md font-medium">720-730-3896</span>
+                    <span className="text-sm md:text-md font-medium">{footer?.contactInfo?.phone}</span>
                   </div>
                 </a>
               </li>
@@ -48,7 +59,7 @@ export default function Footer() {
               <Image
                 width={150}
                 height={150}
-                src="/footer_section_logo.webp"
+                src={ footer?.logo?.asset?.url }
                 alt="footer logo"
                 className="transition duration-200 transform hover:scale-105"
               />
@@ -64,8 +75,8 @@ export default function Footer() {
       <div className="bg-gray-800 md:py-4 py-12">
         <p className="text-white text-center text-xs sm:text-sm">
           <span className="text-gray-400">Copyright © 2024</span>{' '}
-          <Link href="#" className="underline hover:text-yellow-500 transition duration-200">
-            The OnlyFans Accountant
+          <Link href="/" className="underline hover:text-yellow-500 transition duration-200">
+            {footer?.copyright}
           </Link>
         </p>
       </div>
