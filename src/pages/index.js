@@ -25,6 +25,7 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
   return (
     <div>
       <Head>
+      <link rel="icon" href="/header_logo.jpg" />
         <title>OF Accountant - Accounting and Taxes for OnlyFans Creators</title>
       </Head>
       <div>
