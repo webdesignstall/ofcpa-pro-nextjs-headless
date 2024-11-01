@@ -2,10 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import {urlFor} from "../../lib/api";
+import { urlFor } from "../../lib/api";
 import Link from 'next/link';
 
-export default function WorkingSection({workingWithUs}) {
+export default function WorkingSection({ workingWithUs }) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-50px' }); // Adjusts when to start animation
 
@@ -33,12 +33,12 @@ export default function WorkingSection({workingWithUs}) {
                 <div>
                   {
                     item?.image && <Image
-                          className='w-16 md:w-24 lg:w-36'
-                          width={300}
-                          height={300}
-                          src={urlFor(item?.image).url()}
-                          alt='technology'
-                      />
+                      className='w-16 md:w-24 lg:w-36'
+                      width={300}
+                      height={300}
+                      src={urlFor(item?.image).url()}
+                      alt='technology'
+                    />
                   }
 
 

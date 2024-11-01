@@ -13,16 +13,16 @@ export default function FirstSection({ heroSection }) {
                 <h2 className='text-sm text-gray-600'>Home &gt; The OnlyFans Accountant</h2>
                 <h1 className='text-3xl lg:text-4xl  font-bold pt-2 pb-8 lg:pb-12 leading-normal md:text-4xl '>{heroSection?.sectionTitle}</h1>
                 {heroSection?.sectionSubtitle &&
-                    <p className='font-bold pt-4 pb-14 lg:pb-12 leading-snug md:pt-12'>{heroSection?.sectionSubtitle}</p>}
+                    <p className='text-3xl lg:text-4xl  font-bold pt-2 pb-8 lg:pb-12 leading-normal md:text-4xl xl:text-5xl'>{heroSection?.sectionSubtitle}</p>}
             </div>
 
             <div
-                className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-12 lg:py-16 xl:py-20 xl:px-20 py-20 px-6'>
+                className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-12 lg:py-16 xl:py-20 xl:px-24 py-20 px-6'>
                 {/* Text and Call-to-Action Section */}
                 <div className='flex-1 flex justify-start items-center mb-10 lg:mb-0'>
-                    <div className='sm:max-w-lg lg:max-w-md xl:max-w-xl text-center lg:text-left lg:pr-12'>
+                    <div className='md:max-w-2xl lg:max-w-[23rem] xl:max-w-[35rem] text-center lg:text-left lg:pr-12'>
                         <motion.h1
-                            className='text-3xl md:text-4xl xl:text-5xl font-bold text-[#2a5b84] pb-4 uppercase leading-8 md:leading-10 xl:leading-[3.5rem]'
+                            className='text-3xl md:text-4xl lg:text-3xl xl:text-5xl font-bold text-[#2a5b84] pb-4 uppercase leading-8 md:leading-10 xl:leading-[3.5rem] lg:leading-9'
                             initial={{ opacity: 0, y: 250 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: .3 }}
@@ -31,7 +31,7 @@ export default function FirstSection({ heroSection }) {
                         </motion.h1>
 
                         <motion.p
-                            className='text-[#2a5b84] pb-2 font-normal text-lg'
+                            className='text-[#2a5b84] pb-2 font-normal text-xl'
                             initial={{ opacity: 0, y: 200 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.5 }}
@@ -42,7 +42,7 @@ export default function FirstSection({ heroSection }) {
                         {/* Animated Button */}
                         <div className='flex justify-center lg:justify-start'>
                             <motion.button
-                                className='rounded-full px-8 py-3 bg-yellow-500 text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 tracking-[0.2em] text-sm'
+                                className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'
                                 initial={{ opacity: 0, y: 100 }}
                                 animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5 } }}
                                 whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}  // Ensures no delay on hover

@@ -88,7 +88,7 @@ export default function PackageSection({ packages }) {
                             >
                                 <p className="text-3xl font-bold text-center py-3 pb-8">${pkg?.price}</p>
                             </motion.div>
-                            <p className="font-semibold flex text-lg justify-center items-center  text-center pb-4 leading-relaxed font-sans">
+                            <p className="font-semibold flex text-md justify-center items-center  text-center pb-4 leading-relaxed font-sans">
                                 {pkg?.description}
                             </p>
                             <ul className="pt-4">
