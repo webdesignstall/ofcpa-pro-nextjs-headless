@@ -41,7 +41,7 @@ function Header() {
           <Image
             width={300}
             height={300}
-            className="bg-cover w-36 lg:w-72"
+            className="bg-cover w-52 lg:w-72"
             src="/OFCPA-Banner.webp"
             alt="Main logo"
             priority
