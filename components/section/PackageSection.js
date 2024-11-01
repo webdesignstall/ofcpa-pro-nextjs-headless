@@ -9,7 +9,7 @@ export default function PackageSection({ packages }) {
 
 
     return (
-        <div id="packages" ref={sectionRef} className="py-8 bg-white">
+        <div id="packages" ref={sectionRef} className="lg:py-12 py-8 bg-white">
             {/* Animated Heading */}
             <motion.div
                 className="text-center pb-8"

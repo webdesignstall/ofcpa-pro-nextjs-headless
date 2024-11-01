@@ -13,7 +13,7 @@ export default function ServiceSection({ services }) {
                 viewport={{ once: true }}
                 className="pb-12"
             >
-                <h1 className="text-center text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-yellow-500 font-bold">
+                <h1 className="text-center text-3xl md:text-3xl lg:text-4xl xl:text-5xl text-yellow-500 font-bold">
                     - {services?.serviceTitle ? services?.serviceTitle : "Tax and Corporate Services"} -
                 </h1>
             </motion.div>

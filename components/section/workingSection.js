@@ -10,11 +10,11 @@ export default function WorkingSection({ workingWithUs }) {
   const isInView = useInView(sectionRef, { once: true, margin: '-50px' }); // Adjusts when to start animation
 
   return (
-    <div id="what-we-do" className='pt-12' ref={sectionRef}>
+    <div id="what-we-do" className='pt-3 md:pt-4 lg:pt-5 xl:pt-6 mt-4' ref={sectionRef}>
       <div>
         {/* Animated Header */}
         <motion.h1
-          className='text-center text-4xl font-bold text-[#2A5B84] pb-16'
+          className='text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] p-4'
           initial={{ opacity: 0, y: 100 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
@@ -25,11 +25,11 @@ export default function WorkingSection({ workingWithUs }) {
 
 
 
-        <div className='max-w-6xl m-auto'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12'>
+        <div className='max-w-7xl m-auto'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 pt-4'>
             {/* Content Section */}
             {workingWithUs?.items?.map((item, index) => (
-              <div key={index} className='flex flex-col md:flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 px-6'>
+              <div key={index} className='flex flex-col md:flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 p-6'>
                 <div>
                   {
                     item?.image && <Image

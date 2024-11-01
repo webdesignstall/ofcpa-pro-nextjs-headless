@@ -58,7 +58,7 @@ export default function SimpleSlider({ reviews }) {
     };
 
     return (
-        <div className="py-10 max-w-7xl mx-auto px-3">
+        <div className="py-10 max-w-7xl mx-auto px-3 pt-3 md:pt-4 lg:pt-5 xl:pt-6 mt-4">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function SimpleSlider({ reviews }) {
                 viewport={{ once: true }}
                 className="pb-8"
             >
-                <h1 className="text-center lg:text-5xl text-4xl font-bold text-sky-900">
+                <h1 className="text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] p-4">
                     Don't Just Take Our Word For It
                 </h1>
             </motion.div>
