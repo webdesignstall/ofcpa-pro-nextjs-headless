@@ -9,8 +9,6 @@ import { getBlog } from "../../lib/api";
 export async function getStaticProps() {
   const blogs = await getBlog();
 
-  console.log(blogs)
-
   return {
     props: { blogs },
   };
