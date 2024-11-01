@@ -3,9 +3,34 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
-import { Rating } from '@smastrom/react-rating'
-import '@smastrom/react-rating/style.css'
+import { Rating } from '@smastrom/react-rating';
+import '@smastrom/react-rating/style.css';
 import Link from "next/link";
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <ArrowRight
+            size={30}
+            className={`${className} hidden lg:block`}
+            style={{ ...style, color: "gray" }}
+            onClick={onClick}
+        />
+    );
+}
+
+function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <ArrowLeft
+            size={30}
+            className={`${className} hidden lg:block`}
+            style={{ ...style, color: "gray" }}
+            onClick={onClick}
+        />
+    );
+}
 
 export default function SimpleSlider({ reviews }) {
     const settings = {
@@ -32,41 +57,8 @@ export default function SimpleSlider({ reviews }) {
         ],
     };
 
-    const testimonials = [
-        {
-            name: "Taylor B.",
-            role: "Content Creator",
-            rating: 5,
-            feedback: "MATT!!! THANK YOU. When you reached out for a testimonial I realized that I haven't even thought about my finances in months because I know you're paying attention.",
-        },
-        {
-            name: "Chris B.",
-            role: "Content Creator",
-            rating: 5,
-            feedback: "It’s funny because at first I was debating even getting an accountant. Wasn’t sure I’d be able to afford it but it’s so worth it. I'd mess it up so bad on my own.",
-        },
-        {
-            name: "Jessica A.",
-            role: "Content Creator",
-            rating: 5,
-            feedback: "Matt, you and your team are more than accountants; you're like my financial best friend. I love that I never have to wait for you to answer my questions and you're SO patient.",
-        },
-        {
-            name: "Alex D.",
-            role: "Influencer",
-            rating: 5,
-            feedback: "Hiring Matt was the best financial decision I've made. I now understand my earnings and expenses, and I feel more confident about my financial future.",
-        },
-        {
-            name: "Jamie R.",
-            role: "Content Creator",
-            rating: 5,
-            feedback: "Working with Matt has taken so much stress off my shoulders. I can focus on creating, knowing that my finances are being handled professionally.",
-        },
-    ];
-
     return (
-        <div className="py-10 max-w-6xl mx-auto">
+        <div className="py-10 max-w-7xl mx-auto px-3">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -85,12 +77,6 @@ export default function SimpleSlider({ reviews }) {
                             <div>
                                 <h2 className="font-semibold text-lg tracking-wide py-4">{review?.reviewerName}</h2>
                                 <p className="text-sm mb-4 tracking-wider py-2">{review?.reviewerTitle}</p>
-                                {/*<div className="flex mb-4">
-                                    {Array.from({ length: review?.rating }).map((_, idx) => (
-                                        <Star key={idx} className="text-white w-5 h-5" />
-                                    ))}
-
-                                </div>*/}
                                 <Rating className="text-white" style={{ maxWidth: 100 }} value={review?.rating} readOnly={true} halfFillMode />
                                 <p className="text-md tracking-wide leading-9">{review?.reviewText}</p>
                             </div>

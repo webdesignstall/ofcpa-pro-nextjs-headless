@@ -23,12 +23,12 @@ export default function PackageSection({ packages }) {
             </motion.div>
 
             {/* Package Cards */}
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto sm:px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
                     {packages?.map((pkg, index) => (
                         <motion.div
                             key={index}
-                            className="bg-[#2a5b84] text-white p-8 rounded-2xl shadow-lg"
+                            className="bg-[#2a5b84] text-white  p-4 sm:p-8 rounded-2xl shadow-lg"
                             initial={{ opacity: 0, y: 300 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
