@@ -17,18 +17,18 @@ export default function PackageSection({ packages }) {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <h1 className="scroll-m-20 text-yellow-500 text-4xl font-bold pb-10 tracking-tight lg:text-5xl">
+                <h1 className="scroll-m-20 text-yellow-500 text-4xl font-bold pb-8 tracking-tight lg:text-5xl">
                     - Packages -
                 </h1>
             </motion.div>
 
             {/* Package Cards */}
-            <div className="max-w-7xl mx-auto sm:px-6">
+            <div className="max-w-7xl mx-auto sm:px-6 px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
                     {packages?.map((pkg, index) => (
                         <motion.div
                             key={index}
-                            className="bg-[#2a5b84] text-white  p-4 sm:p-8 rounded-2xl shadow-lg"
+                            className="bg-[#2a5b84] text-white  p-6 sm:p-8 rounded-2xl shadow-lg"
                             initial={{ opacity: 0, y: 300 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
