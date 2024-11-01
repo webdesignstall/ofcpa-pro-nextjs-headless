@@ -7,7 +7,14 @@ import Head from 'next/head'
 import ScheduleSection from '../../components/section/ScheduleSection'
 import LiveChat from '../../components/chat'
 
-import { getHeroSection, getPackages, getReviews, getTaxCorporateServices, getWorkingWithUs } from "../../lib/api";
+import {
+    getHeroSection,
+    getPackages, getPageSeo,
+    getReviews,
+    getTaxCorporateServices,
+    getWorkingWithUs
+} from "../../lib/api";
+import CustomNextSeo from "../../components/CustomNextSeo";
 
 export async function getStaticProps() {
   const heroSection = await getHeroSection();
@@ -15,19 +22,18 @@ export async function getStaticProps() {
   const reviews = await getReviews();
   const taxCorporateServices = await getTaxCorporateServices();
   const packages = await getPackages();
+  const seo = await getPageSeo('Home');
 
   return {
-    props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews },
+    props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews, seo },
   };
 }
 
-export default function Home({ heroSection, workingWithUs, reviews, packages, taxCorporateServices }) {
+export default function Home({ heroSection, workingWithUs, reviews, packages, taxCorporateServices, seo }) {
+// debugger
   return (
-    <div>
-      <Head>
-      <link rel="icon" href="/header_logo.jpg" />
-        <title>OF Accountant - Accounting and Taxes for OnlyFans Creators</title>
-      </Head>
+    <>
+        <CustomNextSeo seo={seo} slug='/' />
       <div>
         {/* <div>
           <LiveChat />
@@ -41,7 +47,7 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
           <ScheduleSection />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
