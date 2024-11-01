@@ -33,7 +33,7 @@ export default function BlogDetails({blog}) {
     return (
         <div>
             <div className='bg-gray-50 py-16 '>
-                <div className='p-12 max-w-[1140px] m-auto bg-white'>
+                <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
                     <div className=''>
                         <BreadcrumbHeader />
                     </div>
