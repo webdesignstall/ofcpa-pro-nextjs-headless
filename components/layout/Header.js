@@ -36,12 +36,12 @@ function Header() {
 
   return (
     <div className="w-full">
-      <div className="flex xl:justify-around lg:justify-between items-center px-6 py-4">
+      <div className="flex xl:justify-around lg:justify-between justify-between items-center px-6 py-6 xl:px-4 xl:py-4">
         <Link href="/">
           <Image
             width={300}
             height={300}
-            className="bg-cover w-36 lg:w-full"
+            className="bg-cover w-36 lg:w-72"
             src="/OFCPA-Banner.webp"
             alt="Main logo"
             priority
@@ -61,7 +61,7 @@ function Header() {
             ].map(({ label, href, external }) => (
               <div
                 key={label}
-                className={`text-lg font-normal p-3 cursor-pointer duration-200 
+                className={`text-xl  font-normal p-3 cursor-pointer duration-200 
                   ${activeSection === label ? 'text-yellow-500' : 'text-[#005978] hover:text-yellow-500'}`}
               >
                 {external ? (

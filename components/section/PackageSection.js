@@ -2,53 +2,53 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ShieldCheck, SquareCheckBig } from 'lucide-react';
 
-export default function PackageSection({packages}) {
+export default function PackageSection({ packages }) {
     // Ref to track when the section comes into view
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true });
 
-   /* // Package details for each card
-    const packages = [
-        {
-            title: "Creator Essentials",
-            price: "$350/mo",
-            description: "For creators generating up to $75k annually who need a hand with their books and taxes",
-            features: [
-                "Annual personal tax filing",
-                "Unlimited communication on your preferred platform",
-            ],
-        },
-        {
-            title: "Platinum Producer",
-            price: "$650/mo",
-            description: "For creators making over $75k annually who are ready to take their business operations to the next level with added sophistication and financial expertise.",
-            features: [
-                "Monthly Bookkeeping",
-                "Payroll set-up and management",
-                "Corporate registration and compliance",
-                "Quarterly estimated tax payments",
-                "Annual personal and business tax returns",
-                "Filing for 1099s on this plan",
-                "Unlimited communication on your preferred platform",
-            ],
-        },
-        {
-            title: "Engagement Expert",
-            price: "$950/mo",
-            description: "For creators generating over $500k annually, we offer the most comprehensive and sophisticated financial assistance.",
-            features: [
-                "Advanced Tax Strategies",
-                "Retirement Planning",
-                "Investment Planning",
-                "Cash Flow Management",
-                "Everything included in Platinum Producer",
-                "Collaboration with your legal team",
-            ],
-        },
-    ];*/
+    /* // Package details for each card
+     const packages = [
+         {
+             title: "Creator Essentials",
+             price: "$350/mo",
+             description: "For creators generating up to $75k annually who need a hand with their books and taxes",
+             features: [
+                 "Annual personal tax filing",
+                 "Unlimited communication on your preferred platform",
+             ],
+         },
+         {
+             title: "Platinum Producer",
+             price: "$650/mo",
+             description: "For creators making over $75k annually who are ready to take their business operations to the next level with added sophistication and financial expertise.",
+             features: [
+                 "Monthly Bookkeeping",
+                 "Payroll set-up and management",
+                 "Corporate registration and compliance",
+                 "Quarterly estimated tax payments",
+                 "Annual personal and business tax returns",
+                 "Filing for 1099s on this plan",
+                 "Unlimited communication on your preferred platform",
+             ],
+         },
+         {
+             title: "Engagement Expert",
+             price: "$950/mo",
+             description: "For creators generating over $500k annually, we offer the most comprehensive and sophisticated financial assistance.",
+             features: [
+                 "Advanced Tax Strategies",
+                 "Retirement Planning",
+                 "Investment Planning",
+                 "Cash Flow Management",
+                 "Everything included in Platinum Producer",
+                 "Collaboration with your legal team",
+             ],
+         },
+     ];*/
 
     return (
-        <div id="packages" ref={sectionRef} className="py-12 bg-white">
+        <div id="packages" ref={sectionRef} className="py-8 bg-white">
             {/* Animated Heading */}
             <motion.div
                 className="text-center pb-8"
@@ -56,18 +56,18 @@ export default function PackageSection({packages}) {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <h1 className="scroll-m-20 text-yellow-500 text-5xl font-bold pb-10 tracking-tight">
+                <h1 className="scroll-m-20 text-yellow-500 text-4xl font-bold pb-10 tracking-tight lg:text-5xl">
                     - Packages -
                 </h1>
             </motion.div>
 
             {/* Package Cards */}
-            <div className="max-w-6xl mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="max-w-6xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
                     {packages?.map((pkg, index) => (
                         <motion.div
                             key={index}
-                            className="bg-sky-800 text-white p-8 rounded-2xl shadow-lg"
+                            className="bg-[#2a5b84] text-white p-8 rounded-2xl shadow-lg"
                             initial={{ opacity: 0, y: 300 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
@@ -88,14 +88,16 @@ export default function PackageSection({packages}) {
                             >
                                 <p className="text-3xl font-bold text-center py-3 pb-8">${pkg?.price}</p>
                             </motion.div>
-                            <p className="font-semibold text-center pb-4">
+                            <p className="font-semibold flex text-lg justify-center items-center  text-center pb-4 leading-relaxed font-sans">
                                 {pkg?.description}
                             </p>
-                            <ul className="space-y-2">
+                            <ul className="pt-4">
                                 {pkg?.features?.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start space-x-2">
-                                        <ShieldCheck className="mt-1 text-white" />
-                                        <span className='font-semibold mr-6'>{feature}</span>
+                                    <li key={idx} className="flex gap-3 py-2 items-center">
+                                        <span>
+                                            <ShieldCheck className="mt-1 text-white" />
+                                        </span>
+                                        <span className='font-bold mr-6'>{feature}</span>
                                     </li>
                                 ))}
                             </ul>

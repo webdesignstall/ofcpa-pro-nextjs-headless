@@ -2,35 +2,23 @@ import React, { useState } from 'react';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import { AlignJustify, X } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedSection, setSelectedSection] = useState('');
+  const router = useRouter();
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-  const handleSectionClick = (section) => {
-    setSelectedSection(section);
-    toggleDrawer(); // Close the drawer
-
-    // Delay smooth scrolling until after drawer close animation
-    setTimeout(() => {
-      const sectionId = section.toLowerCase().replace(/\s+/g, '-');
-      const sectionElement = document.getElementById(sectionId);
-      if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 300); // Adjust delay as needed (300ms is typically fine)
-  };
-
   return (
     <>
       <button onClick={toggleDrawer} className="top-4 left-4">
-        <AlignJustify size={30} />
+        <AlignJustify strokeWidth={1.5} className='text-blue-700' size={30} />
       </button>
-      
+
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
@@ -45,19 +33,34 @@ const Sidebar = () => {
         className="relative z-40"
       >
         <button onClick={toggleDrawer} className="absolute top-4 right-5 z-50">
-          <X size={30} />
+          <X className='text-blue-700' size={30} />
         </button>
-        
-        <div className="pt-14 space-y-4">
-          {['Home', 'What We Do', 'Testimonials', 'Packages', 'Blog and Articles'].map((section) => (
+
+        <div className="pt-20 space-y-4">
+          {[
+            { label: 'Home', href: '/' },
+            { label: 'What We Do', href: '/#what-we-do' },
+            { label: 'Testimonials', href: 'https://go.ofcpa.pro/vsl-step-2-page' },
+            { label: 'Packages', href: '/#packages' },
+            { label: 'Blog and Articles', href: '/blog' },
+          ].map(({ label, href, external }) => (
             <div
-              key={section}
-              onClick={() => handleSectionClick(section)}
+              key={label}
+              onClick={() => {
+                toggleDrawer();
+                setTimeout(() => {
+                  if (!external) {
+                    router.push(href);
+                  } else {
+                    window.open(href, '_blank', 'noopener noreferrer');
+                  }
+                }, 300);
+              }}
               className={`text-md px-6 py-1 transition-colors cursor-pointer ${
-                selectedSection === section ? 'text-blue-600 font-medium' : 'hover:bg-gray-100'
+                router.asPath === href ? 'text-blue-600 font-medium' : 'hover:bg-gray-100'
               }`}
             >
-              {section}
+              {label}
             </div>
           ))}
         </div>
