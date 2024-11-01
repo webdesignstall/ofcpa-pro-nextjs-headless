@@ -7,7 +7,7 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import Link from "next/link";
 
-export default function SimpleSlider({reviews}) {
+export default function SimpleSlider({ reviews }) {
     const settings = {
         dots: true,
         infinite: true,
@@ -66,22 +66,22 @@ export default function SimpleSlider({reviews}) {
     ];
 
     return (
-        <div className="py-10 px-4 max-w-6xl mx-auto">
+        <div className="py-10 max-w-6xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="pb-12"
+                className="pb-8"
             >
-                <h1 className="text-center pb-2 text-5xl font-bold text-blue-900">
+                <h1 className="text-center lg:text-5xl text-4xl font-bold text-sky-900">
                     Don't Just Take Our Word For It
                 </h1>
             </motion.div>
             <Slider {...settings}>
                 {reviews?.map((review, index) => (
                     <div key={index} className="p-2">
-                        <div className="bg-yellow-500 text-white border-2 border-white rounded-xl p-6 shadow-lg w-full h-96 flex flex-col justify-between text-left   hover:bg-cyan-800 duration-200">
+                        <div className="bg-[#E9BC29] text-white border-2 border-white rounded-xl p-8 shadow-lg w-full h-[27rem] sm:h-[20rem]  lg:h-[27rem] overflow-hidden md:h-[25rem] pb-16 flex flex-col justify-between text-left   hover:bg-cyan-800 duration-200">
                             <div>
                                 <h2 className="font-semibold text-lg tracking-wide py-4">{review?.reviewerName}</h2>
                                 <p className="text-sm mb-4 tracking-wider py-2">{review?.reviewerTitle}</p>
@@ -91,23 +91,25 @@ export default function SimpleSlider({reviews}) {
                                     ))}
 
                                 </div>*/}
-                                <Rating style={{ maxWidth: 100 }} value={review?.rating} readOnly={true} halfFillMode />
-                                <p className="text-md tracking-wide leading-8">{review?.reviewText}</p>
+                                <Rating className="text-white" style={{ maxWidth: 100 }} value={review?.rating} readOnly={true} halfFillMode />
+                                <p className="text-md tracking-wide leading-9">{review?.reviewText}</p>
                             </div>
                         </div>
                     </div>
                 ))}
             </Slider>
-            <div className='flex justify-center items-center py-10'>
+            <div className="pt-8 italic text-sm text-center text-sky-900">
+                *names have been changed in order to maintain client confidentiality.
+            </div>
+            <div className='flex justify-center items-center pt-6'>
                 <motion.button
-                    className='rounded-full px-16 py-4 text-xl font-semibold bg-cyan-800 hover:bg-yellow-500 text-white mt-4'
+                    className='rounded-full px-8 py-3 text-md font-normal tracking-widest bg-cyan-800 hover:bg-yellow-500 text-white mt-4 lg:py-4 lg:px-12 lg:text-xl'
                     initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    whileHover={{ scale: 1.15 }}
+                    animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+                    whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <Link href='#booking'> Book a Call </Link>
+                    BOOK A CALL
                 </motion.button>
             </div>
         </div>

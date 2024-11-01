@@ -11,6 +11,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				'sans': 'GeneralSans-Regular','Sans-serif'
+			},
 			fontSize: {
 				sm: '0.85rem',
 				base: '1rem',

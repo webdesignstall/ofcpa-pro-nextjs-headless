@@ -7,7 +7,7 @@ import Head from 'next/head'
 import ScheduleSection from '../../components/section/ScheduleSection'
 import LiveChat from '../../components/chat'
 
-import {getHeroSection, getPackages, getReviews, getTaxCorporateServices, getWorkingWithUs} from "../../lib/api";
+import { getHeroSection, getPackages, getReviews, getTaxCorporateServices, getWorkingWithUs } from "../../lib/api";
 
 export async function getStaticProps() {
   const heroSection = await getHeroSection();
@@ -21,7 +21,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ heroSection, workingWithUs, reviews,  packages, taxCorporateServices}) {
+export default function Home({ heroSection, workingWithUs, reviews, packages, taxCorporateServices }) {
   return (
     <div>
       <Head>
@@ -31,7 +31,7 @@ export default function Home({ heroSection, workingWithUs, reviews,  packages, t
         {/* <div>
           <LiveChat />
         </div> */}
-        <div className='lg:px-6 px-1'>
+        <div className='p-4 lg:p-10'>
           <FirstSection heroSection={heroSection} />
           <WorkingSection workingWithUs={workingWithUs} />
           <RatingSection reviews={reviews} />
