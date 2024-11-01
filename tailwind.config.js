@@ -12,7 +12,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				'sans': 'GeneralSans-Regular','Sans-serif'
+				'sans': ['GeneralSans-Regular', 'Sans-serif']
 			},
 			fontSize: {
 				sm: '0.85rem',
@@ -21,7 +21,20 @@ module.exports = {
 				'2xl': '1.563rem',
 				'3xl': '1.953rem',
 				'4xl': '2.300rem',
-				'5xl': '3.052rem',
+				'5xl': '2.952rem',
+			},
+			fontWeight: {
+				thin: '100',
+				hairline: '100',
+				extralight: '200',
+				light: '300',
+				normal: '400',
+				medium: '500',
+				semibold: '600',
+				bold: '700',
+				extrabold: '800',
+				'extra-bold': '800',
+				black: '900',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
