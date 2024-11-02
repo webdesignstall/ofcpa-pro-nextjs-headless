@@ -40,7 +40,7 @@ export default function SimpleSlider({ reviews }) {
 
             <Slider {...settings}>
                 {reviews?.map((review, index) => (
-                    <div key={index} className="p-2">
+                    <div key={review?._id || index} className="p-2">
                         <div
                             className="bg-[#E9BC29] text-white border-2 border-white rounded-xl p-8 shadow-lg w-full h-[27rem] sm:h-[20rem]  lg:h-[27rem] overflow-hidden md:h-[25rem] pb-16 flex flex-col justify-between text-left   hover:bg-cyan-800 duration-200">
                             <div>
