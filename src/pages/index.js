@@ -42,7 +42,7 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
           <RatingSection reviews={reviews} />
           <PackageSection packages={packages} />
           <ServiceSection services={taxCorporateServices} />
-          {/*<ScheduleSection />*/}
+          <ScheduleSection />
         </div>
       </>
     </>
