@@ -32,7 +32,6 @@ export default function BlogDetails({ blog, relatedPosts, seo }) {
         return <div>Loading...</div>;
     }
 
-
     return (
         <>
             {seo && <CustomNextSeo seo={seo} slug={blog?.slug} />}
