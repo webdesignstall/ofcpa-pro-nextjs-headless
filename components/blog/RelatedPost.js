@@ -6,7 +6,7 @@ import Link from "next/link";
 const RelatedPosts = ({blogs}) => {
 
     return (
-        <div className=''>
+        <div className='my-8'>
             <section className="">
                 <h2 className="text-2xl font-semibold mb-6 text-gray-800">Related Posts</h2>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 cursor-pointer">
