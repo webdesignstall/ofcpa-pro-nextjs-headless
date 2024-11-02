@@ -14,7 +14,7 @@ import {
 } from "../../lib/api";
 import CustomNextSeo from "../../components/CustomNextSeo";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const heroSection = await getHeroSection();
   const workingWithUs = await getWorkingWithUs();
   const reviews = await getReviews();

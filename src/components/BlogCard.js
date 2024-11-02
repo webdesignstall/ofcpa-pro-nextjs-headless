@@ -30,8 +30,8 @@ const BlogCard = ({blog}) => {
                         <h2 className="text-2xl md:text-4xl lg:text-4xl xl:text-5xl text-gray-900 font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog?.title}</h2>
                     </Link>
                     <p className="text-sm text-gray-500 py-3">
-                        By <Link href={`/author/${blog?.author}`}><span
-                        className="font-medium text-blue-500">{blog?.author}</span></Link> on {moment(blog?.date).format('LL')}
+                        By <Link href={`/author/${blog?.author?.slug}`}><span
+                        className="font-medium text-blue-500">{blog?.author?.name}</span></Link> on {moment(blog?.date).format('LL')}
                         <Link
                             className='hover:text-blue-500 ml-2'
                             href={`/${blog?.slug}/#comment`}>Write Comment</Link>

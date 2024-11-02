@@ -5,7 +5,7 @@ import BlogCard from "@/components/BlogCard";
 import Pagination from "@/components/Pagination";
 import CustomNextSeo from "../../../components/CustomNextSeo";
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const page = parseInt(context.params.page) || 1; // Get page from params or default to 1
     const blogs = await getBlog(page, parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW));
     const totalBlogs = await getBlogCount(); // Get total blog count
@@ -13,11 +13,11 @@ export async function getStaticProps(context) {
 
     return {
         props: { blogs, page, totalBlogs, seo }, // Pass the total count to the component
-        revalidate: revalidateIntervalDay(1),
+        // revalidate: revalidateIntervalDay(1),
     };
 }
 
-export async function getStaticPaths() {
+/*export async function getStaticPaths() {
     const totalBlogs = await getBlogCount(); // Get total blog count
     const itemsPerPage = parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW); // Set the number of blogs per page
     const totalPages = Math.ceil(totalBlogs / itemsPerPage);
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
     }));
 
     return { paths, fallback: true }; // Set fallback to false for static pages
-}
+}*/
 
 const BlogPage = ({ blogs, page, totalBlogs, seo }) => {
 
@@ -49,7 +49,7 @@ const BlogPage = ({ blogs, page, totalBlogs, seo }) => {
                         </div>
 
                         <div>
-                            <Pagination currentPage={page} totalPages={totalPages} />
+                            <Pagination currentPage={page} totalPages={totalPages} url={'blog'} />
                         </div>
                     </div>
                 </div>
