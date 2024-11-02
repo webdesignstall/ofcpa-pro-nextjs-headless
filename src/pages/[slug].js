@@ -8,10 +8,11 @@ import CustomNextSeo from "../../components/CustomNextSeo";
 
 export async function getServerSideProps({ params }) {
     const blog = await getBlogBySlug(params?.slug);
+
     const relatedPosts = await getRelatedPosts(blog?._id, blog?.category?._id);
 
     return {
-        props: { blog, relatedPosts, seo: blog?.seo },
+        props: { blog, relatedPosts, seo: blog?.seo || {} },
         // revalidate: revalidateIntervalDay(1),
     };
 }
@@ -30,6 +31,7 @@ export default function BlogDetails({ blog, relatedPosts, seo }) {
     if (!blog) {
         return <div>Loading...</div>;
     }
+
 
     return (
         <>
