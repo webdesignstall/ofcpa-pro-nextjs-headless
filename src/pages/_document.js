@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
 
@@ -8,11 +9,12 @@ export default function Document() {
         <body className="antialiased">
          <Main/>
          <NextScript/>
-          <script
-            src="https://widgets.leadconnectorhq.com/loader.js"
-            data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-            data-widget-id="66c39b25696735cbdea9505e">
-          </script>
+         <Script
+             src="https://widgets.leadconnectorhq.com/loader.js"
+             data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+             data-widget-id="66c39b25696735cbdea9505e"
+             strategy="afterInteractive" // or "lazyOnload" if you want to load it after the page is fully loaded
+         />
         </body>
 
     </Html>

@@ -2,7 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import { urlFor } from "../../lib/api";
 import Link from 'next/link';
+import { Poppins } from 'next/font/google'
 
+// Define the font at the top level of the module
+const poppins = Poppins({ subsets: ['latin'], weight: '400' });
 
 export default function FirstSection({ heroSection }) {
 
@@ -10,7 +13,7 @@ export default function FirstSection({ heroSection }) {
         <section id="home">
             <div className='lg:text-left'>
                 <h2 className='text-sm text-gray-600'>Home &gt; The OnlyFans Accountant</h2>
-                <h1 className='text-3xl lg:text-4xl  font-bold pt-2 pb-8 lg:pb-12 leading-normal md:text-4xl '>{heroSection?.sectionTitle}</h1>
+                <h1 className={`${poppins.className} text-3xl lg:text-4xl  font-bold pt-2 pb-8 lg:pb-12 leading-normal md:text-4xl `}>{heroSection?.sectionTitle}</h1>
                 {heroSection?.sectionSubtitle &&
                     <p className='text-3xl lg:text-4xl  font-bold pt-2 pb-8 lg:pb-12 leading-normal md:text-4xl xl:text-5xl'>{heroSection?.sectionSubtitle}</p>}
             </div>

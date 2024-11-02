@@ -16,8 +16,8 @@ export default function PackageSection({ packages }) {
                         <>
 
                             <div
-                                data-aos="fade-up"
-                            key={index}
+                            data-aos="fade-up"
+                            key={pkg?._id || index}
                             className="bg-[#2a5b84] text-white  p-6 sm:p-8 rounded-2xl shadow-lg"
                         >
                             <div

@@ -15,7 +15,7 @@ export default function WorkingSection({ workingWithUs }) {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 pt-4'>
             {/* Content Section */}
             {workingWithUs?.items?.map((item, index) => (
-              <div key={index} className='flex flex-col md:flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 p-6'>
+              <div key={item?._id || index} className='flex flex-col md:flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 p-6'>
                 <div>
                   {
                     item?.image && <Image
