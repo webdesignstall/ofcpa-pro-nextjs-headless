@@ -5,7 +5,7 @@ import CustomNextSeo from "../../../components/CustomNextSeo";
 
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
   const page = parseInt(context?.params?.page) || 1;
   const blogs = await getBlog(page, parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW));

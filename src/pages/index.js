@@ -3,9 +3,7 @@ import WorkingSection from '../../components/section/workingSection'
 import RatingSection from '../../components/section/RatingSection'
 import PackageSection from '../../components/section/PackageSection'
 import ServiceSection from '../../components/section/ServiceSection'
-import Head from 'next/head'
 import ScheduleSection from '../../components/section/ScheduleSection'
-import LiveChat from '../../components/chat'
 
 import {
     getHeroSection,
@@ -30,14 +28,11 @@ export async function getStaticProps() {
 }
 
 export default function Home({ heroSection, workingWithUs, reviews, packages, taxCorporateServices, seo }) {
-// debugger
+
   return (
     <>
         <CustomNextSeo seo={seo} slug='/' />
-      <div>
-        {/* <div>
-          <LiveChat />
-        </div> */}
+      <>
         <div className='p-4 lg:p-10'>
           <FirstSection heroSection={heroSection} />
           <WorkingSection workingWithUs={workingWithUs} />
@@ -46,7 +41,7 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
           <ServiceSection services={taxCorporateServices} />
           <ScheduleSection />
         </div>
-      </div>
+      </>
     </>
   )
 }
