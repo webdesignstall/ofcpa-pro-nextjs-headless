@@ -3,10 +3,10 @@ import {useRouter} from "next/router";
 import ReactPaginate from 'react-paginate';
 
 
-const Pagination = ({ currentPage, totalPages }) => {
+const Pagination = ({ currentPage, totalPages, url }) => {
     const router = useRouter()
     const handlePageClick = ({selected})=> {
-        router.push(`/blog/${selected + 1}`);
+        router.push(`/${url}/${selected + 1}`);
     }
 
 
