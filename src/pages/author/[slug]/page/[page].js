@@ -1,17 +1,15 @@
 import React from 'react';
 import {
     getAuthors, getBlogByAuthor,
-    getBlogByCategory,
     getBlogCountByAuthor,
-    getBlogCountByCategory,
-    getCategories,
     getPageSeo
 } from "../../../../../lib/api";
 import CustomNextSeo from "../../../../../components/CustomNextSeo";
 import BlogCard from "@/components/BlogCard";
 import Pagination from "@/components/Pagination";
+import {revalidateIntervalDay} from "@/lib/utils";
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
     const page = parseInt(context?.params?.page) || 1;
     const slug = context?.params?.slug;
@@ -20,11 +18,12 @@ export async function getServerSideProps(context) {
     const seo = await getPageSeo('Blog');
     return {
         props: { blogs, page, totalBlogs, seo, slug },
+        revalidate: revalidateIntervalDay(1)
     };
 }
 
 
-/*export async function getStaticPaths() {
+export async function getStaticPaths() {
     // Fetch authors
     const authors = await getAuthors(); // Replace with your actual function to fetch categories
 
@@ -46,7 +45,7 @@ export async function getServerSideProps(context) {
     }
 
     return { paths, fallback: 'blocking' };
-}*/
+}
 
 const CategoryPage = ({blogs, totalBlogs, seo, page, slug}) => {
 

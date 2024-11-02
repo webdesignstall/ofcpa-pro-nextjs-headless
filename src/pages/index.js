@@ -13,8 +13,9 @@ import {
     getWorkingWithUs
 } from "../../lib/api";
 import CustomNextSeo from "../../components/CustomNextSeo";
+import {revalidateIntervalDay} from "@/lib/utils";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const heroSection = await getHeroSection();
   const workingWithUs = await getWorkingWithUs();
   const reviews = await getReviews();
@@ -24,12 +25,14 @@ export async function getServerSideProps() {
 
   return {
     props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews, seo },
+    revalidate: revalidateIntervalDay(1)
   };
 }
 
 export default function Home({ heroSection, workingWithUs, reviews, packages, taxCorporateServices, seo }) {
 
-  return (
+
+    return (
     <>
         <CustomNextSeo seo={seo} slug='/' />
       <>

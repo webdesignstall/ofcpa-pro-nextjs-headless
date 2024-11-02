@@ -20,41 +20,14 @@ export default function FirstSection({ heroSection }) {
                 {/* Text and Call-to-Action Section */}
                 <div className='flex-1 flex justify-start items-center mb-10 lg:mb-0'>
                     <div className='md:max-w-2xl lg:max-w-[23rem] xl:max-w-[35rem] text-center lg:text-left lg:pr-12'>
-                     {/*   <motion.h1
-                            className='text-3xl md:text-4xl lg:text-3xl xl:text-5xl font-bold text-[#2a5b84] pb-4 uppercase leading-8 md:leading-10 xl:leading-[3.5rem] lg:leading-9'
-                            initial={{ opacity: 0, y: 250 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: .3 }}
-                        >
-                            {heroSection?.title}
-                        </motion.h1>*/}
+                        <h1 data-aos="fade-up" className='text-3xl md:text-4xl lg:text-3xl xl:text-5xl font-bold text-[#2a5b84] pb-4 uppercase leading-8 md:leading-10 xl:leading-[3.5rem] lg:leading-9'>{heroSection?.title}</h1>
 
-                        <h1 className='text-3xl md:text-4xl lg:text-3xl xl:text-5xl font-bold text-[#2a5b84] pb-4 uppercase leading-8 md:leading-10 xl:leading-[3.5rem] lg:leading-9 animate__animated animate__fadeInUp'>{heroSection?.title}</h1>
-
-                       {/* <motion.p
-                            className='text-[#2a5b84] pb-2 font-normal text-xl'
-                            initial={{ opacity: 0, y: 200 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.5 }}
-                        >
-                            {heroSection?.description}
-                        </motion.p>*/}
-
-                        <p className='text-[#2a5b84] pb-2 font-normal text-xl animate__animated animate__fadeInUp'>{heroSection?.description}</p>
+                        <p data-aos="fade-up" className='text-[#2a5b84] pb-2 font-normal text-xl'>{heroSection?.description}</p>
 
                         {/* Animated Button */}
                         <div className='flex justify-center lg:justify-start'>
                             <Link href='#booking'>
-                               {/* <motion.button
-                                    className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'
-                                    initial={{ opacity: 0, y: 100 }}
-                                    animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5 } }}
-                                    whileHover={{ scale: 1.15, transition: { delay: 0, duration: 0.3 } }}  // Ensures no delay on hover
-
-                                >
-                                    BOOK A CALL
-                                </motion.button>*/}
-                                <p className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm animate__animated animate__fadeInUp'>BOOK A CALL</p>
+                                <p data-aos="fade-up" className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'>BOOK A CALL</p>
                             </Link>
                         </div>
 
@@ -71,13 +44,6 @@ export default function FirstSection({ heroSection }) {
                         alt='Book a call'
                         priority
                     />
-                    {/* <img
-                        className=' bg-cover w-full h-auto max-w-full lg:max-w-full '
-                        width={1200}
-                        height={1400}
-                        src={urlFor(heroSection?.image).url()}
-                        alt='Book a call'
-                    />*/}
                 </div>
             </div>
         </section>

@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import Image from 'next/image';
 import { Search, X } from 'lucide-react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 
 function Header() {
@@ -86,12 +86,9 @@ function Header() {
       {/* Full-Screen Search Overlay */}
       <AnimatePresence>
         {isSearchOpen && (
-          <motion.div
+          <div
+            data-aos="fade-up"
             className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
           >
             <button
               onClick={closeSearch}
@@ -99,12 +96,9 @@ function Header() {
             >
               <X size={35} />
             </button>
-            <motion.div
+            <div
               className="relative w-full max-w-3xl mx-auto"
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              data-aos="fade-up"
             >
               {/* Search Input */}
               <input
@@ -121,8 +115,8 @@ function Header() {
               >
                 <Search size={25} />
               </button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
     </div>
