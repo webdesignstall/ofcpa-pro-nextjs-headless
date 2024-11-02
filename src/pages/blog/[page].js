@@ -47,7 +47,7 @@ const BlogPage = ({ blogs, page, totalBlogs, seo }) => {
                                 <BlogCard key={index} blog={blog}/>
                             ))}
                         </div>
-
+                            
                         <div>
                             <Pagination currentPage={page} totalPages={totalPages} url={'blog'} />
                         </div>

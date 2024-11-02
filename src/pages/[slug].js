@@ -5,6 +5,8 @@ import Blog from '../../components/blog';
 import { getBlog, getBlogBySlug, getRelatedPosts } from "../../lib/api";
 import { revalidateIntervalDay } from "@/lib/utils";
 import CustomNextSeo from "../../components/CustomNextSeo";
+import TagSection from '../../components/blog/Tags';
+import ArticleNavigation from '../../components/blog/navigation';
 
 export async function getServerSideProps({ params }) {
     const blog = await getBlogBySlug(params?.slug);
@@ -42,6 +44,12 @@ export default function BlogDetails({ blog, relatedPosts, seo }) {
                     </div>
                     <div>
                         <Blog blog={blog} />
+                    </div>
+                    <div>
+                        <TagSection />
+                    </div>
+                    <div>
+                        <ArticleNavigation />
                     </div>
                     <RelatedPosts blogs={relatedPosts} />
                 </div>
