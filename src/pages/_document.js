@@ -1,13 +1,13 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
-  return (
+
+    return (
     <Html lang="en">
       <Head />
         <body className="antialiased">
-        <link rel="icon" href="/header_logo.jpg"/>
-        <Main/>
-        <NextScript/>
+         <Main/>
+         <NextScript/>
         </body>
         <script
             src="https://widgets.leadconnectorhq.com/loader.js"
