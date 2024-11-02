@@ -2,10 +2,11 @@ import {getBlog, getBlogCount, getPageSeo, urlFor} from "../../../lib/api";
 import BlogCard from "@/components/BlogCard";
 import Pagination from "@/components/Pagination";
 import CustomNextSeo from "../../../components/CustomNextSeo";
+import {revalidateIntervalDay} from "@/lib/utils";
 
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
   const page = parseInt(context?.params?.page) || 1;
   const blogs = await getBlog(page, parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW));
@@ -13,6 +14,7 @@ export async function getServerSideProps(context) {
   const seo = await getPageSeo('Blog');
   return {
     props: { blogs, page, totalBlogs, seo: seo },
+    revalidate: revalidateIntervalDay(1)
   };
 }
 

@@ -2,31 +2,31 @@ import React from 'react';
 import RelatedPosts from '../../components/blog/RelatedPost';
 import BreadcrumbHeader from '../../components/blog/Breadcrumb';
 import Blog from '../../components/blog';
-import { getBlog, getBlogBySlug, getRelatedPosts } from "../../lib/api";
+import {getAllBlog, getBlog, getBlogBySlug, getRelatedPosts} from "../../lib/api";
 import { revalidateIntervalDay } from "@/lib/utils";
 import CustomNextSeo from "../../components/CustomNextSeo";
 import TagSection from '../../components/blog/Tags';
 import ArticleNavigation from '../../components/blog/navigation';
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
     const blog = await getBlogBySlug(params?.slug);
 
     const relatedPosts = await getRelatedPosts(blog?._id, blog?.category?._id);
 
     return {
         props: { blog, relatedPosts, seo: blog?.seo || {} },
-        // revalidate: revalidateIntervalDay(1),
+        revalidate: revalidateIntervalDay(1),
     };
 }
 
-/*export async function getStaticPaths() {
-    const blogs = await getBlog();
+export async function getStaticPaths() {
+    const blogs = await getAllBlog();
     const paths = blogs?.map((b) => ({ params: { slug: b.slug } }));
     return {
         paths,
         fallback: "blocking",
     };
-}*/
+}
 
 export default function BlogDetails({ blog, relatedPosts, seo }) {
 
@@ -45,12 +45,10 @@ export default function BlogDetails({ blog, relatedPosts, seo }) {
                     <div>
                         <Blog blog={blog} />
                     </div>
-                    <div>
-                        <TagSection />
-                    </div>
-                    <div>
-                        <ArticleNavigation />
-                    </div>
+
+                        {/*<TagSection /> */}
+                        {/*<ArticleNavigation />*/}
+
                     <RelatedPosts blogs={relatedPosts} />
                 </div>
             </div>

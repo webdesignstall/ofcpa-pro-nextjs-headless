@@ -1,11 +1,10 @@
-import {getBlogByCategory, getBlogCount, getPageSeo} from "../../../../lib/api";
+import {getBlogByCategory, getBlogCount, getBlogCountByCategory, getCategories, getPageSeo} from "../../../../lib/api";
 import BlogCard from "@/components/BlogCard";
 import Pagination from "@/components/Pagination";
 import CustomNextSeo from "../../../../components/CustomNextSeo";
+import {revalidateIntervalDay} from "@/lib/utils";
 
-
-
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
   const page = parseInt(context?.params?.page) || 1;
   const category = context?.params?.category;
@@ -14,9 +13,34 @@ export async function getServerSideProps(context) {
   const seo = await getPageSeo('Blog');
   return {
     props: { blogs, page, totalBlogs, seo: seo, slug: category },
+    revalidate: revalidateIntervalDay(1)
   };
 }
 
+
+export async function getStaticPaths(context) {
+  // Fetch categories
+  const categories = await getCategories(); // Replace with your actual function to fetch categories
+
+  const itemsPerPage = parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW) || 10;
+
+  // Generate paths for each category and page
+  const paths = [];
+
+  for (const category of categories) {
+    // Fetch blog count for each category to determine pagination
+    const { count: totalBlogs } = await getBlogCountByCategory(category.slug);
+    const totalPages = Math.ceil(totalBlogs / itemsPerPage);
+
+    for (let page = 1; page <= totalPages; page++) {
+      paths.push({
+        params: { category: category.slug }
+      });
+    }
+  }
+
+  return { paths, fallback: 'blocking' };
+}
 
 
 const BlogPage = ({ blogs, page, totalBlogs, seo, slug }) => {

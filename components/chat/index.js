@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { MessageCircle, SendHorizontal, X } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const LiveChat = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,22 +8,17 @@ const LiveChat = () => {
 
     return (
         <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
-            <motion.button
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 ,delay: 3 }}
+            <button
+                data-aos="fade-up"
                 onClick={toggleChat}
                 className="p-3 bg-orange-500 rounded-full shadow-lg text-white flex items-center justify-center hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-200"
             >
                 {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
-            </motion.button>
+            </button>
 
             {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
+                <div
+                    data-aos="fade-up"
                     className="w-72 sm:w-96 bg-white shadow-lg rounded-lg mt-3"
                 >
                     <div className="flex items-center border-b p-3 bg-red-900">
@@ -60,7 +54,7 @@ const LiveChat = () => {
                             <SendHorizontal className="w-5 h-5" />
                         </button>
                     </div>
-                </motion.div>
+                </div>
             )}
         </div>
     );
