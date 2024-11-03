@@ -12,7 +12,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				'sans': ['GeneralSans-Regular', 'Sans-serif']
+				'sans': ['GeneralSans-Regular', 'Sans-serif'],
+				'roboto': ['Roboto', 'sans-serif']
 			},
 			fontSize: {
 				sm: '0.85rem',

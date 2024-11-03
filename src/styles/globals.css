@@ -428,3 +428,10 @@ li::marker{
 html{
   scroll-behavior: smooth;
 }
+
+.custom-shape {
+  width: 40px; /* Adjust as needed */
+  height: 400px; /* Adjust as needed */
+  background-color: #f0c419; /* Yellow color */
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%, 0% 50%);
+}
