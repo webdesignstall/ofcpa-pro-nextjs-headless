@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import {getBlog, getBlogCount, getPageSeo} from "../../../lib/api";
 import {revalidateIntervalDay} from "@/lib/utils";
@@ -58,4 +59,17 @@ const BlogPage = ({ blogs, page, totalBlogs, seo }) => {
     );
 };
 
-export default BlogPage;
+export default BlogPage;*/
+
+
+import React from 'react';
+
+const Page = () => {
+    return (
+        <div>
+
+        </div>
+    );
+};
+
+export default Page;
