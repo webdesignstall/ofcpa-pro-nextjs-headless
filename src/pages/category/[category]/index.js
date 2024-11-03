@@ -30,11 +30,15 @@ export async function getStaticPaths(context) {
   for (const category of categories) {
     // Fetch blog count for each category to determine pagination
     const { count: totalBlogs } = await getBlogCountByCategory(category.slug);
-    const totalPages = Math.ceil(totalBlogs / itemsPerPage);
+    // const totalPages = Math.ceil(totalBlogs / itemsPerPage);
 
-    for (let page = 1; page <= totalPages; page++) {
+   /* paths.push({
+      params: { category: category.slug }
+    });*/
+
+    for (let page = 1; page <= totalBlogs; page++) {
       paths.push({
-        params: { category: category.slug }
+        params: { category: category.slug}
       });
     }
   }

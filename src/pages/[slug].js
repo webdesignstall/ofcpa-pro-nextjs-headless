@@ -8,6 +8,7 @@ import CustomNextSeo from "../../components/CustomNextSeo";
 import TagSection from '../../components/blog/Tags';
 import ArticleNavigation from '../../components/blog/navigation';
 
+
 export async function getStaticProps({ params }) {
     const blog = await getBlogBySlug(params?.slug);
 

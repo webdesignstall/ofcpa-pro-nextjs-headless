@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
 const nextConfig = {
   reactStrictMode: true,
   env: {
@@ -16,6 +18,9 @@ const nextConfig = {
       },
     ],
   },
+  bundlePagesRouterDependencies: true,
 };
 
-export default nextConfig;
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})(nextConfig);
