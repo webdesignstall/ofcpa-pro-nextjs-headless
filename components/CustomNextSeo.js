@@ -1,3 +1,4 @@
+/*
 import React, { useMemo } from "react";
 import { NextSeo } from "next-seo";
 import {urlFor} from "../lib/api";
@@ -83,6 +84,54 @@ const CustomNextSeo = ({ seo, children, slug }) => {
                 description={metaDescription || ""}
             />
             {children}
+        </>
+    );
+};
+
+export default CustomNextSeo;
+*/
+
+
+import {NextSeo} from "next-seo";
+import Head from "next/head";
+
+const CustomNextSeo = ({seoData}) => {
+    return (
+        <>
+            <NextSeo
+                title={seoData.title}
+                description={seoData.description}
+                canonical={seoData.canonical}
+                openGraph={{
+                    type: seoData['og:type'],
+                    title: seoData['og:title'],
+                    description: seoData['og:description'],
+                    url: seoData['og:url'],
+                    siteName: seoData['og:site_name'],
+                    images: [
+                        {
+                            url: seoData['og:image'],
+                            width: seoData['og:image:width'],
+                            height: seoData['og:image:height'],
+                            alt: seoData['og:image:alt'],
+                        },
+                    ],
+                }}
+                twitter={{
+                    cardType: seoData['twitter:card'],
+                    title: seoData['twitter:title'],
+                    description: seoData['twitter:description'],
+                    image: seoData['twitter:image'],
+                }}
+            />
+
+            {/* Insert the JSON-LD directly using a script tag */}
+            <Head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: seoData['rank-math-schema'] }}
+                />
+            </Head>
         </>
     );
 };

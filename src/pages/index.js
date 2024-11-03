@@ -14,6 +14,8 @@ import {
 } from "../../lib/api";
 import CustomNextSeo from "../../components/CustomNextSeo";
 import {revalidateIntervalDay} from "@/lib/utils";
+import Head from "next/head";
+import parse from "html-react-parser";
 
 export async function getStaticProps() {
   const heroSection = await getHeroSection();
@@ -21,10 +23,14 @@ export async function getStaticProps() {
   const reviews = await getReviews();
   const taxCorporateServices = await getTaxCorporateServices();
   const packages = await getPackages();
-  const seo = await getPageSeo('Home');
+  // const seo = await getPageSeo('Home');
+
+    const response = await fetch(`https://ofcpa.pro/wp-json/rankmath/v1/getHead?url=https://ofcpa.pro`)
+
+    const result = await response.json();
 
   return {
-    props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews, seo },
+    props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews, seo: result },
     revalidate: revalidateIntervalDay(1)
   };
 }
@@ -34,8 +40,9 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
 
     return (
     <>
-        <CustomNextSeo seo={seo} slug='/' />
-      <>
+        <Head>
+            {parse(seo.head)}
+        </Head>
         <div className='p-4 lg:p-10'>
           <FirstSection heroSection={heroSection} />
           <WorkingSection workingWithUs={workingWithUs} />
@@ -45,7 +52,6 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
           <ScheduleSection />
         </div>
       </>
-    </>
   )
 }
 

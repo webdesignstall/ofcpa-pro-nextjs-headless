@@ -1,45 +1,55 @@
-import {getBlog, getBlogCount, getPageSeo, urlFor} from "../../../lib/api";
-import BlogCard from "@/components/BlogCard";
 import Pagination from "@/components/Pagination";
-import CustomNextSeo from "../../../components/CustomNextSeo";
 import {revalidateIntervalDay} from "@/lib/utils";
+import {initializeApollo} from "../../../lib/apolloInstance";
+import React, {useState} from "react";
+import parse from "html-react-parser";
+import Head from "next/head";
+import Blog from "../../../components/blog/Blog";
+import {paginationBlogQuery} from "../../../lib/query";
 
 
+export async function getStaticProps() {
 
-export async function getStaticProps(context) {
+  const apolloClient = initializeApollo();
 
-  const page = parseInt(context?.params?.page) || 1;
-  const blogs = await getBlog(page, parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW));
-  const totalBlogs = await getBlogCount();
-  const seo = await getPageSeo('Blog');
+  const { data } = await apolloClient.query({
+    query: paginationBlogQuery,
+    variables: { first: 10 }, // Adjust the number of posts per page
+  });
+
+  const response = await fetch(`https://ofcpa.pro/wp-json/rankmath/v1/getHead?url=https://ofcpa.pro/blog`)
+
+  const result = await response.json();
+
   return {
-    props: { blogs, page, totalBlogs, seo: seo },
-    revalidate: revalidateIntervalDay(1)
+    props: {
+      blogs: data?.posts?.nodes,
+      pageInfo: data?.posts?.pageInfo,
+      seo: result
+    },
+    revalidate: revalidateIntervalDay(1),
   };
+
 }
 
 
 
-const BlogPage = ({ blogs, page, totalBlogs, seo }) => {
-
-
-  const itemsPerPage = parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW); // Set the number of blogs per page
-  const totalPages = Math.ceil(totalBlogs / itemsPerPage);
+const BlogPage = ({ blogs, pageInfo, seo }) => {
+/*
+debugger
+  return ''*/
+/*  const itemsPerPage = parseInt(process.env.NEXT_PUBLIC_BLOG_POST_PER_PAGE_SHOW); // Set the number of blogs per page
+  const totalPages = Math.ceil(totalBlogs / itemsPerPage);*/
+  const [posts, setPosts] = useState(blogs);
 
   return (
     <>
-      <CustomNextSeo seo={seo} slug={'/blog'} />
+      <Head>
+        {parse(seo.head)}
+      </Head>
       <div className='w-full bg-[#f9fbfe]'>
         <div className="max-w-screen-xl mx-auto pt-10">
-          <div className="space-y-2">
-            {blogs?.map((blog, index) => (
-              <BlogCard key={index} blog={blog}/>
-            ))}
-          </div>
-              
-          <div>
-            <Pagination currentPage={page} totalPages={totalPages} url={'blog'} />
-          </div>
+          <Blog posts={posts} pageInfo={pageInfo} setPosts={setPosts} query={paginationBlogQuery} />
         </div>
       </div>
     </>
