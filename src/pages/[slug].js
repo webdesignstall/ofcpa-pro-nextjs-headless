@@ -1,14 +1,21 @@
 import React from 'react';
 import RelatedPosts from '../../components/blog/RelatedPost';
 import BreadcrumbHeader from '../../components/blog/Breadcrumb';
-import Blog from '../../components/blog';
+// import Blog from '../../components/blog';
 import TagSection from '../../components/blog/Tags';
 import ArticleNavigation from '../../components/blog/navigation';
 import {gql} from "@apollo/client";
 import {initializeApollo} from "../../lib/apolloInstance";
 import Head from "next/head";
 import parse from 'html-react-parser';
-import { postByCategoryQuery} from "../../lib/query"; // Import the parser
+import {GET_ALL_ITEMS, postByCategoryQuery} from "../../lib/query";
+import dynamic from "next/dynamic";
+import {revalidateIntervalDay} from "@/lib/utils"; // Import the parser
+
+const Blog = dynamic(() => import('../../components/blog'), {
+    loading: () => <p>Loading...</p>, // Optional: Add a loading fallback
+    // ssr: false, // Optional: Set to true if you want server-side rendering for this component
+});
 
 const queryForSinglePost = gql`
     query GetPostBySlug($slug: String!) {
@@ -46,7 +53,28 @@ const queryForSinglePost = gql`
     }
 `;
 
-export async function getServerSideProps({ params }) {
+
+export async function getStaticPaths() {
+    const apolloClient = initializeApollo(); // initialize Apollo client
+
+    // Fetch data using Apollo client
+    const { data } = await apolloClient.query({
+        query: GET_ALL_ITEMS,
+        variables: { first: 30 }
+    });
+
+    const paths = data?.posts?.nodes?.map(post => ({
+        params: { slug: post?.slug } // `params` is required for dynamic routes
+    }));
+
+    return {
+        paths,
+        fallback: 'blocking' // `blocking` or `true` if you want incremental static generation
+    };
+}
+
+
+export async function getStaticProps({ params }) {
 
     const apolloClient = initializeApollo(); // initialize apollo client
     const slug = params.slug
@@ -73,6 +101,7 @@ export async function getServerSideProps({ params }) {
             relatedPosts: categoryPosts?.posts?.nodes,
             seo: result
         },
+        revalidate: revalidateIntervalDay(1)
     };
 }
 
