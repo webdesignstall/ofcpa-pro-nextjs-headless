@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: true, // Use 'blocking' to generate pages on request if not pre-generated
+        fallback: false, // Use 'blocking' to generate pages on request if not pre-generated
     };
 }
 
@@ -78,7 +78,7 @@ const BlogPage = ({ posts, pageCount, currentPage, seo }) => {
     return (
         <>
             <Head>
-                {parse(seo.head)}
+                {parse(seo?.head)}
             </Head>
             <div className="w-full bg-[#f9fbfe]">
                 <div className="max-w-screen-xl mx-auto pt-10">
