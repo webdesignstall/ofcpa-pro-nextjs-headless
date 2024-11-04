@@ -1,28 +1,26 @@
 import Image from 'next/image';
 import React from 'react';
-import { urlFor } from "../../lib/api";
 import Link from 'next/link';
+import parse from "html-react-parser";
 
 export default function WorkingSection({ workingWithUs }) {
-
 
   return (
     <div id="what-we-do" className='pt-3 md:pt-4 lg:pt-5 xl:pt-6 mt-4'>
         <h1 data-aos="fade-up" className='text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] p-4 '>{workingWithUs?.sectionTitle}</h1>
 
-        {workingWithUs?.sectionSubtitle && <p>{workingWithUs?.sectionSubtitle}</p>}
         <div className='max-w-7xl m-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 pt-4'>
             {/* Content Section */}
             {workingWithUs?.items?.map((item, index) => (
-              <div key={item?._id || index} className='flex flex-col md:flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 p-6'>
+              <div key={index} className='flex flex-col md:flex-col lg:flex-row justify-center lg:justify-normal items-center lg:items-start lg:text-left text-center gap-4 p-6'>
                 <div>
                   {
-                    item?.image && <Image
+                    item?.icon && <Image
                       className='w-16 md:w-24 lg:w-36'
                       width={300}
                       height={300}
-                      src={urlFor(item?.image).url()}
+                      src={item?.icon?.node?.sourceUrl}
                       alt='technology'
                     />
                   }
@@ -34,7 +32,7 @@ export default function WorkingSection({ workingWithUs }) {
                     {item?.title}
                   </h1>
                   <p className='leading-8'>
-                    {item?.description}
+                    {parse(item?.description)}
                   </p>
                 </div>
               </div>
