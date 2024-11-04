@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import BlogCard from "@/components/BlogCard";
 import {initializeApollo} from "../../lib/apolloInstance";
+import Pagination from "@/components/Pagination";
 
-const Blog = ({posts, setPosts, pageInfo, query, }) => {
+const Blog = ({posts, setPosts, pageInfo, query, totalPages, page = 1 }) => {
     const [cursor, setCursor] = useState(pageInfo.endCursor);
     const [hasNextPage, setHasNextPage] = useState(pageInfo.hasNextPage);
 
@@ -29,7 +30,7 @@ const Blog = ({posts, setPosts, pageInfo, query, }) => {
             ))}
         </div>
 
-        {hasNextPage && (
+     {/*   {hasNextPage && (
             <div className="text-center my-4">
                 <button
                     onClick={loadMore}
@@ -38,11 +39,11 @@ const Blog = ({posts, setPosts, pageInfo, query, }) => {
                     Load More
                 </button>
             </div>
-        )}
+        )}*/}
 
-        {/*<div>
-            <Pagination currentPage={page} totalPages={totalPages} url={'blog'} />
-          </div>*/}
+        <div>
+            <Pagination cursor={cursor} currentPage={page} totalPages={totalPages} url={'blog'} />
+          </div>
 </>
 )
 
