@@ -8,7 +8,8 @@ import ArticleNavigation from '../../components/blog/navigation';
 import {gql} from "@apollo/client";
 import {initializeApollo} from "../../lib/apolloInstance";
 import Head from "next/head";
-import parse from 'html-react-parser'; // Import the parser
+import parse from 'html-react-parser';
+import {GET_ALL_ITEMS, GET_PUBLISHED_POSTS_SLUG_ID} from "../../lib/query"; // Import the parser
 
 const queryForSinglePost = gql`
     query GetPostBySlug($slug: String!) {
@@ -33,6 +34,7 @@ const queryForSinglePost = gql`
             }
             author {
                 node {
+                    id
                     name
                     avatar {
                         url
@@ -43,54 +45,29 @@ const queryForSinglePost = gql`
     }
 `;
 
-const queryForAllPosts = gql`
-                                query NewQuery {
- posts{
-  nodes{
-    id
-    title
-    slug
-    excerpt
-    date
-    featuredImage{
-      node{
-      srcSet
-      sourceUrl
-      }
-    }
-    categories{
-      nodes{
-        id
-        name
-        slug
-      }
-    }
-    author{
-      node{
-        name
-        avatar{
-          url
-        }
-      }
-    }
-  }
-}
-}
-`;
 
+/*
 export async function getStaticPaths() {
-    const apolloClient = initializeApollo(); // initialize apollo client
-    // Fetch data using Apollo client
+    const apolloClient = initializeApollo();
     const { data } = await apolloClient.query({
-        query: queryForAllPosts,
+        query: GET_ALL_ITEMS,
+        variables: { first: 20 }, // Limit the number of posts to pre-render
     });
 
-    //@ts-ignore
     const paths = data?.posts?.nodes?.map(post => ({ params: { slug: post?.slug } }));
-    return { paths, fallback: 'blocking' };
-}
 
-export async function getStaticProps({ params }) {
+    return {
+        paths,
+        fallback: 'blocking',
+    };
+
+
+}
+*/
+
+
+
+export async function getServerSideProps({ params }) {
 
     const apolloClient = initializeApollo(); // initialize apollo client
     const slug = params.slug
@@ -115,13 +92,14 @@ export async function getStaticProps({ params }) {
             // categoryPosts: categoryPosts?.posts?.nodes
             seo: result
         },
-        revalidate: revalidateIntervalDay(1),
+        // revalidate: revalidateIntervalDay(1),
     };
 }
 
 
 
 export default function BlogDetails({ blog, seo }) {
+
 
     if (!blog) {
         return <div>Loading...</div>;

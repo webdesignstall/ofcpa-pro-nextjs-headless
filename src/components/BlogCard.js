@@ -6,8 +6,8 @@ import {MoveRight} from "lucide-react";
 
 const BlogCard = ({blog = {}}) => {
 
-    const category = blog?.categories?.nodes[0];
-    const author = blog?.author?.node;
+    const category = blog?.categories?.nodes ? blog?.categories?.nodes[0] : blog?.categories[0];
+    const author = blog?.author?.node || blog?.author;
 
     return (
         <>

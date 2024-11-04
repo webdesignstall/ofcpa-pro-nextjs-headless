@@ -308,13 +308,13 @@ li::marker{
 /*# sourceMappingURL=fahimC.css.map */
 
 /* Container styles for pagination */
-.pagination {
-  display: flex;
+/*.pagination {
+  !*display: flex;
   justify-content: center;
-  list-style-type: none;
+  list-style-type: none;*!
   padding: 0;
   margin: 20px 0;
-}
+}*/
 
 /* Styles for individual page numbers */
 .pagination li {
