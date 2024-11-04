@@ -64,8 +64,7 @@ export async function getServerSideProps({ params }) {
         variables: { categorySlugs: data?.postBy?.categories?.nodes[0]?.name, id: decodedId , first: 3 },
     });
 
-   const response = await fetch(`https://ofcpa.pro/wp-json/rankmath/v1/getHead?url=https://ofcpa.pro/${slug}`)
-
+   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/${slug}`)
     const result = await response.json();
 
     return {

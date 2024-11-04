@@ -3,13 +3,15 @@ import {revalidateIntervalDay} from "@/lib/utils";
 import BlogCard from "@/components/BlogCard";
 
 import CustomPagination from "../../../components/CustomPagination";
+import Head from "next/head";
+import parse from "html-react-parser";
 
 export async function getStaticProps() {
 
   let postData;
   let totalPages = 0
   try {
-    const response = await fetch(`https://ofcpa.pro/wp-json/wp/v2/posts?per_page=10&page=1&_embed`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=1&_embed`);
     const posts = await response.json();
     const totalPosts = response.headers.get('X-WP-Total');
     const postsPerPage = 10;
@@ -39,30 +41,41 @@ export async function getStaticProps() {
     postData = [];
   }
 
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/blog`)
+
+  const seo = await response.json();
+
   return {
     props: {
       posts: postData,
-      pageCount: totalPages
+      pageCount: totalPages,
+      seo
     },
     revalidate: revalidateIntervalDay(1),
   };
 }
 
 
-const BlogHomePage = ({ posts, pageCount }) => {
+const BlogHomePage = ({ posts, pageCount, seo }) => {
 
   return (
-      <div className="w-full bg-[#f9fbfe]">
-        <div className="max-w-screen-xl mx-auto pt-10">
-          <div className="space-y-2">
-            {posts?.map((blog, index) => (
-                <BlogCard key={index} blog={blog} />
-            ))}
-          </div>
+      <>
+        <Head>
+          {parse(seo.head)}
+        </Head>
+        <div className="w-full bg-[#f9fbfe]">
+          <div className="max-w-screen-xl mx-auto pt-10">
+            <div className="space-y-2">
+              {posts?.map((blog, index) => (
+                  <BlogCard key={index} blog={blog}/>
+              ))}
+            </div>
 
-          <CustomPagination pageCount={pageCount} url={'blog'}/>
+            <CustomPagination pageCount={pageCount} url={'blog'}/>
+          </div>
         </div>
-      </div>
+      </>
+
   );
 };
 
