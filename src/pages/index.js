@@ -13,7 +13,7 @@ export async function getStaticProps() {
 
     const pageContent = await getHomePageContent()
 
-    const response = await fetch(`https://ofcpa.pro/wp-json/rankmath/v1/getHead?url=https://ofcpa.pro`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}`)
 
     const result = await response.json();
 
