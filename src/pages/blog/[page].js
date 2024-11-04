@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: false, // Use 'blocking' to generate pages on request if not pre-generated
+        fallback: true, // Use 'blocking' to generate pages on request if not pre-generated
     };
 }
 
@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
                 slug: post._embedded.author ? post._embedded.author[0].slug : null
             },
             categories: post._embedded['wp:term']
-                ? post._embedded['wp:term'][0].map(cat => ({ id: cat.id, name: cat.name, slug: cat.name }))
+                ? post._embedded['wp:term'][0].map(cat => ({ id: cat.id, name: cat.name, slug: cat.slug }))
                 : []
         }));
 
