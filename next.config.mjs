@@ -12,7 +12,13 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
         port: '',
-        pathname: `/images/unsvh2cy/production/**`, // Added wildcard for flexibility
+        pathname: '/images/unsvh2cy/production/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ofcpa.pro',
+        port: '',
+        pathname: '/wp-content/uploads/**',
       },
     ],
   },

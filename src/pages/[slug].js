@@ -2,14 +2,13 @@ import React from 'react';
 import RelatedPosts from '../../components/blog/RelatedPost';
 import BreadcrumbHeader from '../../components/blog/Breadcrumb';
 import Blog from '../../components/blog';
-import { revalidateIntervalDay } from "@/lib/utils";
 import TagSection from '../../components/blog/Tags';
 import ArticleNavigation from '../../components/blog/navigation';
 import {gql} from "@apollo/client";
 import {initializeApollo} from "../../lib/apolloInstance";
 import Head from "next/head";
 import parse from 'html-react-parser';
-import {GET_ALL_ITEMS, GET_PUBLISHED_POSTS_SLUG_ID} from "../../lib/query"; // Import the parser
+import { postByCategoryQuery} from "../../lib/query"; // Import the parser
 
 const queryForSinglePost = gql`
     query GetPostBySlug($slug: String!) {
@@ -30,11 +29,13 @@ const queryForSinglePost = gql`
                 nodes {
                     id
                     name
+                    slug
                 }
             }
             author {
                 node {
                     id
+                    slug
                     name
                     avatar {
                         url
@@ -44,28 +45,6 @@ const queryForSinglePost = gql`
         }
     }
 `;
-
-
-/*
-export async function getStaticPaths() {
-    const apolloClient = initializeApollo();
-    const { data } = await apolloClient.query({
-        query: GET_ALL_ITEMS,
-        variables: { first: 20 }, // Limit the number of posts to pre-render
-    });
-
-    const paths = data?.posts?.nodes?.map(post => ({ params: { slug: post?.slug } }));
-
-    return {
-        paths,
-        fallback: 'blocking',
-    };
-
-
-}
-*/
-
-
 
 export async function getServerSideProps({ params }) {
 
@@ -77,10 +56,13 @@ export async function getServerSideProps({ params }) {
         variables: { slug },
     });
 
-   /* const { data: categoryPosts } = await apolloClient.query({
+    const decodedId = parseInt(atob(data?.postBy.id).split(':')[1], 10);
+
+
+    const { data: categoryPosts } = await apolloClient.query({
         query: postByCategoryQuery,
-        variables: { categorySlugs: data?.postBy?.categories?.nodes[0]?.name, first: 3 },
-    });*/
+        variables: { categorySlugs: data?.postBy?.categories?.nodes[0]?.name, id: decodedId , first: 3 },
+    });
 
    const response = await fetch(`https://ofcpa.pro/wp-json/rankmath/v1/getHead?url=https://ofcpa.pro/${slug}`)
 
@@ -89,17 +71,15 @@ export async function getServerSideProps({ params }) {
     return {
         props: {
             blog: data?.postBy,
-            // categoryPosts: categoryPosts?.posts?.nodes
+            relatedPosts: categoryPosts?.posts?.nodes,
             seo: result
         },
-        // revalidate: revalidateIntervalDay(1),
     };
 }
 
 
 
-export default function BlogDetails({ blog, seo }) {
-
+export default function BlogDetails({ blog, relatedPosts, seo }) {
 
     if (!blog) {
         return <div>Loading...</div>;
@@ -122,7 +102,7 @@ export default function BlogDetails({ blog, seo }) {
                         {/*<TagSection /> */}
                         {/*<ArticleNavigation />*/}
 
-                    {/*<RelatedPosts blogs={relatedPosts} />*/}
+                    <RelatedPosts blogs={relatedPosts} />
                 </div>
             </div>
         </>

@@ -12,7 +12,7 @@ const RelatedPosts = ({blogs}) => {
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 cursor-pointer">
                     {blogs?.map((post, index) => (
                         <div
-                            key={post?._id}
+                            key={post?.id}
                             className=" p-4"
                         >
                             <div className="h-64 rounded-md mb-4 bg-sky-50"></div>
@@ -20,7 +20,7 @@ const RelatedPosts = ({blogs}) => {
                                 <h3 className="text-xl font-bold text-gray-800 mb-2 hover:text-blue-700 cursor-pointer duration-200">{post?.title}</h3>
                             </Link>
                             <p className="text-sm text-gray-500 mb-1">{moment(post?.date).format('LL')}</p>
-                            <Link href={`/category/${post?.category?.slug}`}> <p className="text-sm text-gray-500">{post?.category?.name}</p> </Link>
+                            <Link href={`/category/${post?.categories?.nodes[0]?.slug}`}> <p className="text-sm text-gray-500">{post?.categories?.nodes[0]?.name}</p> </Link>
                         </div>
                     ))}
                 </div>

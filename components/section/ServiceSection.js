@@ -10,7 +10,7 @@ export default function ServiceSection({ services }) {
                 className="pb-12"
             >
                 <h1 className="text-center text-3xl md:text-3xl lg:text-4xl xl:text-5xl text-yellow-500 font-bold">
-                    - {services?.serviceTitle ? services?.serviceTitle : "Tax and Corporate Services"} -
+                    {services?.sectionTitle}
                 </h1>
             </div>
             <div
@@ -19,7 +19,7 @@ export default function ServiceSection({ services }) {
             >
                 <div className="grid grid-cols-1 gap-y-4 lg:gap-y-5 xl:gap-y-8 font-semibold text-md lg:text-xl p-4 md:text-lg">
                     {
-                        services?.serviceItems?.map((service, index) => (
+                        services?.items?.map((service, index) => (
                             <div
                                 data-aos="fade-up"
                                 key={service?._id || index}

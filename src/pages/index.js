@@ -4,39 +4,26 @@ import RatingSection from '../../components/section/RatingSection'
 import PackageSection from '../../components/section/PackageSection'
 import ServiceSection from '../../components/section/ServiceSection'
 import ScheduleSection from '../../components/section/ScheduleSection'
-
-import {
-    getHeroSection,
-    getPackages, getPageSeo,
-    getReviews,
-    getTaxCorporateServices,
-    getWorkingWithUs
-} from "../../lib/api";
-import CustomNextSeo from "../../components/CustomNextSeo";
 import {revalidateIntervalDay} from "@/lib/utils";
 import Head from "next/head";
 import parse from "html-react-parser";
+import {getHomePageContent} from "../../lib/query";
 
 export async function getStaticProps() {
-  const heroSection = await getHeroSection();
-  const workingWithUs = await getWorkingWithUs();
-  const reviews = await getReviews();
-  const taxCorporateServices = await getTaxCorporateServices();
-  const packages = await getPackages();
-  // const seo = await getPageSeo('Home');
+
+    const pageContent = await getHomePageContent()
 
     const response = await fetch(`https://ofcpa.pro/wp-json/rankmath/v1/getHead?url=https://ofcpa.pro`)
 
     const result = await response.json();
 
   return {
-    props: { taxCorporateServices, packages, heroSection, workingWithUs, reviews, seo: result },
+    props: {  seo: result, pageContent: pageContent },
     revalidate: revalidateIntervalDay(1)
   };
 }
 
-export default function Home({ heroSection, workingWithUs, reviews, packages, taxCorporateServices, seo }) {
-
+export default function Home({ pageContent, seo }) {
 
     return (
     <>
@@ -44,11 +31,11 @@ export default function Home({ heroSection, workingWithUs, reviews, packages, ta
             {parse(seo.head)}
         </Head>
         <div className='p-4 lg:p-10'>
-          <FirstSection heroSection={heroSection} />
-          <WorkingSection workingWithUs={workingWithUs} />
-          <RatingSection reviews={reviews} />
-          <PackageSection packages={packages} />
-          <ServiceSection services={taxCorporateServices} />
+          <FirstSection heroSection={pageContent?.heroSection} />
+          <WorkingSection workingWithUs={pageContent?.workingWithUs} />
+          <RatingSection reviews={pageContent?.reviews} />
+          <PackageSection packages={pageContent?.pricingPlan} />
+          <ServiceSection services={pageContent?.services} />
           <ScheduleSection />
         </div>
       </>
