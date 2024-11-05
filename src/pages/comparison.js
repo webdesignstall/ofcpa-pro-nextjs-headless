@@ -3,30 +3,34 @@ import ComparisonCard from '../../components/comparison/Card'
 import {getComparison} from "../../lib/query";
 import {revalidateIntervalDay} from "@/lib/utils";
 import Head from "next/head";
+import parse from "html-react-parser";
 
 
 export async function getStaticProps() {
 
   const comparison = await getComparison()
 
-/*  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}`)
-  const seo = await response.json();*/
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/comparison`)
+  const seo = await response.json();
 
   return {
-    props: {  comparison },
+    props: {  comparison, seo },
     revalidate: revalidateIntervalDay(1)
   };
 }
 
-export default function ComparisonTable({comparison}) {
+export default function ComparisonTable({comparison, seo}) {
 
 
   return (
 
       <>
-        <Head>
-          <title>Comparison</title>
-        </Head>
+        {
+          seo?.head &&  <Head>
+              {parse(seo?.head)}
+            </Head>
+        }
+
 
         <div className="my-8 px-4 sm:px-6 lg:px-8">
           <div className='max-w-7xl mx-auto pb-6'>

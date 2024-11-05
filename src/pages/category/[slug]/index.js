@@ -1,15 +1,12 @@
 import {revalidateIntervalDay} from "@/lib/utils";
 import parse from "html-react-parser";
 import Head from "next/head";
-import BlogCard from "@/components/BlogCard";
 
 import {initializeApollo} from "../../../../lib/apolloInstance";
 import {
     CATEGORY_SLUGS_QUERY,
     GET_TOTAL_POST_COUNT_BY_CATEGORY
 } from "../../../../lib/query";
-import CustomPagination from "../../../../components/CustomPagination";
-import useLoading from "@/hooks/useLoading";
 import Blog from "../../../../components/blog/Blog";
 
 export async function getStaticPaths() {
@@ -121,9 +118,6 @@ export async function getStaticProps({ params }) {
 
 const AuthorPost = ({ posts, pageCount, seo, slug}) => {
 
-    const loading = useLoading(["/blog", "/blog/[page]"]);
-
-
     return (
         <>
             <Head>
@@ -131,20 +125,6 @@ const AuthorPost = ({ posts, pageCount, seo, slug}) => {
             </Head>
 
             <Blog posts={posts} pageCount={pageCount} url={`category/${slug}/page`} page={['/category/[slug]', '/category/[slug]/[page]']}/>
-
-            {/*<CustomPagination pageCount={pageCount} url={`category/${slug}/page`} />*/}
-
-            {/*<div className="w-full bg-[#f9fbfe]">
-                <div className="max-w-screen-xl mx-auto pt-10">
-                    <div className="space-y-2">
-                        {posts?.map((blog, index) => (
-                            <BlogCard key={index} blog={blog}/>
-                        ))}
-                    </div>
-                    <CustomPagination pageCount={pageCount} url={`category/${slug}/page`} />
-                </div>
-            </div>*/}
-
         </>
     );
 };

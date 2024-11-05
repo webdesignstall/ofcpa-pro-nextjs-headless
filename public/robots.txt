@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /api/  # Disallow all search engines from accessing the /api/ directory
+Allow: /        # Allow all search engines to access everything else

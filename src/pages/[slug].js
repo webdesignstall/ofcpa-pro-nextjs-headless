@@ -118,9 +118,6 @@ export async function getStaticProps({ params }) {
 
 export default function BlogDetails({ blog, relatedPosts, seo }) {
 
-   /* debugger
-    return*/
-
     const blogLoading = useLoading(["/blog", "/blog/[page]", "/author/[slug]", "/category/[slug]"]);
 
     if (blogLoading) {

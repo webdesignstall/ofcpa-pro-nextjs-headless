@@ -64,55 +64,6 @@ export async function getStaticProps() {
 
 const BlogHomePage = ({ posts, pageCount, seo }) => {
 
- /* const loading = useLoading(["/blog", "/blog/[page]"]);
-  const authorBlogLoading = useLoading(["/author", "/author/[slug]"]);
-  const categoryBlogLoading = useLoading(["/category", "/category/[slug]"]);
-  const singlePostLoading = useLoading(["/[slug]"]);
-
-  if (authorBlogLoading) {
-    return (
-        <>
-          <div className="w-full bg-[#f9fbfe]">
-            <div className="max-w-screen-xl mx-auto pt-10">
-              <div className="space-y-2">
-                <BlogCardSkeleton/>
-                <BlogCardSkeleton/>
-                <BlogCardSkeleton/>
-              </div>
-            </div>
-          </div>
-        </>
-    )
-  }
-  if (categoryBlogLoading) {
-    return (
-        <>
-          <div className="w-full bg-[#f9fbfe]">
-            <div className="max-w-screen-xl mx-auto pt-10">
-              <div className="space-y-2">
-                <BlogCardSkeleton/>
-                <BlogCardSkeleton/>
-                <BlogCardSkeleton/>
-              </div>
-            </div>
-          </div>
-        </>
-    )
-  }
-
-  if (singlePostLoading) {
-    return (
-        <>
-          <div className='bg-gray-50 py-16 '>
-            <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
-          <BlogContentSkeleton/>
-          <BlogContentSkeleton/>
-          </div>
-          </div>
-          </>
-          )
-        }*/
-
           return (
           <>
             <Head>
@@ -120,28 +71,6 @@ const BlogHomePage = ({ posts, pageCount, seo }) => {
             </Head>
 
             <Blog posts={posts} pageCount={pageCount} url={'blog'}/>
-           {/* <CustomPagination pageCount={pageCount} url={'blog'}/>*/}
-
-            {/*<div className="w-full bg-[#f9fbfe]">
-              <div className="max-w-screen-xl mx-auto pt-10">
-                <div className="space-y-2">
-                  {
-                    loading ?
-                        <>
-                          <BlogCardSkeleton/>
-                          <BlogCardSkeleton/>
-                          <BlogCardSkeleton/>
-                        </>
-                        :
-                        posts?.map((blog, index) => (
-                            <BlogCard key={index} blog={blog}/>
-                        ))
-                  }
-                </div>
-
-                <CustomPagination pageCount={pageCount} url={'blog'}/>
-              </div>
-            </div>*/}
           </>
 
           );

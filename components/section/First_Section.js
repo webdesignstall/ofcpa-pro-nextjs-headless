@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { urlFor } from "../../lib/api";
 import Link from 'next/link';
 import { Poppins } from 'next/font/google'
 import parse from "html-react-parser";
