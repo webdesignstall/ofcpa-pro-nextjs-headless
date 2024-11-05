@@ -32,9 +32,9 @@ export default function WorkingSection({ workingWithUs }) {
                   <h1 className='text-xl font-semibold p-2'>
                     {item?.title}
                   </h1>
-                  <p className='leading-8'>
+
                     {parse(item?.description)}
-                  </p>
+
                 </div>
               </div>
             ))}

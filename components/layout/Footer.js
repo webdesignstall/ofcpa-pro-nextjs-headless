@@ -70,7 +70,7 @@ export default function Footer({footer}) {
       {/* Bottom Copyright Section */}
       <div className="bg-gray-800 md:py-4 py-12">
         <p className="text-white text-center text-xs sm:text-sm">
-          <span className="text-gray-400">Copyright © {new Date(Date.now()).getFullYear()}</span>{' '}
+          {/*<span className="text-gray-400">Copyright © {new Date(Date.now()).getFullYear()}</span>{' '}*/}
           <Link href="/" className="underline hover:text-yellow-500 transition duration-200">
             {footer?.copyRight}
           </Link>

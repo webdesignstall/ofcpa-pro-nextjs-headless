@@ -1,15 +1,7 @@
 import {revalidateIntervalDay} from "@/lib/utils";
-
-import BlogCard from "@/components/BlogCard";
-
-import CustomPagination from "../../../components/CustomPagination";
 import Head from "next/head";
 import parse from "html-react-parser";
-import BlogCardSkeleton from "../../../components/blog/BlogCardSkeleton";
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import useLoading from "@/hooks/useLoading";
-import BlogContentSkeleton from "../../../components/blog/BlogContentSkeleton";
+
 import Blog from "../../../components/blog/Blog";
 
 export async function getStaticProps() {
