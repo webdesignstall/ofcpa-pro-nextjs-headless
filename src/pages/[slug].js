@@ -10,7 +10,9 @@ import Head from "next/head";
 import parse from 'html-react-parser';
 import {GET_ALL_ITEMS, postByCategoryQuery} from "../../lib/query";
 import dynamic from "next/dynamic";
-import {revalidateIntervalDay} from "@/lib/utils"; // Import the parser
+import {revalidateIntervalDay} from "@/lib/utils";
+import useLoading from "@/hooks/useLoading";
+import BlogCardSkeleton from "../../components/blog/BlogCardSkeleton"; // Import the parser
 
 const Blog = dynamic(() => import('../../components/blog'), {
     loading: () => <p>Loading...</p>, // Optional: Add a loading fallback
@@ -26,6 +28,13 @@ const queryForSinglePost = gql`
             content
             excerpt
             date
+             tags {
+                  nodes {
+                    slug
+                    tagId
+                    name
+                  }
+             }
             featuredImage {
                 node {
                     srcSet
@@ -109,30 +118,49 @@ export async function getStaticProps({ params }) {
 
 export default function BlogDetails({ blog, relatedPosts, seo }) {
 
-    if (!blog) {
-        return <div>Loading...</div>;
+   /* debugger
+    return*/
+
+    const blogLoading = useLoading(["/blog", "/blog/[page]", "/author/[slug]", "/category/[slug]"]);
+
+    if (blogLoading) {
+        return (
+            <>
+                <div className="w-full bg-[#f9fbfe]">
+                    <div className="max-w-screen-xl mx-auto pt-10">
+                        <div className="space-y-2">
+                            <BlogCardSkeleton/>
+                            <BlogCardSkeleton/>
+                            <BlogCardSkeleton/>
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
     }
 
-    return (
-        <>
-            <Head>
-                {parse(seo.head)}
-            </Head>
-            <div className='bg-gray-50 py-16 '>
-                <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
-                    <div>
-                        <BreadcrumbHeader />
-                    </div>
-                    <div>
-                        <Blog blog={blog} />
-                    </div>
+return (
+<>
+    <Head>
+        {parse(seo.head)}
+    </Head>
+    <div className='bg-gray-50 py-16 '>
+        <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
+            {/*<div>
+                <BreadcrumbHeader post={blog} />
+            </div>*/}
+           <Blog blog={blog}/>
 
-                        {/*<TagSection /> */}
-                        {/*<ArticleNavigation />*/}
+            {
+                blog?.tags?.nodes?.length > 0 &&  <TagSection tags={blog?.tags?.nodes} />
+            }
 
-                    <RelatedPosts blogs={relatedPosts} />
-                </div>
-            </div>
-        </>
-    );
+
+            {/*<ArticleNavigation />*/}
+
+            <RelatedPosts blogs={relatedPosts}/>
+        </div>
+    </div>
+</>
+);
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const TagSection = () => {
-  const [tags, setTags] = useState([
+const TagSection = ({tags}) => {
+  /*const [tags, setTags] = useState([
     'Asset Protection for Content Creators',
     'Business Entity Formation Tips',
     'Content Creator Asset Preservation',
@@ -13,7 +13,7 @@ const TagSection = () => {
     'The OnlyFans Accountant',
     'Trusts for Asset Protection',
     'Wealth Preservation Strategies',
-  ]);
+  ]);*/
 
   return (
     <div className="p-4 flex border-t">
@@ -21,12 +21,12 @@ const TagSection = () => {
         <span className='className=" px-3 py-1 rounded-lg text-lg font-normal cursor-pointer transition-all duration-200"'>
         Tagged In
         </span>
-        {tags.map((tag, index) => (
+        {tags?.map((tag, index) => (
           <span
             key={index}
-            className="bg-blue-50 text-sky-800 px-3 py-1 rounded-lg text-lg font-normal hover:bg-sky-800 hover:text-white cursor-pointer transition-all duration-200"
+            className="bg-blue-50 text-sky-800 px-3 py-1 rounded-lg text-lg font-normal transition-all duration-200"
           >
-            {tag}
+            {tag?.name}
           </span>
         ))}
       </div>

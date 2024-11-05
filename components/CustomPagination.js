@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-function CustomPagination({ pageCount, pageRangeDisplayed = 2, url, page = '1' }) {
+function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false, url, page = '1' }) {
     // const router = useRouter();
+
     const currentPage = parseInt(page);
 
     // Generate page numbers based on page count
@@ -20,7 +21,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, url, page = '1' }
         <div className="pagination">
             {/* Previous Button */}
             {prevPage ? (
-                <Link href={`/${url}/${prevPage}`} passHref>
+                <Link href={queryUrl ? url+prevPage : `/${url}/${prevPage}`} passHref>
                     <span className="pagination-button">{"< Previous"}</span>
                 </Link>
             ) : (
@@ -28,7 +29,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, url, page = '1' }
             )}
 
             {/* First Page */}
-            <Link href={`/${url}/1`} passHref>
+            <Link href={queryUrl ? url+'1' : `/${url}/1`} passHref>
                 <span className={`pagination-button ${currentPage === 1 ? 'active' : ''}`}>1</span>
             </Link>
 
@@ -37,7 +38,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, url, page = '1' }
 
             {/* Visible Page Range */}
             {visiblePages.map((page) => (
-                <Link href={`/${url}/${page}`} key={page} passHref>
+                <Link href={queryUrl ? url+page : `/${url}/${page}`} key={page} passHref>
                     <span
                         className={`pagination-button ${
                             page === currentPage ? 'active' : ''
@@ -53,7 +54,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, url, page = '1' }
 
             {/* Last Page */}
             {pageCount > 1 && (
-                <Link href={`/${url}/${pageCount}`} passHref>
+                <Link href={queryUrl ? url+pageCount : `/${url}/${pageCount}`} passHref>
                     <span className={`pagination-button ${currentPage === pageCount ? 'active' : ''}`}>
                         {pageCount}
                     </span>
@@ -62,7 +63,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, url, page = '1' }
 
             {/* Next Button */}
             {nextPage ? (
-                <Link href={`/${url}/${nextPage}`} passHref>
+                <Link href={queryUrl ? url+nextPage : `/${url}/${nextPage}`} passHref>
                     <span className="pagination-button">{"Next >"}</span>
                 </Link>
             ) : (

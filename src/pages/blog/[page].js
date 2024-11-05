@@ -3,6 +3,11 @@ import BlogCard from "@/components/BlogCard";
 import CustomPagination from "../../../components/CustomPagination";
 import Head from "next/head";
 import parse from "html-react-parser";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
+import BlogCardSkeleton from "../../../components/blog/BlogCardSkeleton";
+import useLoading from "@/hooks/useLoading";
+import Blog from "../../../components/blog/Blog";
 
 export async function getStaticPaths() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=1&_embed`);
@@ -73,23 +78,33 @@ export async function getStaticProps({ params }) {
 
 const BlogPage = ({ posts, pageCount, currentPage, seo }) => {
 
-
+    const loading = useLoading(["/blog", "/blog/[page]"]);
 
     return (
         <>
             <Head>
                 {parse(seo?.head)}
             </Head>
-            <div className="w-full bg-[#f9fbfe]">
+
+            <Blog posts={posts} pageCount={pageCount} currentPage={currentPage} url={'blog'}/>
+            {/*<div className="w-full bg-[#f9fbfe]">
                 <div className="max-w-screen-xl mx-auto pt-10">
                     <div className="space-y-2">
-                        {posts?.map((blog, index) => (
+                        {
+                            loading ? <>
+                                    <BlogCardSkeleton/>
+                                    <BlogCardSkeleton/>
+                                    <BlogCardSkeleton/>
+                                </>
+                          :  posts?.map((blog, index) => (
                             <BlogCard key={index} blog={blog}/>
-                        ))}
+                        ))
+
+                        }
                     </div>
                     <CustomPagination pageCount={pageCount} url={'blog'} page={currentPage}/>
                 </div>
-            </div>
+            </div>*/}
         </>
 
     );

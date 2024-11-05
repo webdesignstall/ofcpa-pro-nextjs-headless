@@ -6,6 +6,7 @@ import BlogCard from "@/components/BlogCard";
 import {initializeApollo} from "../../../../lib/apolloInstance";
 import {GET_AUTHORS, GET_TOTAL_POST_COUNT_BY_AUTHOR} from "../../../../lib/query";
 import CustomPagination from "../../../../components/CustomPagination";
+import Blog from "../../../../components/blog/Blog";
 
 
 
@@ -120,7 +121,9 @@ const AuthorPost = ({ posts, pageCount, seo, slug}) => {
                 {parse(seo.head)}
             </Head>
 
-            <div className="w-full bg-[#f9fbfe]">
+            <Blog posts={posts} pageCount={pageCount} url={`author/${slug}/page`} page={['/author/[slug]', '/author/[slug]/[page]']}/>
+
+            {/*<div className="w-full bg-[#f9fbfe]">
                 <div className="max-w-screen-xl mx-auto pt-10">
                     <div className="space-y-2">
                         {posts?.map((blog, index) => (
@@ -129,7 +132,7 @@ const AuthorPost = ({ posts, pageCount, seo, slug}) => {
                     </div>
                     <CustomPagination pageCount={pageCount} url={`author/${slug}/page`} />
                 </div>
-            </div>s
+            </div>*/}
         </>
     );
 };

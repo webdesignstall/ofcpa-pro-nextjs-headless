@@ -1,16 +1,19 @@
 import {
     Breadcrumb,
-    BreadcrumbEllipsis,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from "../../src/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb"
 
 import Link from "next/link"
 
-export default function BreadcrumbHeader() {
+
+export default function BreadcrumbHeader({post}) {
+
+
+
     return (
         <Breadcrumb>
             <BreadcrumbList>
@@ -19,11 +22,15 @@ export default function BreadcrumbHeader() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                    <BreadcrumbLink > <Link href='/blog'> Blog and Articles </Link></BreadcrumbLink>
+                    <BreadcrumbLink >
+                       {/* {
+                            breadcrumbLink(post, previousRoute)
+                        }*/}
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                    <BreadcrumbPage>OnlyFans Tax Time: Vital Tips for Creators to Stay Compliant</BreadcrumbPage>
+                    <BreadcrumbPage>{post?.title}</BreadcrumbPage>
                 </BreadcrumbItem>
             </BreadcrumbList>
         </Breadcrumb>

@@ -12,11 +12,11 @@ export default function FirstSection({ heroSection }) {
 
     return (
         <section id="home">
-            <div className='lg:text-left'>
+            {/*<div className='lg:text-left'>
                 <h2 className='text-sm text-gray-600'>Home &gt; {heroSection?.slogan}</h2>
                 <h1 className={`text-3xl lg:text-4xl font-bold pt-2 pb-8 lg:pb-12 leading-normal md:text-4xl `}>{heroSection?.slogan}</h1>
 
-            </div>
+            </div>*/}
 
             <div
                 className='bg-gray-100 lg:min-h-screen flex flex-col lg:flex-row items-center lg:px-12 lg:py-16 xl:py-20 xl:px-24 py-20 px-6'>

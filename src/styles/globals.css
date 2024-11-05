@@ -358,6 +358,14 @@ li::marker{
   cursor: default;
 }
 
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 
 
 @layer base {
