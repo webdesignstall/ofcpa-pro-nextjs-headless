@@ -19,7 +19,7 @@ export default function PackageSection({ packages }) {
 
                             <div
                             data-aos="fade-up"
-                            key={index}
+                            key={pkg?.planName}
                             className="bg-[#2a5b84] text-white  p-6 sm:p-8 rounded-2xl shadow-lg"
                         >
                             <div
