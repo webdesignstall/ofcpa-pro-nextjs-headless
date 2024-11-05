@@ -22,7 +22,7 @@ export default function ServiceSection({ services }) {
                         services?.items?.map((service, index) => (
                             <div
                                 data-aos="fade-up"
-                                key={service?._id || index}
+                                key={service?.id || index}
                                 className="grid grid-cols-2 gap-x-10 md:gap-x-36 lg:gap-x-48"
                             >
                                 <p>{service?.itemTitle}</p>

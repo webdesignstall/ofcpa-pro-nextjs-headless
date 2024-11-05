@@ -49,7 +49,7 @@ export default function SimpleSlider({ reviews }) {
                                 <p className="text-sm mb-4 tracking-wider py-2">{review?.reviewerTitle}</p>
                                 <Rating className="text-white" style={{maxWidth: 100}} value={review?.rating}
                                         readOnly={true} halfFillMode/>
-                                <p className="text-md tracking-wide leading-9">{parse(review?.reviewText)}</p>
+                                <div className="text-md tracking-wide leading-9">{parse(review?.reviewText)}</div>
                             </div>
                         </div>
                     </div>

@@ -17,9 +17,9 @@ export default function FirstSection({ heroSection }) {
                         >
                             {heroSection.sectionTitle}
                         </h1>
-                        <p data-aos="fade-up" className='text-[#2a5b84] pb-2 font-normal text-xl'>
+                        {/*<p data-aos="fade-up" className='text-[#2a5b84] pb-2 font-normal text-xl'>*/}
                             {parse(heroSection?.description)}
-                        </p>
+                        {/*</p>*/}
                         {/* Animated Button */}
                         <div className='flex justify-center lg:justify-start'>
                             <Link href='#booking'>

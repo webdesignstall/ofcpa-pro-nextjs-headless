@@ -2,12 +2,8 @@ import React, { Suspense } from 'react';
 import Link from 'next/link';
 import moment from "moment";
 import BlogContentSkeleton from "./BlogContentSkeleton";
+import BlogContent from "./BlogContent";
 
-// Dynamically import Moment to optimize load time
-
-
-// Lazy load heavy or long-content elements
-const BlogContent = React.lazy(() => import('./BlogContent'));
 
 export default function Blog({ blog }) {
     const category = blog?.categories?.nodes[0];
@@ -30,9 +26,8 @@ export default function Blog({ blog }) {
             </div>
 
             {/* Lazy-load the main blog content */}
-            <Suspense fallback={<BlogContentSkeleton />}>
+
                 <BlogContent content={blog?.content} />
-            </Suspense>
         </div>
     );
 }

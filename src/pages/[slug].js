@@ -9,12 +9,10 @@ import {initializeApollo} from "../../lib/apolloInstance";
 import Head from "next/head";
 import parse from 'html-react-parser';
 import {GET_ALL_ITEMS, postByCategoryQuery} from "../../lib/query";
-import dynamic from "next/dynamic";
 import {revalidateIntervalDay} from "@/lib/utils";
 import useLoading from "@/hooks/useLoading";
 import BlogCardSkeleton from "../../components/blog/BlogCardSkeleton";
-
-const Blog = dynamic(() => import('../../components/blog'));
+import Blog from '../../components/blog';
 
 const queryForSinglePost = gql`
     query GetPostBySlug($slug: String!) {

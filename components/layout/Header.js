@@ -70,9 +70,9 @@ function Header({general}) {
                   ${activeSection === label ? 'text-yellow-500' : 'text-[#005978] hover:text-yellow-500'}`}
               >
                 {external ? (
-                  <a href={href} target="_blank" rel="noopener noreferrer">
+                  <Link href={href} target="_blank" rel="noopener noreferrer">
                     {label}
-                  </a>
+                  </Link>
                 ) : (
                   <Link href={href}>{label}</Link>
                 )}
