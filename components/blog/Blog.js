@@ -1,52 +1,87 @@
-import React, {useState} from 'react';
+import useLoading from "@/hooks/useLoading";
+import BlogCardSkeleton from "./BlogCardSkeleton";
+import BlogContentSkeleton from "./BlogContentSkeleton";
+import Head from "next/head";
+import parse from "html-react-parser";
 import BlogCard from "@/components/BlogCard";
-import {initializeApollo} from "../../lib/apolloInstance";
-import Pagination from "@/components/Pagination";
+import CustomPagination from "../CustomPagination";
 
-const Blog = ({posts, setPosts, pageInfo, query, totalPages, page = 1 }) => {
-    const [cursor, setCursor] = useState(pageInfo.endCursor);
-    const [hasNextPage, setHasNextPage] = useState(pageInfo.hasNextPage);
+const BlogHomePage = ({ posts, pageCount, currentPage, url, page = ["/blog", "/blog/[page]"] }) => {
 
-    const apolloClient = initializeApollo();
+    const loading = useLoading(page);
+    const authorBlogLoading = useLoading(["/author", "/author/[slug]"]);
+    const categoryBlogLoading = useLoading(["/category", "/category/[slug]"]);
+    const singlePostLoading = useLoading(["/[slug]"]);
 
+    if (authorBlogLoading) {
+        return (
+            <>
+                <div className="w-full bg-[#f9fbfe]">
+                    <div className="max-w-screen-xl mx-auto pt-10">
+                        <div className="space-y-2">
+                            <BlogCardSkeleton/>
+                            <BlogCardSkeleton/>
+                            <BlogCardSkeleton/>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
+    if (categoryBlogLoading) {
+        return (
+            <>
+                <div className="w-full bg-[#f9fbfe]">
+                    <div className="max-w-screen-xl mx-auto pt-10">
+                        <div className="space-y-2">
+                            <BlogCardSkeleton/>
+                            <BlogCardSkeleton/>
+                            <BlogCardSkeleton/>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
-
-    const loadMore = async () => {
-        const { data } = await apolloClient.query({
-            query: query,
-            variables: { first: 10, after: cursor }, // Adjust the number of posts per page
-        });
-
-        setPosts([...posts, ...data.posts.nodes]);
-        setCursor(data.posts.pageInfo.endCursor);
-        setHasNextPage(data.posts.pageInfo.hasNextPage);
-    };
+    if (singlePostLoading && !loading) {
+        return (
+            <>
+                <div className='bg-gray-50 py-16 '>
+                    <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
+                        <BlogContentSkeleton/>
+                        <BlogContentSkeleton/>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
     return (
         <>
-        <div className="space-y-2">
-            {posts?.map((blog, index) => (
-                <BlogCard key={index} blog={blog}/>
-            ))}
-        </div>
+            <div className="w-full bg-[#f9fbfe]">
+                <div className="max-w-screen-xl mx-auto pt-10">
+                    <div className="space-y-2">
+                        {
+                            loading ?
+                                <>
+                                    <BlogCardSkeleton/>
+                                    <BlogCardSkeleton/>
+                                    <BlogCardSkeleton/>
+                                </>
+                                :
+                                posts?.map((blog, index) => (
+                                    <BlogCard key={index} blog={blog}/>
+                                ))
+                        }
+                    </div>
 
-     {/*   {hasNextPage && (
-            <div className="text-center my-4">
-                <button
-                    onClick={loadMore}
-                    className="bg-[#333333]  px-6 py-2 rounded-[28px] text-[14px] text-white ibm-plex-sans-medium"
-                >
-                    Load More
-                </button>
+                    <CustomPagination pageCount={pageCount} url={url} page={currentPage}/>
+                </div>
             </div>
-        )}*/}
+        </>
 
-        <div>
-            <Pagination cursor={cursor} currentPage={page} totalPages={totalPages} url={'blog'} />
-          </div>
-</>
-)
-
+    );
 };
 
-export default Blog;
+export default BlogHomePage;
