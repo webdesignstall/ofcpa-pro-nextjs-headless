@@ -55,6 +55,7 @@ export default function Footer({footer}) {
                       className="transition duration-200 transform hover:scale-105"
                       srcSet={footer?.logo?.node?.srcSet}
                       sizes="(max-width: 819px) 819px, (max-width: 1200px) 955px, 1333px"
+                      priority
                   />
               }
 

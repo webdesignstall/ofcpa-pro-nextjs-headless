@@ -45,7 +45,7 @@ const MainApp = ({ Component, pageProps }) => {
                     </>
                 )}
             </Head>
-            <Header />
+            <Header general={general} />
             <Component {...pageProps} />
             <Footer footer={footer} />
         </>

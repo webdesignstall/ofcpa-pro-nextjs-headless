@@ -65,15 +65,17 @@ export async function getStaticProps() {
 const BlogHomePage = ({ posts, pageCount, seo }) => {
 
           return (
-          <>
-            <Head>
-              {parse(seo.head)}
-            </Head>
+              <>
+                {
+                    seo?.head && <Head>
+                      {parse(seo.head)}
+                    </Head>
+                }
 
-            <Blog posts={posts} pageCount={pageCount} url={'blog'}/>
-          </>
+                <Blog posts={posts} pageCount={pageCount} url={'blog'}/>
+              </>
 
           );
-          };
+};
 
-          export default BlogHomePage;
+export default BlogHomePage;

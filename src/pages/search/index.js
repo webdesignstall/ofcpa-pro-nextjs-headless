@@ -20,6 +20,7 @@ const SearchPage = () => {
         if (q) { // Fetch only if 'q' is available
             (async () => {
                 setLoading(true)
+
                 const { posts, totalPage } = await getPostsBySearch(q, page || 1);
                 setPosts(posts);
                 setTotalPost(totalPage);
@@ -31,9 +32,18 @@ const SearchPage = () => {
     return (
         <>
             {/* Uncomment and set up the Head component when SEO data is available */}
-            {/* <Head>
-                {parse(seo?.head)}
-            </Head> */}
+            {
+                <Head>
+                    <title>{q ? `${q}-` : '' } The OnlyFans Accountant</title>
+                </Head>
+            }
+
+            <div className="bg-[#e9f1fa] p-10">
+                <div className='max-w-screen-xl mx-auto'>
+                    <h1 className='text-4xl font-bold'>Search Result for: {q}</h1>
+                </div>
+            </div>
+
             <div className="w-full bg-[#f9fbfe]">
                 <div className="max-w-screen-xl mx-auto pt-10">
                     <div className="space-y-2">

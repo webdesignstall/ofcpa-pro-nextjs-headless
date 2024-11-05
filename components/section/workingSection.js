@@ -17,6 +17,7 @@ export default function WorkingSection({ workingWithUs }) {
                 <div>
                   {
                     item?.icon && <Image
+                      priority
                       className='w-16 md:w-24 lg:w-36'
                       width={300}
                       height={300}

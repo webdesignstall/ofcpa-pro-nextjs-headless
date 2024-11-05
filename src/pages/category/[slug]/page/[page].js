@@ -51,6 +51,7 @@ export async function getStaticProps({ params }) {
 
     let postData;
     let totalPages = 0;
+    let totalPosts = 0;
 
     const apolloClient = initializeApollo();
 
@@ -67,13 +68,13 @@ export async function getStaticProps({ params }) {
         };
     }
 
-    const decodedId = parseInt(atob(category.id).split(':')[1], 10);
+    // const decodedId = parseInt(atob(category.id).split(':')[1], 10);
     try {
         // Adjust the fetch URL to include pagination
         const page = parseInt(params.page) || 1; // Default to page 1 if undefined
-        const response = await fetch(`https://ofcpa.pro/wp-json/wp/v2/posts?per_page=10&page=${page}&categories=${decodedId}&_embed`);
+        const response = await fetch(`https://ofcpa.pro/wp-json/wp/v2/posts?per_page=10&page=${page}&categories=${category?.categoryId}&_embed`);
         const posts = await response.json();
-        const totalPosts = response.headers.get('X-WP-Total');
+        totalPosts = response.headers.get('X-WP-Total');
         const postsPerPage = 10;
         totalPages = Math.ceil(totalPosts / postsPerPage);
 
@@ -108,22 +109,35 @@ export async function getStaticProps({ params }) {
             posts: postData,
             pageCount: totalPages,
             seo: result,
-            currentPage: params.page
+            currentPage: params.page,
+            category,
+            totalPosts
         },
         revalidate: revalidateIntervalDay(1),
     };
 }
 
-const AuthorPost = ({ posts, pageCount, seo, slug, currentPage}) => {
+const AuthorPost = ({ posts, pageCount, seo, slug,category, totalPosts, currentPage}) => {
 
 
     return (
         <>
-            <Head>
-                {parse(seo.head)}
-            </Head>
+            {
+                seo?.head && <Head>
+                    {parse(seo.head)}
+                </Head>
+            }
 
-            <Blog posts={posts} pageCount={pageCount} url={`category/${slug}/page`} page={['/category/[slug]', '/category/[slug]/[page]']}/>
+
+            <div className="bg-[#e9f1fa] p-10">
+                <div className='max-w-screen-xl mx-auto'>
+                    <h1 className='text-4xl font-bold'>{category?.name}</h1>
+                    <p className='italic'>Showing {totalPosts && posts?.length} of {totalPosts}</p>
+                </div>
+            </div>
+
+            <Blog posts={posts} pageCount={pageCount} currentPage={currentPage} url={`category/${slug}/page`}
+                  page={['/category/[slug]', '/category/[slug]/[page]']}/>
         </>
     );
 };

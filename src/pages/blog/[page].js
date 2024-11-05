@@ -74,9 +74,12 @@ const BlogPage = ({ posts, pageCount, currentPage, seo }) => {
 
     return (
         <>
-            <Head>
-                {parse(seo?.head)}
-            </Head>
+            {
+                seo?.head && <Head>
+                    {parse(seo?.head)}
+                </Head>
+            }
+
 
             <Blog posts={posts} pageCount={pageCount} currentPage={currentPage} url={'blog'}/>
         </>

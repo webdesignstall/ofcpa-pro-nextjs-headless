@@ -60,17 +60,18 @@ export async function getStaticProps({ params }) {
         };
     }
 
-    const decodedId = parseInt(atob(user.id).split(':')[1], 10);
+    // const decodedId = parseInt(atob(user.id).split(':')[1], 10);
 
     let postData;
     let totalPages = 0;
+    let totalPosts = 0;
 
     try {
         // Adjust the fetch URL to include pagination
         const page = parseInt(params.page) || 1; // Default to page 1 if undefined
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=${page}&author=${decodedId}&_embed`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=${page}&author=${user?.userId}&_embed`);
         const posts = await response.json();
-        const totalPosts = response.headers.get('X-WP-Total');
+        totalPosts = response.headers.get('X-WP-Total');
         const postsPerPage = 10;
         totalPages = Math.ceil(totalPosts / postsPerPage);
 
@@ -85,7 +86,7 @@ export async function getStaticProps({ params }) {
                 slug: post._embedded.author ? post._embedded.author[0].slug : null
             },
             categories: post._embedded['wp:term']
-                ? post._embedded['wp:term'][0].map(cat => ({ id: cat.id, name: cat.name, slug: cat.name }))
+                ? post._embedded['wp:term'][0].map(cat => ({ id: cat.id, name: cat.name, slug: cat.slug }))
                 : []
         }));
 
@@ -104,22 +105,36 @@ export async function getStaticProps({ params }) {
             posts: postData,
             pageCount: totalPages,
             seo: result,
-            slug: params.slug
+            slug: params.slug,
+            user,
+            totalPosts
         },
         revalidate: revalidateIntervalDay(1),
     };
 }
 
 
-const AuthorPost = ({ posts, pageCount, seo, slug}) => {
+const AuthorPost = ({ posts, pageCount, seo, slug, user, totalPosts}) => {
+
 
     return (
         <>
-            <Head>
-                {parse(seo.head)}
-            </Head>
+            {
+                seo?.head && <Head>
+                    {parse(seo.head)}
+                </Head>
+            }
 
-            <Blog posts={posts} pageCount={pageCount} url={`author/${slug}/page`} page={['/author/[slug]', '/author/[slug]/[page]']}/>
+
+            <div className="bg-[#e9f1fa] p-10">
+                <div className='max-w-screen-xl mx-auto'>
+                    <h1 className='text-4xl font-bold'>{user?.name}</h1>
+                    <p className='italic'>Showing {posts?.length} of {totalPosts}</p>
+                </div>
+            </div>
+
+            <Blog posts={posts} pageCount={pageCount} url={`author/${slug}/page`}
+                  page={['/author/[slug]', '/author/[slug]/[page]']}/>
         </>
     );
 };
