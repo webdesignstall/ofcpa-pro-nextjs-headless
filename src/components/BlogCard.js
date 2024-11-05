@@ -3,6 +3,7 @@ import Link from "next/link";
 import moment from "moment/moment";
 import {motion} from "framer-motion";
 import {MoveRight} from "lucide-react";
+import parse from "html-react-parser";
 
 const BlogCard = ({blog = {}}) => {
 
@@ -17,7 +18,7 @@ const BlogCard = ({blog = {}}) => {
                         <p>{category?.name}</p>
                     </Link>
                     <Link href={`/${blog?.slug?.replace(/\/{2,}/g, '/')}`}>
-                        <h2 className="text-2xl md:text-4xl lg:text-4xl xl:text-5xl text-gray-900 font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{blog?.title}</h2>
+                        <h2 className="text-2xl md:text-4xl lg:text-4xl xl:text-5xl text-gray-900 font-bold leading-relaxed py-2 hover:text-blue-600 cursor-pointer duration-200">{ parse(blog?.title) }</h2>
                     </Link>
                     <p className="text-sm text-gray-500 py-3">
                         By <Link className='hover:underline' href={`/author/${author?.slug}`}><span

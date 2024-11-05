@@ -1,8 +1,7 @@
 import useLoading from "@/hooks/useLoading";
 import BlogCardSkeleton from "./BlogCardSkeleton";
 import BlogContentSkeleton from "./BlogContentSkeleton";
-import Head from "next/head";
-import parse from "html-react-parser";
+
 import BlogCard from "@/components/BlogCard";
 import CustomPagination from "../CustomPagination";
 

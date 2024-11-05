@@ -1,26 +1,11 @@
-/*
-
-const CalendlyEmbed = () => {
-  return (
-      <>
-          <div id="booking">
-              <iframe src="https://link.conversionpro.io/widget/booking/Y8yBZ09JEkpgFA9Ymfpa"
-                      style={{width: '100%', border: 'none', overflow: 'hidden'}}  scrolling="no" id="msgsndr-calendar"></iframe>
-              <br/>
-              <script src="https://link.conversionpro.io/js/embed.js" type="text/javascript"></script>
-          </div>
-
-      </>
-
-  )
-      ;
-};
-
-export default CalendlyEmbed;
-*/
-
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+
+const SkeletonLoader = () => {
+    return (
+        <div className="h-[500px] bg-gray-300 rounded animate-pulse flex justify-center"></div>
+    );
+};
 
 const BookingSection = () => {
     const { ref, inView } = useInView({ triggerOnce: true });
@@ -44,18 +29,18 @@ const BookingSection = () => {
     }, [inView, iframeLoaded]);
 
     return (
-        <div id="booking" ref={ref} style={{ minHeight: '500px' }}>
-            {iframeLoaded && (
-                <>
-                    <iframe
-                        src="https://link.conversionpro.io/widget/booking/Y8yBZ09JEkpgFA9Ymfpa"
-                        style={{ width: '100%', border: 'none', overflow: 'hidden' }}
-                        scrolling="no"
-                        id="msgsndr-calendar"
-                    />
-                    <br />
-                </>
+        <div id="booking" ref={ref} className="min-h-[500px]">
+            {!iframeLoaded ? (
+                <SkeletonLoader />
+            ) : (
+                <iframe
+                    src="https://link.conversionpro.io/widget/booking/Y8yBZ09JEkpgFA9Ymfpa"
+                    className="w-full border-none overflow-hidden"
+                    scrolling="no"
+                    id="msgsndr-calendar"
+                />
             )}
+            <br />
         </div>
     );
 };

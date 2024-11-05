@@ -1,19 +1,8 @@
-import React, {useEffect, useState} from 'react';
 import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Footer() {
-
-  const [footer, setFooter] = useState()
-
-  useEffect(() => {
-    (async ()=> {
-      const response = await fetch('/api/footer');
-      const result = await response.json();
-      setFooter(result?.footer)
-    })()
-  }, []);
+export default function Footer({footer}) {
 
   return (
     <div>
@@ -35,7 +24,7 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm md:text-md font-medium">Email</span>
-                    <span className="text-sm md:text-md font-medium">{footer?.contactInfo?.email}</span>
+                    <span className="text-sm md:text-md font-medium">{footer?.email}</span>
                   </div>
                 </a>
               </li>
@@ -48,7 +37,7 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm md:text-md font-medium">Phone</span>
-                    <span className="text-sm md:text-md font-medium">{footer?.contactInfo?.phone}</span>
+                    <span className="text-sm md:text-md font-medium">{footer?.phone}</span>
                   </div>
                 </a>
               </li>
@@ -56,13 +45,19 @@ export default function Footer() {
 
             {/* Logo */}
             <div className="lg:pt-8 md:pt-0">
-              <Image
-                width={150}
-                height={150}
-                src={ footer?.logo?.asset?.url }
-                alt="footer logo"
-                className="transition duration-200 transform hover:scale-105"
-              />
+
+              {
+                footer?.logo?.node &&  <Image
+                      width={819}
+                      height={1024}
+                      src={ footer?.logo?.node?.sourceUrl }
+                      alt="footer logo"
+                      className="transition duration-200 transform hover:scale-105"
+                      srcSet={footer?.logo?.node?.srcSet}
+                      sizes="(max-width: 819px) 819px, (max-width: 1200px) 955px, 1333px"
+                  />
+              }
+
             </div>
           </div>
 
@@ -74,9 +69,9 @@ export default function Footer() {
       {/* Bottom Copyright Section */}
       <div className="bg-gray-800 md:py-4 py-12">
         <p className="text-white text-center text-xs sm:text-sm">
-          <span className="text-gray-400">Copyright © 2024</span>{' '}
+          <span className="text-gray-400">Copyright © {new Date(Date.now()).getFullYear()}</span>{' '}
           <Link href="/" className="underline hover:text-yellow-500 transition duration-200">
-            {footer?.copyright}
+            {footer?.copyRight}
           </Link>
         </p>
       </div>
