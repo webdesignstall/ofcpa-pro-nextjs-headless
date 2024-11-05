@@ -39,11 +39,11 @@ function Header({general}) {
       <div className="flex xl:justify-around lg:justify-between justify-between items-center px-6 py-6 xl:px-4 xl:py-4">
         <Link href="/">
           {
-            general?.logo?.node &&  <Image
+            <Image
                   width={300}
                   height={300}
                   className="bg-cover"
-                  src={general?.logo?.node?.sourceUrl}
+                  src={general?.logo?.node?.sourceUrl ? general?.logo?.node?.sourceUrl : '/OFCPA-Banner.webp'}
                   alt="Main logo"
                   priority
                   srcSet={general?.logo?.node?.srcSet}

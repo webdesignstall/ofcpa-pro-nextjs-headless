@@ -1,19 +1,9 @@
-// import FirstSection from '../../components/section/First_Section'
-// import WorkingSection from '../../components/section/workingSection'
-// import RatingSection from '../../components/section/RatingSection'
-// import PackageSection from '../../components/section/PackageSection'
-// import ServiceSection from '../../components/section/ServiceSection'
-// import ScheduleSection from '../../components/section/ScheduleSection'
-
-import dynamic from 'next/dynamic';
-
-const FirstSection = dynamic(() => import('../../components/section/First_Section'));
-const WorkingSection = dynamic(() => import('../../components/section/workingSection'));
-const RatingSection = dynamic(() => import('../../components/section/RatingSection'));
-const PackageSection = dynamic(() => import('../../components/section/PackageSection'));
-const ServiceSection = dynamic(() => import('../../components/section/ServiceSection'));
-const ScheduleSection = dynamic(() => import('../../components/section/ScheduleSection'));
-
+import FirstSection from '../../components/section/First_Section'
+import WorkingSection from '../../components/section/workingSection'
+import RatingSection from '../../components/section/RatingSection'
+import PackageSection from '../../components/section/PackageSection'
+import ServiceSection from '../../components/section/ServiceSection'
+import ScheduleSection from '../../components/section/ScheduleSection'
 
 import {revalidateIntervalDay} from "@/lib/utils";
 import Head from "next/head";
