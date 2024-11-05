@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false, url, page = '1' }) {
-    // const router = useRouter();
-
+function CustomPagination({ pageCount, pageRangeDisplayed = 1, queryUrl = false, url, page = '1' }) {
     const currentPage = parseInt(page);
 
     // Generate page numbers based on page count
@@ -21,7 +19,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false,
         <div className="pagination">
             {/* Previous Button */}
             {prevPage ? (
-                <Link href={queryUrl ? url+prevPage : `/${url}/${prevPage}`} passHref>
+                <Link href={queryUrl ? url + prevPage : `/${url}/${prevPage}`} passHref>
                     <span className="pagination-button">{"< Previous"}</span>
                 </Link>
             ) : (
@@ -29,7 +27,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false,
             )}
 
             {/* First Page */}
-            <Link href={queryUrl ? url+'1' : `/${url}/1`} passHref>
+            <Link href={queryUrl ? url + '1' : `/${url}/1`} passHref>
                 <span className={`pagination-button ${currentPage === 1 ? 'active' : ''}`}>1</span>
             </Link>
 
@@ -38,7 +36,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false,
 
             {/* Visible Page Range */}
             {visiblePages.map((page) => (
-                <Link href={queryUrl ? url+page : `/${url}/${page}`} key={page} passHref>
+                <Link href={queryUrl ? url + page : `/${url}/${page}`} key={page} passHref>
                     <span
                         className={`pagination-button ${
                             page === currentPage ? 'active' : ''
@@ -54,7 +52,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false,
 
             {/* Last Page */}
             {pageCount > 1 && (
-                <Link href={queryUrl ? url+pageCount : `/${url}/${pageCount}`} passHref>
+                <Link href={queryUrl ? url + pageCount : `/${url}/${pageCount}`} passHref>
                     <span className={`pagination-button ${currentPage === pageCount ? 'active' : ''}`}>
                         {pageCount}
                     </span>
@@ -63,7 +61,7 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false,
 
             {/* Next Button */}
             {nextPage ? (
-                <Link href={queryUrl ? url+nextPage : `/${url}/${nextPage}`} passHref>
+                <Link href={queryUrl ? url + nextPage : `/${url}/${nextPage}`} passHref>
                     <span className="pagination-button">{"Next >"}</span>
                 </Link>
             ) : (
@@ -76,32 +74,64 @@ function CustomPagination({ pageCount, pageRangeDisplayed = 2, queryUrl = false,
                     display: flex;
                     gap: 8px;
                     margin: 16px;
-                    justify-content: left;
+                    justify-content: center;
                     align-items: center;
+                    flex-wrap: wrap;
                 }
+
                 .pagination-button {
                     padding: 8px 12px;
                     border: 1px solid #ccc;
                     border-radius: 4px;
-                    text-decoration: none;
                     color: #0070f3;
                     transition: background-color 0.3s;
                 }
+
                 .pagination-button.active {
                     font-weight: bold;
                     color: white;
                     background-color: #0070f3;
                 }
+
                 .pagination-button.disabled {
                     color: #ccc;
                     pointer-events: none;
                 }
+
                 .pagination-button:hover:not(.active):not(.disabled) {
                     background-color: #e2e2e2;
                 }
+
                 .pagination-dots {
                     padding: 8px;
                     color: #999;
+                }
+
+                /* Responsive adjustments */
+                @media (max-width: 600px) {
+                    .pagination {
+                        gap: 4px;
+                    }
+
+                    .pagination-button {
+                        padding: 6px 8px;
+                        font-size: 14px;
+                    }
+
+                   /* .pagination-dots {
+                        display: none;
+                    }*/
+                }
+
+                @media (max-width: 400px) {
+                    .pagination {
+                        flex-direction: row;
+                        align-items: center;
+                    }
+
+                    .pagination-button {
+                        font-size: 12px;
+                    }
                 }
             `}</style>
         </div>

@@ -60,14 +60,15 @@ export async function getStaticProps({params}) {
         };
     }
 
-    const decodedId = parseInt(atob(user.id).split(':')[1], 10);
+    // const decodedId = parseInt(atob(user.id).split(':')[1], 10);
 
     let postData;
     let totalPages = 0
+    let totalPosts = 0
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=1&author=${decodedId}&_embed`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=1&author=${user?.userId}&_embed`);
         const posts = await response.json();
-        const totalPosts = response.headers.get('X-WP-Total');
+        totalPosts = response.headers.get('X-WP-Total');
         const postsPerPage = 10;
         totalPages = Math.ceil(totalPosts / postsPerPage);
 
@@ -105,22 +106,34 @@ export async function getStaticProps({params}) {
             seo: result,
             slug: params.slug,
             currentPage: params.page,
+            user,
+            totalPosts
         },
         revalidate: revalidateIntervalDay(1),
     };
 }
 
-const AuthorPost = ({ posts, pageCount, seo, slug, currentPage}) => {
+const AuthorPost = ({ posts, pageCount, seo, slug, currentPage, user, totalPosts}) => {
      return (
-        <>
-            <Head>
-                {parse(seo.head)}
-            </Head>
+         <>
+             {
+                 seo?.head && <Head>
+                     {parse(seo.head)}
+                 </Head>
+             }
 
-            <Blog posts={posts} pageCount={pageCount} url={`author/${slug}/page`} currentPage={currentPage} page={['/author/[slug]', '/author/[slug]/[page]']}/>
+             <div className="bg-[#e9f1fa] p-10">
+                 <div className='max-w-screen-xl mx-auto'>
+                     <h1 className='text-4xl font-bold'>{user?.name}</h1>
+                     <p className='italic'>Showing {posts?.length} of {totalPosts}</p>
+                 </div>
+             </div>
 
-        </>
-    );
+             <Blog posts={posts} pageCount={pageCount} url={`author/${slug}/page`} currentPage={currentPage}
+                   page={['/author/[slug]', '/author/[slug]/[page]']}/>
+
+         </>
+     );
 };
 
 export default AuthorPost;

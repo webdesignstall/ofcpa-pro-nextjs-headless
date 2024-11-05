@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 
-function Header() {
+function Header({general}) {
   const [activeSection, setActiveSection] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -38,14 +38,18 @@ function Header() {
     <div className="w-full">
       <div className="flex xl:justify-around lg:justify-between justify-between items-center px-6 py-6 xl:px-4 xl:py-4">
         <Link href="/">
-          <Image
-            width={300}
-            height={300}
-            className="bg-cover w-52 lg:w-72"
-            src="/OFCPA-Banner.webp"
-            alt="Main logo"
-            priority
-          />
+          {
+            general?.logo?.node &&  <Image
+                  width={300}
+                  height={300}
+                  className="bg-cover"
+                  src={general?.logo?.node?.sourceUrl}
+                  alt="Main logo"
+                  priority
+                  srcSet={general?.logo?.node?.srcSet}
+              />
+          }
+
         </Link>
         <div className="lg:hidden">
           <Sidebar />

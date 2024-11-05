@@ -12,12 +12,9 @@ import {GET_ALL_ITEMS, postByCategoryQuery} from "../../lib/query";
 import dynamic from "next/dynamic";
 import {revalidateIntervalDay} from "@/lib/utils";
 import useLoading from "@/hooks/useLoading";
-import BlogCardSkeleton from "../../components/blog/BlogCardSkeleton"; // Import the parser
+import BlogCardSkeleton from "../../components/blog/BlogCardSkeleton";
 
-const Blog = dynamic(() => import('../../components/blog'), {
-    loading: () => <p>Loading...</p>, // Optional: Add a loading fallback
-    // ssr: false, // Optional: Set to true if you want server-side rendering for this component
-});
+const Blog = dynamic(() => import('../../components/blog'));
 
 const queryForSinglePost = gql`
     query GetPostBySlug($slug: String!) {
@@ -93,6 +90,12 @@ export async function getStaticProps({ params }) {
         variables: { slug },
     });
 
+    if (!data?.postBy) {
+        return {
+            notFound: true, // This should return a 404 response in Next.js
+        };
+    }
+
     const decodedId = parseInt(atob(data?.postBy.id).split(':')[1], 10);
 
 
@@ -138,9 +141,11 @@ export default function BlogDetails({ blog, relatedPosts, seo }) {
 
 return (
 <>
-    <Head>
-        {parse(seo.head)}
-    </Head>
+    {
+        seo?.head && <Head>
+            {parse(seo?.head)}
+        </Head>
+    }
     <div className='bg-gray-50 py-16 '>
         <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
             {/*<div>
