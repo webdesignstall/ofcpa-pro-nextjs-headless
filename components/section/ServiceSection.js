@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function ServiceSection({ services }) {
 
     return (
-        <div className="px-4 py-12">
+        <div className="md:px-4 py-12">
             <div
                 data-aos="fade-up"
                 className="pb-12"
@@ -17,7 +17,7 @@ export default function ServiceSection({ services }) {
                 data-aos="fade-up"
                className="max-w-3xl mx-auto bg-[#2a5b84] text-white p-3 md:p-6 lg:p-8 rounded-xl"
             >
-                <div className="grid grid-cols-1 gap-y-4 lg:gap-y-5 xl:gap-y-8 font-semibold text-md lg:text-xl p-4 md:text-lg">
+                <div className="grid grid-cols-1 gap-y-4 lg:gap-y-5 xl:gap-y-8 font-semibold text-md lg:text-xl md:p-4 md:text-lg">
                     {
                         services?.items?.map((service, index) => (
                             <div

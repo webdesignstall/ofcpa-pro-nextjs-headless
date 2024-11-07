@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 const SkeletonLoader = () => {
     return (
-        <div className="h-[500px] bg-gray-300 rounded animate-pulse flex justify-center"></div>
+        <div className="bg-gray-300 rounded animate-pulse flex justify-center"></div>
     );
 };
 

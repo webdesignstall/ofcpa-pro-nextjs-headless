@@ -34,8 +34,8 @@ export default function SimpleSlider({ reviews }) {
     };
 
     return (
-        <div className="py-10 max-w-7xl mx-auto px-3 pt-3 md:pt-4 lg:pt-5 xl:pt-6 mt-4">
-            <h1 data-aos="fade-up" className="text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] p-4">
+        <div className="py-10 max-w-7xl mx-auto md:px-3 pt-3 md:pt-4 lg:pt-5 xl:pt-6 mt-4">
+            <h1 data-aos="fade-up" className="text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] md:p-4">
                 {reviews?.sectionTitle}
             </h1>
 
