@@ -111,13 +111,14 @@ export async function getStaticProps({ params }) {
             seo: result,
             currentPage: params.page,
             category,
-            totalPosts
+            totalPosts,
+            slug: params.slug,
         },
         revalidate: revalidateIntervalDay(1),
     };
 }
 
-const AuthorPost = ({ posts, pageCount, seo, slug,category, totalPosts, currentPage}) => {
+const AuthorPost = ({ posts, pageCount, seo, slug, category, totalPosts, currentPage}) => {
 
 
     return (
