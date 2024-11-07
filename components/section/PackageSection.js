@@ -10,7 +10,7 @@ export default function PackageSection({ packages }) {
             </h1>
 
             {/* Package Cards */}
-            <div className="max-w-7xl mx-auto sm:px-6 px-4">
+            <div className="max-w-7xl mx-auto md:px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
                     {packages?.features?.map((pkg, index) => (
                         <div

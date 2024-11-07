@@ -7,7 +7,7 @@ export default function WorkingSection({ workingWithUs }) {
 
   return (
     <div id="what-we-do" className='pt-3 md:pt-4 lg:pt-5 xl:pt-6 mt-4'>
-        <h1 data-aos="fade-up" className='text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] p-4 '>{workingWithUs?.sectionTitle}</h1>
+        <h1 data-aos="fade-up" className='text-center lg:text-4xl text-3xl xl:text-5xl font-bold text-[#2A5B84] md:p-4 '>{workingWithUs?.sectionTitle}</h1>
 
         <div className='max-w-7xl m-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 pt-4'>
