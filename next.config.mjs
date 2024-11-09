@@ -20,6 +20,12 @@ const nextConfig = {
         port: '',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.facebook.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
