@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import Script from "next/script";
 
 const SkeletonLoader = () => {
     return (
@@ -11,7 +12,7 @@ const BookingSection = () => {
     const { ref, inView } = useInView({ triggerOnce: true });
     const [iframeLoaded, setIframeLoaded] = useState(false);
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (inView && !iframeLoaded) {
             setIframeLoaded(true);
 
@@ -26,22 +27,34 @@ const BookingSection = () => {
                 document.body.removeChild(script);
             };
         }
-    }, [inView, iframeLoaded]);
+    }, [inView, iframeLoaded]);*/
 
     return (
-        <div id="booking" ref={ref} className="min-h-[500px]">
-            {!iframeLoaded ? (
-                <SkeletonLoader />
-            ) : (
+        <>
+            <div id="booking" ref={ref} className="min-h-[500px]">
+               {/* {!iframeLoaded ? (
+                    <SkeletonLoader/>
+                ) : (
+                    <iframe
+                        src="https://link.conversionpro.io/widget/booking/Y8yBZ09JEkpgFA9Ymfpa"
+                        className="w-full border-none overflow-hidden"
+                        scrolling="no"
+                        id="msgsndr-calendar"
+                    />
+                )}*/}
+
                 <iframe
                     src="https://link.conversionpro.io/widget/booking/Y8yBZ09JEkpgFA9Ymfpa"
                     className="w-full border-none overflow-hidden"
                     scrolling="no"
                     id="msgsndr-calendar"
                 />
-            )}
-            <br />
-        </div>
+                <br/>
+            </div>
+
+            <Script src='https://link.conversionpro.io/js/embed.js'/>
+        </>
+
     );
 };
 

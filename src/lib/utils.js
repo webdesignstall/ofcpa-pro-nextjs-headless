@@ -10,9 +10,23 @@ export const revalidateIntervalDay = (REVALIDATE_DAYS) => {
   return REVALIDATE_INTERVAL;
 }
 
-export const replaceOgUrl = (head, url = '')=> {
-  return  head.replace(
-      `<meta property="og:url" content="https://ofcpa.xyz${url}" />`,
+export const replaceOgUrl = (head, url = '') => {
+  head = head.replace(
+      /<meta property="og:url" content="https:\/\/ofcpa\.xyz(.*?)" \/>/g,
       `<meta property="og:url" content="https://ofcpa.pro${url}" />`
   );
+  head = head.replace(
+      `<meta name="robots" content="nofollow, noindex"/>`,
+      `<meta name="robots" content="index, follow" data-next-head="">`
+  );
+
+  return head;
+}
+
+
+export const allowRobotIndex = (head) => {
+  return head.replace(
+      `<meta name="robots" content="nofollow, noindex" />`,
+      `<meta name="robots" content="index, follow" />`,
+  )
 }

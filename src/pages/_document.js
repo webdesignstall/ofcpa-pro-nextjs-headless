@@ -1,6 +1,7 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 import {useEffect} from "react";
+import Image from "next/image";
 
 export default function Document() {
 
@@ -42,7 +43,7 @@ export default function Document() {
         </Head>
         <body className="antialiased">
         <noscript>
-            <img
+            <Image
                 height="1"
                 width="1"
                 style={{display: 'none'}}

@@ -5,7 +5,7 @@ import PackageSection from '../../components/section/PackageSection'
 import ServiceSection from '../../components/section/ServiceSection'
 import ScheduleSection from '../../components/section/ScheduleSection'
 
-import {replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
+import {allowRobotIndex, replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
 import Head from "next/head";
 import parse from "html-react-parser";
 import {getHomePageContent} from "../../lib/query";
@@ -17,6 +17,7 @@ export async function getStaticProps() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}`)
 
     const result = await response.json();
+
     // Modify og:url
      result.head = replaceOgUrl(result.head);
 
