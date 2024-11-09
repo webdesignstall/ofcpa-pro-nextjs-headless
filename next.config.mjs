@@ -16,7 +16,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'ofcpa.pro',
+        hostname: 'ofcpa.xyz',
         port: '',
         pathname: '/wp-content/uploads/**',
       },
