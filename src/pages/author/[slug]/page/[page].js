@@ -1,4 +1,4 @@
-import {revalidateIntervalDay} from "@/lib/utils";
+import {replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
 import parse from "html-react-parser";
 import Head from "next/head";
 import {initializeApollo} from "../../../../../lib/apolloInstance";
@@ -98,7 +98,7 @@ export async function getStaticProps({params}) {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/author/${params.slug}`);
     const result = await response.json();
-
+    result.head = replaceOgUrl(result.head, `/author/${params.slug}/`);
     return {
         props: {
             posts: postData,
