@@ -1,4 +1,4 @@
-import {revalidateIntervalDay} from "@/lib/utils";
+import {replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
 import Head from "next/head";
 import parse from "html-react-parser";
 
@@ -42,6 +42,8 @@ export async function getStaticProps() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/blog`)
 
   const seo = await response.json();
+
+  seo.head = replaceOgUrl(seo.head, `/blog/`);
 
   return {
     props: {

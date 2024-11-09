@@ -1,4 +1,4 @@
-import {revalidateIntervalDay} from "@/lib/utils";
+import {replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
 import parse from "html-react-parser";
 import Head from "next/head";
 
@@ -70,13 +70,17 @@ export async function getStaticProps({ params }) {
 
     // const decodedId = parseInt(atob(category.id).split(':')[1], 10);
     try {
+
         // Adjust the fetch URL to include pagination
         const page = parseInt(params.page) || 1; // Default to page 1 if undefined
-        const response = await fetch(`https://ofcpa.pro/wp-json/wp/v2/posts?per_page=10&page=${page}&categories=${category?.categoryId}&_embed`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/posts?per_page=10&page=${page}&categories=${category?.categoryId}&_embed`);
+
         const posts = await response.json();
         totalPosts = response.headers.get('X-WP-Total');
         const postsPerPage = 10;
         totalPages = Math.ceil(totalPosts / postsPerPage);
+
+
 
         const filteredPost = posts.map(post => ({
             id: post.id,
@@ -103,7 +107,7 @@ export async function getStaticProps({ params }) {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/category/${params.slug}`);
     const data = await response.json();
-
+    data.head = replaceOgUrl(data.head, `/category/${params.slug}/`);
 
     return {
         props: {

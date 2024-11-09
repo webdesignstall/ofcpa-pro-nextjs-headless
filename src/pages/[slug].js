@@ -9,7 +9,7 @@ import {initializeApollo} from "../../lib/apolloInstance";
 import Head from "next/head";
 import parse from 'html-react-parser';
 import {GET_ALL_ITEMS, postByCategoryQuery} from "../../lib/query";
-import {revalidateIntervalDay} from "@/lib/utils";
+import {replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
 import useLoading from "@/hooks/useLoading";
 import BlogCardSkeleton from "../../components/blog/BlogCardSkeleton";
 import Blog from '../../components/blog';
@@ -104,6 +104,8 @@ export async function getStaticProps({ params }) {
 
    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/rankmath/v1/getHead?url=${process.env.NEXT_PUBLIC_BACKEND_URL}/${slug}`)
     const result = await response.json();
+
+   result.head = replaceOgUrl(result.head, `/${slug}/`);
 
     return {
         props: {
