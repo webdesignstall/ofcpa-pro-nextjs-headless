@@ -147,7 +147,7 @@ return (
         </Head>
     }
     <div className='bg-gray-50 py-16 '>
-        <div className='px-4 md:p-12 max-w-[1140px] m-auto bg-white'>
+        <div className='md:p-12 max-w-screen-xl m-auto bg-white'>
             {/*<div>
                 <BreadcrumbHeader post={blog} />
             </div>*/}

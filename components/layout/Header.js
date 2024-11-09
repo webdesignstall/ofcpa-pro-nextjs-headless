@@ -35,8 +35,8 @@ function Header({general}) {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex xl:justify-around lg:justify-between justify-between items-center px-6 py-6 xl:px-4 xl:py-4">
+    <div className="w-full max-w-screen-xl mx-auto">
+      <div className="flex justify-between items-center py-6 xl:py-4">
         <Link href="/">
           {
             <Image
@@ -62,7 +62,7 @@ function Header({general}) {
               { label: 'Testimonials', href: 'https://go.ofcpa.pro/vsl-step-2-page', external: true },
               { label: 'Packages', href: '/#packages' },
               { label: 'Blog and Articles', href: '/blog' },
-              { label: 'Comparison', href: '/comparison' },
+              // { label: 'Comparison', href: '/comparison' },
             ].map(({ label, href, external }) => (
               <div
                 key={label}
