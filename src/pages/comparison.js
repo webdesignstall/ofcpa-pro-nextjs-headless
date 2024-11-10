@@ -33,35 +33,38 @@ export default function ComparisonTable({comparison, seo}) {
 
 
         <div className="my-8 px-4 sm:px-6 lg:px-8">
-          <div className='max-w-7xl mx-auto pb-6'>
+          <div className='max-w-7xl mx-auto '>
             {/* Header Section */}
-            <div className='flex flex-col items-center text-center mb-6'>
-              <h1 className='text-3xl sm:text-4xl font-semibold tracking-tighter font-roboto text-sky-800'>
-                {comparison?.sectionTitle}:
-              </h1>
-              <p className=' text-lg sm:text-xl text-gray-600'>
-                {comparison?.sectionSubtitle}:
-              </p>
+            <div className='flex flex-col items-center mb-6 lg:ml-8'>
+              <div>
+                <h1 className='text-2xl sm:text-4xl font-semibold tracking-tighter font-roboto text-sky-800'>
+                  {comparison?.sectionTitle}
+                </h1>
+                <h2 className='text-lg sm:text-2xl text-sky-800'>
+                  {comparison?.sectionSubtitle}
+                </h2>
+              </div>
+
             </div>
 
             {/* Comparison Boxes */}
-            <div className='flex flex-col sm:flex-row justify-center items-center lg:justify-end gap-6 sm:gap-4 mt-1'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-2 lg:mr-8'>
+              <div></div>
               <div
-                  className='bg-yellow-400 text-white px-6 sm:px-16 py-4 sm:py-3 h-auto sm:h-16 flex justify-center items-center flex-col rounded-md w-full sm:w-auto'>
-                <h2 className='text-lg sm:text-xl font-semibold'>{comparison?.ourColumnTitle}</h2>
+                  className='bg-yellow-400 text-white lg:px-16 p-2 lg:py-3 h-auto lg:h-16 flex justify-center items-center flex-col rounded-md w-full sm:w-auto'>
+                <h2 className='text-lg lg:text-xl font-semibold'>{comparison?.ourColumnTitle}</h2>
                 <p className='text-sm sm:text-base text-sky-800 mt-1 sm:mt-0'>
                   {comparison?.ourColumnSubtitle}
                 </p>
               </div>
-              <div
-                  className='bg-sky-800 text-white px-6 sm:px-16 py-4 sm:py-3 h-auto sm:h-16 flex justify-center items-center flex-col rounded-md w-full sm:w-auto'>
-                <h2 className='text-lg sm:text-xl font-semibold'>{comparison?.otherColumnTitle}</h2>
+              <div className='bg-sky-800 text-white lg:px-16 py-4 sm:py-3 h-auto lg:h-16 flex justify-center items-center flex-col rounded-md w-full sm:w-auto'>
+                <h2 className='text-lg text-yellow-400 sm:text-xl font-semibold'>{comparison?.otherColumnTitle}</h2>
               </div>
             </div>
           </div>
 
           {/* Comparison Card */}
-          <div className='mt-8'>
+          <div className=''>
             <ComparisonCard tables={comparison?.tables}/>
           </div>
         </div>

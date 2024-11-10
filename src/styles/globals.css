@@ -326,6 +326,11 @@ li::marker{
   text-align: center;
 }
 
+.custom-clip {
+  clip-path: polygon(79% 8%, 79% 53%, 79% 93%, 0% 100%, 0 52%, 0% 0%);
+}
+
+
 
 @layer base {
   :root {
