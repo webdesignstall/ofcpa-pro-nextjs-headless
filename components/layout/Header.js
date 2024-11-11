@@ -15,7 +15,7 @@ function Header({general}) {
   useEffect(() => {
     const pathToLabel = {
       '/': 'Home',
-      '/#what-we-do': 'What We Do',
+      '/#whatwedo': 'What We Do',
       '/blog': 'Blog and Articles',
       '/#packages': 'Packages',
     };
@@ -58,7 +58,7 @@ function Header({general}) {
           <div className="flex">
             {[
               { label: 'Home', href: '/' },
-              { label: 'What We Do', href: '/#what-we-do' },
+              { label: 'What We Do', href: '/#whatwedo' },
               { label: 'Testimonials', href: 'https://go.ofcpa.pro/vsl-step-2-page', external: true },
               { label: 'Packages', href: '/#packages' },
               { label: 'Blog and Articles', href: '/blog' },

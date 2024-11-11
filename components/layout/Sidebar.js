@@ -48,7 +48,7 @@ const Sidebar = () => {
                 <div className="pt-20 space-y-4">
                     {[
                         { label: 'Home', href: '/' },
-                        { label: 'What We Do', href: '/#what-we-do' },
+                        { label: 'What We Do', href: '/#whatwedo' },
                         { label: 'Testimonials', href: 'https://go.ofcpa.pro/vsl-step-2-page' },
                         { label: 'Packages', href: '/#packages' },
                         { label: 'Blog and Articles', href: '/blog' },
