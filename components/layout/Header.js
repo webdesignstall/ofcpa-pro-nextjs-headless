@@ -62,7 +62,7 @@ function Header({general}) {
               { label: 'Testimonials', href: 'https://go.ofcpa.pro/vsl-step-2-page', external: true },
               { label: 'Packages', href: '/#packages' },
               { label: 'Blog and Articles', href: '/blog' },
-              { label: 'Comparison', href: '/comparison' },
+              // { label: 'Comparison', href: '/comparison' },
             ].map(({ label, href, external }) => (
               <div
                 key={label}
