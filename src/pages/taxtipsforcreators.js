@@ -11,6 +11,7 @@ import {getHomePageContent} from "../../lib/query";
 import {replaceOgUrl, revalidateIntervalDay} from "@/lib/utils";
 import Head from "next/head";
 import parse from "html-react-parser";
+import Image from "next/image";
 
 export async function getStaticProps() {
 
@@ -66,43 +67,46 @@ export default function Taxtipsforcreators({seo}) {
 
                 {/* Content Section */}
                 <div className="p-4 sm:p-8 bg-white text-gray-800 flex flex-col items-center">
-                    <div className="max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="max-w-7xl lg:flex items-center gap-4">
                         {/* Image Placeholder */}
-                        <div className="bg-gray-200 w-full h-64 rounded-md flex items-center justify-center">
-                            <p className="text-gray-500">Image Placeholder</p>
-                        </div>
+
+
+                            <Image width={560} height={400} className='lg:object-contain lg:ml-16' src={'https://ofcpa.xyz/wp-content/uploads/2023/10/of-min.jpg'} alt={'image'}/>
+
+
+
 
                         {/* Text Content */}
-                        <div>
-                            <p className="text-xl mb-6">
+                        <div className='flex-shrink'>
+                            <p className="text-2xl mb-6">
                                 We know you’re passionate about bringing your ideas to life, but the business side of
                                 things can sometimes feel overwhelming, especially when it comes to taxes.
                             </p>
-                            <p className="text-xl mb-6">
+                            <p className="text-2xl mb-6">
                                 Here’s the good news: you don’t have to navigate confusing deductions and deadlines
                                 alone. Our team of dedicated accounting professionals created this free eBook,
                                 specifically for content creators like you, to help you:
                             </p>
-                            <ul className="text-lg mb-6 space-y-2">
+                            <ul className="text-2lx mb-6 space-y-2">
                                 <li className="flex items-start gap-2">
                                     <Check className="text-green-500 mt-1"/>
-                                    Understand key tax deductions and credits relevant to your work.
+                                    <p className='text-xl'> Understand key tax deductions and credits relevant to your work. </p>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <Check className="text-green-500 mt-1"/>
-                                    Master tax planning strategies to minimize your tax burden.
+                                    <p className='text-xl'> Master tax planning strategies to minimize your tax burden. </p>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <Check className="text-green-500 mt-1"/>
-                                    Stay organized and avoid tax headaches with actionable tips.
+                                    <p className='text-xl'> Stay organized and avoid tax headaches with actionable tips. </p>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <Check className="text-green-500 mt-1"/>
-                                    Learn about common mistakes to avoid and save yourself money.
+                                    <p className='text-xl'> Learn about common mistakes to avoid and save yourself money. </p>
                                 </li>
                             </ul>
 
-                            <p className="text-xl mb-6">
+                            <p className="text-2xl mb-6">
                                 By downloading this free eBook, you’ll gain valuable insights and peace of mind,
                                 allowing you to focus on what you do best: creating amazing content!
                             </p>
