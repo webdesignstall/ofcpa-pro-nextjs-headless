@@ -35,7 +35,7 @@ function Header({general}) {
   };
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto">
+    <div className="w-full max-w-screen-xl mx-auto px-4 md:px-0">
       <div className="flex justify-between items-center py-6 xl:py-4">
         <Link href="/">
           {

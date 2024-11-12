@@ -146,8 +146,8 @@ return (
             {parse(seo?.head)}
         </Head>
     }
-    <div className='bg-gray-50 py-16 '>
-        <div className='md:p-12 max-w-screen-xl m-auto bg-white'>
+    <div className='bg-gray-50 py-16'>
+        <div className='p-4 md:p-12 max-w-screen-xl m-auto bg-white '>
             {/*<div>
                 <BreadcrumbHeader post={blog} />
             </div>*/}
