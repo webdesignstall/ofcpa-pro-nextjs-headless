@@ -3,7 +3,7 @@ import React from 'react';
 import moment from "moment";
 import Link from "next/link";
 
-const RelatedPosts = ({blogs}) => {
+const RelatedPosts = ({ blogs }) => {
 
     return (
         <div className='my-8'>
@@ -15,8 +15,8 @@ const RelatedPosts = ({blogs}) => {
                             key={post?.id}
                             className=" p-4"
                         >
-                            <div className="h-64 rounded-md mb-4 bg-sky-50"></div>
                             <Link href={`/${post?.slug}`}>
+                                <div className="h-64 rounded-md mb-4 bg-sky-50"></div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2 hover:text-blue-700 cursor-pointer duration-200">{post?.title}</h3>
                             </Link>
                             <p className="text-sm text-gray-500 mb-1">{moment(post?.date).format('LL')}</p>
