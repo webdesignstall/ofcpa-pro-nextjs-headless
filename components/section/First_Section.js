@@ -17,14 +17,14 @@ export default function FirstSection({ heroSection }) {
                         >
                             {heroSection.sectionTitle}
                         </h1>
-                        {/*<p data-aos="fade-up" className='text-[#2a5b84] pb-2 font-normal text-xl'>*/}
+                        <div data-aos="fade-up" className='text-[#2a5b84] pb-2 font-normal text-xl'>
                             {parse(heroSection?.description)}
-                        {/*</p>*/}
+                        </div>
                         {/* Animated Button */}
                         <div className='flex justify-center lg:justify-start'>
                             <Link href='#booking'>
                                 <p data-aos="fade-up"
-                                   className='rounded-full px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white font-normal mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'>
+                                    className='rounded-full font-semibold px-12 py-4 bg-yellow-500 text-sky-900 hover:text-white mt-4 xl:mt-2 xl:px-12 xl:py-4 hover:bg-sky-900 lg:text-lg text-sm'>
                                     BOOK A CALL
                                 </p>
                             </Link>
