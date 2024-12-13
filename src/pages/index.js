@@ -18,8 +18,12 @@ export async function getStaticProps() {
 
     const result = await response.json();
 
-    // Modify og:url
-     result.head = replaceOgUrl(result.head);
+    if(result?.head !== undefined){
+        // Modify og:url
+         result.head = replaceOgUrl(result.head);
+    }else {
+        result.head = null;
+    }
 
   return {
     props: {  seo: result, pageContent: pageContent },
@@ -32,7 +36,7 @@ export default function Home({ pageContent, seo }) {
     return (
     <>
         <Head>
-            {parse(seo.head)}
+            {seo?.head && parse(seo?.head)}
         </Head>
         <div className='p-4 lg:p-10'>
           <FirstSection heroSection={pageContent?.heroSection} />
