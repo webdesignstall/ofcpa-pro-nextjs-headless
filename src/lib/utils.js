@@ -11,11 +11,11 @@ export const revalidateIntervalDay = (REVALIDATE_DAYS) => {
 }
 
 export const replaceOgUrl = (head, url = '') => {
-  head = head.replace(
+  head = head?.replace(
       /<meta property="og:url" content="https:\/\/ofcpa\.xyz(.*?)" \/>/g,
       `<meta property="og:url" content="https://ofcpa.pro${url}" />`
   );
-  head = head.replace(
+  head = head?.replace(
       `<meta name="robots" content="nofollow, noindex"/>`,
       `<meta name="robots" content="index, follow" data-next-head="">`
   );
@@ -25,7 +25,7 @@ export const replaceOgUrl = (head, url = '') => {
 
 
 export const allowRobotIndex = (head) => {
-  return head.replace(
+  return head?.replace(
       `<meta name="robots" content="nofollow, noindex" />`,
       `<meta name="robots" content="index, follow" />`,
   )
