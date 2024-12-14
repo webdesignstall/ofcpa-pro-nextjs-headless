@@ -13,6 +13,7 @@ import Head from "next/head";
 import parse from "html-react-parser";
 import Image from "next/image";
 
+
 export async function getStaticProps() {
 
     const pageContent = await getTaxTips()
@@ -76,65 +77,74 @@ export default function Taxtipsforcreators({seo, pageContent}) {
                 <div className="p-4 sm:p-8 bg-white text-gray-800 flex flex-col items-center">
                     <div className="max-w-7xl lg:flex items-center gap-4">
                         {/* Image Placeholder */}
-                            <Image width={560} height={400} className='lg:object-contain lg:ml-16' src={pageContent?.leftColumnImage?.node?.sourceUrl} alt={ pageContent?.leftColumnImage?.node?.altText || 'image'}/>
+                        <Image width={560} height={400} className='lg:object-contain lg:ml-16'
+                               src={pageContent?.leftColumnImage?.node?.sourceUrl}
+                               alt={pageContent?.leftColumnImage?.node?.altText || 'image'}/>
                         {/* Text Content */}
-                        <div className='flex-shrink'>
+                        {/* <div className='flex-shrink'>
                             {pageContent?.rightColumnWording}
+                        </div>*/}
+
+                        <div>
+                            {
+                                parse(pageContent?.rightColumnWording)
+                            }
                         </div>
-                    </div>
 
-                    {/* Call-to-Action Button */}
-                    <div className="max-w-3xl mt-8">
-                        <div className="flex justify-center">
-                            <button
-                                className="bg-yellow-500 text-white font-normal py-4 px-8 rounded-md text-2xl sm:text-3xl hover:bg-sky-800 transition">
-                                {pageContent?.buttonLabel}
-                            </button>
                         </div>
-                        <p className="text-lg sm:text-2xl text-center mt-6">
-                            {pageContent?.formInfo}
-                        </p>
-                    </div>
 
-                    {/* Form Section */}
-                    <div className="w-full max-w-4xl mx-auto mt-8 p-4 sm:p-6 bg-white rounded-lg">
-                        <form className="flex flex-col space-y-4">
-                            <div className="flex flex-col">
-                                <label htmlFor="name"
-                                       className="text-gray-700 text-lg sm:text-xl font-medium mb-2">Name*</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    placeholder="Enter your name"
-                                    className="p-3 bg-gray-50  border-gray-300 rounded-md focus:outline-none focus:bg-gray-100 focus:border-yellow-500 transition"
-                                />
-                            </div>
-
-                            <div className="flex flex-col">
-                                <label htmlFor="email"
-                                       className="text-gray-700 text-lg sm:text-xl font-medium mb-2">Email*</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    placeholder="Enter your email"
-                                    className="p-3 bg-gray-50  border-gray-300 rounded-md focus:outline-none focus:bg-gray-100 focus:border-yellow-500 transition"
-                                />
-                            </div>
-
-                            <div className="pt-4">
+                        {/* Call-to-Action Button */}
+                        <div className="max-w-3xl mt-8">
+                            <div className="flex justify-center">
                                 <button
-                                    type="submit"
-                                    className="w-full bg-sky-700 text-white font-semibold py-3 rounded-md text-lg hover:bg-yellow-500 transition"
-                                >
-                                    Submit
+                                    className="bg-yellow-500 text-white font-normal py-4 px-8 rounded-md text-2xl sm:text-3xl hover:bg-sky-800 transition">
+                                    {pageContent?.buttonLabel}
                                 </button>
                             </div>
-                        </form>
+                            <p className="text-lg sm:text-2xl text-center mt-6">
+                                {pageContent?.formInfo}
+                            </p>
+                        </div>
+
+                        {/* Form Section */}
+                        <div className="w-full max-w-4xl mx-auto mt-8 p-4 sm:p-6 bg-white rounded-lg">
+                            <form className="flex flex-col space-y-4">
+                                <div className="flex flex-col">
+                                    <label htmlFor="name"
+                                           className="text-gray-700 text-lg sm:text-xl font-medium mb-2">Name*</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        placeholder="Enter your name"
+                                        className="p-3 bg-gray-50  border-gray-300 rounded-md focus:outline-none focus:bg-gray-100 focus:border-yellow-500 transition"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label htmlFor="email"
+                                           className="text-gray-700 text-lg sm:text-xl font-medium mb-2">Email*</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="Enter your email"
+                                        className="p-3 bg-gray-50  border-gray-300 rounded-md focus:outline-none focus:bg-gray-100 focus:border-yellow-500 transition"
+                                    />
+                                </div>
+
+                                <div className="pt-4">
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-sky-700 text-white font-semibold py-3 rounded-md text-lg hover:bg-yellow-500 transition"
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
+            </>
 
 
-    );
-}
+            );
+            }

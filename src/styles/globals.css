@@ -292,6 +292,11 @@ li::marker{
   color: black !important;
 }
 
+ul {
+  @apply list-disc pl-5 space-y-2;
+}
+
+
 @media only screen and (max-width: 765px) {
 
   .hl-app .hl_widget-step1 .pick-hours--wrap,
